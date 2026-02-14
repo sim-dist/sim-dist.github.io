@@ -67,6 +67,7 @@ a {
 .topbar__brand {
   font-weight: 700;
   letter-spacing: 0.08em;
+  font-size: 1.2rem;
 }
 
 .topbar__links {
@@ -79,7 +80,7 @@ a {
   align-items: center;
   gap: 0.45rem;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
   padding: 0.4rem 0.85rem;
@@ -93,20 +94,9 @@ a {
   color: #ffffff;
 }
 
-.link-icon--stroke {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.link-icon--stroke text {
-  fill: currentColor;
-  stroke: none;
-  font-size: 7px;
-  font-weight: 700;
-  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+.link-icon--arxiv {
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .link-icon--fill {
