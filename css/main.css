@@ -277,11 +277,41 @@ main {
   letter-spacing: -0.02em;
 }
 
-.hero-subtitle {
+.hero h1.hero-brand {
+  white-space: nowrap;
+  max-width: none;
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.35rem);
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+}
+
+.hero-paper-title {
   margin: 0;
-  max-width: 62ch;
+  max-width: 40ch;
   color: rgba(246, 248, 251, 0.9);
-  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.6rem, 4.1vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.hero-authors {
+  margin: 0;
+  max-width: 72ch;
+  color: rgba(246, 248, 251, 0.88);
+  font-size: clamp(0.9rem, 1.15vw, 1.02rem);
+  line-height: 1.45;
+}
+
+.hero-authors a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-authors a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.95);
 }
 
 .hero-actions {
