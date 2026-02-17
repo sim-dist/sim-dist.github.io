@@ -1,0 +1,111 @@
+{
+  "PEG_NARROW": {
+    "title": "Peg Insertion (Narrow)",
+    "x": [0, 20, 40, 60],
+    "data": {
+      "Simulation Distillation": [0.25, 0.5, 0.7, 0.85],
+      "Simulation Distillation+BC": [0.25, 0.35, 0.5, 0.75],
+      "IQL": [0.2, 0.25, 0.35, 0.3],
+      "RLPD": [0.2, 0.1, 0.25, 0.35],
+      "SGFT": [0.2, 0.3, 0.35, 0.3]
+    },
+    "lines": {
+      "Diffusion Policy (Real Demos)": 0.2,
+      "Diffusion Polcy (Real + Sim Demos)": 0.15,
+      "pi_0.5 (Real Demos)": 0.05,
+      "pi_0.5 (Real + Sim Demos)": 0.1
+    },
+    "xlabel": "Data (episodes)",
+    "ylabel": "Success Rate"
+  },
+  "PEG_WIDE": {
+    "title": "Peg Insertion (Wide)",
+    "x": [0, 20, 40, 60, 80],
+    "data": {
+      "Simulation Distillation": [0.3, 0.4, 0.6, 0.55, 0.8],
+      "Simulation Distillation+BC": [0.3, 0.4, 0.45, 0.5, 0.7],
+      "IQL": [0.25, 0, 0.15, 0.2, 0.25],
+      "RLPD": [0.25, 0, 0, 0, 0],
+      "SGFT": [0.25, 0.25, 0.3, 0.35, 0.4]
+    },
+    "lines": {
+      "Diffusion Policy (Real Demos)": 0.0,
+      "Diffusion Polcy (Real + Sim Demos)": 0.1,
+      "pi_0.5 (Real Demos)": 0.01,
+      "pi_0.5 (Real + Sim Demos)": 0.05
+    },
+    "xlabel": "Data (episodes)",
+    "ylabel": "Success Rate"
+  },
+  "TABLE_NARROW": {
+    "title": "Table Leg (Narrow)",
+    "x": [0, 20, 40, 60],
+    "data": {
+      "Simulation Distillation": [0.1, 0.3, 0.5, 0.6],
+      "Simulation Distillation+BC": [0.1, 0.6, 0.7, 0.85],
+      "IQL": [0.1, 0.15, 0.25, 0.2],
+      "RLPD": [0.1, 0, 0.15, 0.1],
+      "SGFT": [0.1, 0.2, 0.25, 0.25]
+    },
+    "lines": {
+      "Diffusion Policy (Real Demos)": 0.15,
+      "Diffusion Polcy (Real + Sim Demos)": 0.2,
+      "pi_0.5 (Real Demos)": 0.0,
+      "pi_0.5 (Real + Sim Demos)": 0.21
+    },
+    "xlabel": "Data (episodes)",
+    "ylabel": "Success Rate"
+  },
+  "TABLE_WIDE": {
+    "title": "Table Leg (Wide)",
+    "x": [0, 20, 40, 60, 80],
+    "data": {
+      "Simulation Distillation": [0.1, 0.4, 0.45, 0.5, 0.7],
+      "Simulation Distillation+BC": [0.1, 0.3, 0.5, 0.6, 0.8],
+      "IQL": [0.15, 0.1, 0, 0, 0],
+      "RLPD": [0.15, 0, 0, 0, 0],
+      "SGFT": [0.15, 0.1, 0.2, 0.3, 0.4]
+    },
+    "lines": {
+      "Diffusion Policy (Real Demos)": 0.0,
+      "Diffusion Polcy (Real + Sim Demos)": 0.1,
+      "pi_0.5 (Real Demos)": 0.01,
+      "pi_0.5 (Real + Sim Demos)": 0.11
+    },
+    "xlabel": "Data (episodes)",
+    "ylabel": "Success Rate"
+  },
+  "PTFE": {
+    "title": "Quadruped - Slippery Slope",
+    "x": [0.0, 16.4, 26.8, 35.7],
+    "data": {
+      "Simulation Distillation": [
+        0.676666666666667,
+        1.4,
+        1.346666667,
+        1.806666667
+      ],
+      "IQL": [1.18, 0.9533333333, 0.35, 0.2833333333],
+      "RLPD": [1.18, 0.3366666667, 0, 0]
+    },
+    "lines": {
+      "Quadruped Success": 1.82
+    },
+    "xlabel": "Data (minutes)",
+    "ylabel": "Forward Progress (m)"
+  },
+  "FOAM": {
+    "title": "Quadruped - Foam",
+    "x": [0.0, 16.2, 32.1],
+    "data": {
+      "Simulation Distillation": [2.083333333, 2.863333333, 3],
+      "IQL": [2.02, 1.48, 1.963333333],
+      "RLPD": [2.02, 0, 0]
+    },
+    "lines": {
+      "Quadruped Success": 3.0
+    },
+    "xlabel": "Data (minutes)",
+    "ylabel": "Forward Progress (m)"
+  }
+}
