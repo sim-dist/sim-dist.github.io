@@ -74,28 +74,73 @@
             latent dynamics.
           </p>
         </div>
-        <div class="narrative-grid">
-          <article class="narrative-card" data-reveal>
+        <div class="overview-shell">
+          <div class="narrative-grid">
+            <article
+              class="narrative-card"
+              data-reveal
+              data-story="failure"
+              role="button"
+              aria-pressed="true"
+              tabindex="0"
+            >
             <h3>1. The failure mode</h3>
             <p>
               Sim-to-real policies fail under dynamics mismatch. Standard policy finetuning entangles
               representation, dynamics, and returns, forcing relearning with very little real data.
             </p>
-          </article>
-          <article class="narrative-card" data-reveal>
+            </article>
+            <article
+              class="narrative-card"
+              data-reveal
+              data-story="modular"
+              role="button"
+              aria-pressed="false"
+              tabindex="0"
+            >
             <h3>2. Modular world models</h3>
             <p>
               World models separate encoding, dynamics prediction, and value estimation. That structure
               makes transfer selective: preserve global structure, adapt only environment-specific dynamics.
             </p>
-          </article>
-          <article class="narrative-card" data-reveal>
+            </article>
+            <article
+              class="narrative-card"
+              data-reveal
+              data-story="consequence"
+              role="button"
+              aria-pressed="false"
+              tabindex="0"
+            >
             <h3>3. Practical consequence</h3>
             <p>
               Real-world adaptation becomes supervised latent dynamics learning with online planning,
               avoiding long-horizon bootstrapping that destabilizes many end-to-end baselines.
             </p>
-          </article>
+            </article>
+          </div>
+          <aside class="overview-media" data-reveal>
+            <p class="overview-media-label" id="overview-media-label">1. The failure mode</p>
+            <h3 id="overview-media-title">Zero-shot failures under dynamics mismatch</h3>
+            <video
+              id="overview-media-video"
+              src="assets/video/failures_sequential.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              controls
+            ></video>
+            <p id="overview-media-copy">
+              Zero-shot sim-to-real transfer can break across all four tasks when dynamics shift.
+            </p>
+            <div class="overview-media-controls" role="group" aria-label="Overview story controls">
+              <button type="button" data-story-btn="failure" class="active">1</button>
+              <button type="button" data-story-btn="modular">2</button>
+              <button type="button" data-story-btn="consequence">3</button>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -378,17 +423,12 @@
 
       <section class="section section-failures">
         <div class="section-head" data-reveal>
-          <p class="eyebrow">Failure Context</p>
-          <h2>Zero-shot policies still fail under dynamics mismatch</h2>
+          <p class="eyebrow">Limits</p>
+          <h2>Current limits and open opportunities</h2>
           <p>
-            SimDist is designed to recover from these modes quickly, but this remains a hard problem in
-            contact-rich manipulation and legged locomotion.
+            SimDist improves adaptation speed and stability, but robust handling of severe contact
+            discontinuities and broader out-of-distribution shifts remains an open research problem.
           </p>
-        </div>
-        <div class="failure-video-wrap" data-reveal>
-          <video autoplay muted loop playsinline preload="metadata" controls>
-            <source src="assets/video/failures_sequential.mp4" type="video/mp4" />
-          </video>
         </div>
       </section>
     </main>
