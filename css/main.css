@@ -41,6 +41,82 @@ body {
     linear-gradient(180deg, var(--bg-1), var(--bg-0));
 }
 
+html.auth-locked {
+  overflow: hidden;
+}
+
+html.auth-locked body > *:not(.auth-gate) {
+  display: none !important;
+}
+
+.auth-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(900px 450px at 15% 10%, rgba(11, 154, 182, 0.25), transparent 60%),
+    radial-gradient(800px 420px at 85% 20%, rgba(201, 90, 42, 0.18), transparent 60%),
+    rgba(7, 13, 21, 0.92);
+}
+
+.auth-card {
+  width: min(440px, 100%);
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(11, 19, 30, 0.82);
+  color: var(--ink-inverse);
+  box-shadow: var(--shadow);
+}
+
+.auth-card h1 {
+  margin: 0 0 0.2rem;
+  font-size: 1.35rem;
+  font-family: var(--font-serif);
+}
+
+.auth-card p {
+  margin: 0 0 0.2rem;
+  color: rgba(246, 248, 251, 0.86);
+}
+
+.auth-card label {
+  font-size: 0.88rem;
+  margin-top: 0.2rem;
+}
+
+.auth-card input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-inverse);
+  font: inherit;
+}
+
+.auth-card button {
+  margin-top: 0.55rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.65rem 0.95rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(125deg, var(--accent), var(--accent-2));
+}
+
+.auth-card .auth-error {
+  min-height: 1.2rem;
+  color: #ffbf9f;
+}
+
 a {
   color: inherit;
 }
