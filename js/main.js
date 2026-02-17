@@ -91,11 +91,11 @@
 
   const TASK_VIDEO_MAP = {
     PEG_NARROW: {
-      src: "assets/video/manip_peg_results.mp4",
+      src: "assets/video/peg_win.mp4",
       caption: "Peg insertion real-world rollouts.",
     },
     PEG_WIDE: {
-      src: "assets/video/manip_peg_results.mp4",
+      src: "assets/video/peg_win.mp4",
       caption: "Peg insertion real-world rollouts.",
     },
     TABLE_NARROW: {
@@ -619,7 +619,7 @@
 
     const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
 
-    title.textContent = "Task media: " + task.title;
+    title.textContent = task.title;
     caption.textContent = mapping.caption + " Hover another chart to swap media.";
 
     if (video.getAttribute("src") !== mapping.src) {
