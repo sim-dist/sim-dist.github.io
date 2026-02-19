@@ -459,10 +459,6 @@ main {
   object-fit: cover;
 }
 
-.outcome-video-before video {
-  filter: saturate(0.55) contrast(0.9) brightness(0.86);
-}
-
 .outcome-bridge {
   display: grid;
   place-items: center;
