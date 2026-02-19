@@ -192,12 +192,31 @@ a {
 }
 
 .site-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   text-decoration: none;
   font-size: 0.84rem;
   padding: 0.42rem 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
+}
+
+.site-links .link-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.site-links .link-icon--arxiv {
+  width: 0.86rem;
+  height: 1rem;
+}
+
+.site-links .link-icon--fill {
+  fill: currentColor;
 }
 
 .site-links a:hover {
