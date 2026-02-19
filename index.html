@@ -18,11 +18,12 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <a class="skip-link" href="#overview">Skip to content</a>
+    <a class="skip-link" href="#outcomes">Skip to content</a>
 
     <header class="site-header">
       <a class="site-brand" href="#top">SimDist</a>
       <nav class="site-nav" aria-label="Primary">
+        <a href="#outcomes" data-nav="outcomes">Outcomes</a>
         <a href="#overview" data-nav="overview">Overview</a>
         <a href="#method" data-nav="method">Method</a>
         <a href="#planning" data-nav="planning">Planning</a>
@@ -66,6 +67,126 @@
             <a class="btn btn-primary" href="#method">Explore Method</a>
             <a class="btn btn-ghost" href="#results">See Results</a>
           </div>
+        </div>
+      </section>
+
+      <section id="outcomes" class="section section-outcomes" aria-labelledby="outcomes-title">
+        <div class="section-head" data-reveal>
+          <!-- <p class="eyebrow">Real-World Outcomes</p> -->
+          <h2 id="outcomes-title">Rapid Real-World Adaptation</h2>
+          <p>
+            SimDist rapidly overcomes the sim-to-real dynamics gap, resulting in substantial gains in task execution on both precise manipulation and quadrupedal locomotion tasks.
+          </p>
+        </div>
+
+        <div class="outcomes-shell">
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Peg Insertion</h3>
+              <p class="outcome-amount">60 trials</p>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/peg_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>25% Success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/peg_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>85% Success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Table Leg</h3>
+              <p class="outcome-amount">80 trials</p>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/leg_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>10% Success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/leg_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>85% Success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Slippery Slope</h3>
+              <p class="outcome-amount">36 minutes</p>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/ptfe_0.5_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>0% Success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/ptfe_0.5_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>93% Success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Foam</h3>
+              <p class="outcome-amount">32 minutes</p>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/foam_0.7_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>40% Success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="assets/video/foam_0.7_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>100% Success</figcaption>
+              </figure>
+            </div>
+          </article>
         </div>
       </section>
 
