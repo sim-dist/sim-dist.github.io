@@ -349,7 +349,7 @@ main {
 }
 
 .section {
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 3vw, 2.2rem);
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 3vw, 2.2rem);
 }
 
 .section-outcomes {
@@ -479,11 +479,11 @@ main {
 
 .section-head {
   max-width: 950px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.25rem;
 }
 
 .section-head h2 {
-  margin: 0.18rem 0 0.55rem;
+  margin: 0 0 0.5rem;
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: clamp(1.45rem, 2.5vw, 2.25rem);
