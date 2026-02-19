@@ -484,8 +484,9 @@ main {
 
 .section-head h2 {
   margin: 0.18rem 0 0.55rem;
-  font-family: var(--font-serif);
-  font-size: clamp(1.85rem, 3.4vw, 3.05rem);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.45rem, 2.5vw, 2.25rem);
   letter-spacing: -0.015em;
   line-height: 1.05;
 }
