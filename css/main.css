@@ -381,7 +381,7 @@ main {
     linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
     rgba(10, 18, 29, 0.88);
   box-shadow: 0 24px 48px rgba(3, 7, 13, 0.42);
-  padding: 0.84rem;
+  padding: 0.72rem 0.62rem;
   transition: transform 180ms ease, border-color 180ms ease;
 }
 
@@ -421,18 +421,26 @@ main {
 
 .outcome-videos {
   display: grid;
-  width: min(100%, 520px);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: 0.58rem;
+  justify-content: stretch;
+  gap: 0.42rem;
 }
 
 .outcome-video {
   margin: 0;
-  width: min(100%, 220px);
-  justify-self: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.outcome-video-before {
+  justify-self: start;
+}
+
+.outcome-video-after {
+  justify-self: end;
 }
 
 .outcome-video figcaption {
@@ -458,6 +466,7 @@ main {
 .outcome-bridge {
   display: grid;
   place-items: center;
+  transform: translateY(-0.72rem);
 }
 
 .outcome-arrow-svg {
@@ -1314,7 +1323,7 @@ a:focus-visible {
   }
 
   .outcome-videos {
-    width: min(100%, 280px);
+    width: min(100%, 320px);
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 0.48rem;
@@ -1322,6 +1331,7 @@ a:focus-visible {
 
   .outcome-bridge {
     justify-items: center;
+    transform: none;
   }
 
   .outcome-arrow-svg {
