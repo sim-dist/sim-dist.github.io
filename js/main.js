@@ -6,53 +6,33 @@
   const METHOD_STEPS = {
     "1": {
       label: "Step 1",
-      title: "Simulation teacher and value training",
+      title: "Expert Policy Training",
       copy:
-        "Train a privileged expert policy, checkpoint policies, and an expert value function in simulation. This stage provides scalable supervision before any real-world data is collected.",
-      transfer:
-        "No direct transfer yet. This stage builds the artifacts used to supervise world-model pretraining.",
-      adapt:
-        "No real-world finetuning yet.",
+        "Train privileged expert policies in simulation so the pipeline starts with strong task priors before collecting any real-world data.",
     },
     "2": {
       label: "Step 2",
-      title: "Diverse rollout generation with perturbations",
+      title: "Data Generation",
       copy:
-        "Generate broad simulated data by mixing expert and sub-optimal checkpoints with temporally structured action perturbations. The dataset includes failures and recoveries needed for robust planning.",
-      transfer:
-        "Simulation diversity broadens coverage so downstream modules remain useful under off-policy planning.",
-      adapt:
-        "No real-world module updates yet.",
+        "Generate diverse trajectories in simulation, including recoveries and failures, to create broad training coverage for world-model learning.",
     },
     "3": {
       label: "Step 3",
-      title: "Planning-oriented world-model pretraining",
+      title: "World Model Pretraining",
       copy:
-        "Pretrain encoder, latent dynamics, reward, value, and base-policy heads jointly from raw observations. Distill reward/value signals and behavior structure into latent prediction.",
-      transfer:
-        "Encoder, reward, and value modules are prepared for zero-shot transfer.",
-      adapt:
-        "Dynamics is pretrained here and later finetuned online.",
+        "Pretrain the world model in simulation so encoder, latent dynamics, and planning-relevant heads capture reusable task structure.",
     },
     "4a": {
       label: "Step 4a",
-      title: "Transfer and online planning on real hardware",
+      title: "Real-World Deployment",
       copy:
-        "Deploy the pretrained world model in the real world and run sampling-based planning. Frozen reward/value heads provide dense long-horizon guidance immediately.",
-      transfer:
-        "Encoder + reward + value are transferred and kept frozen.",
-      adapt:
-        "Dynamics is still being evaluated and will be updated with collected data.",
+        "Deploy the pretrained model on hardware and plan online. Frozen modules provide immediate guidance while the robot collects new transitions.",
     },
     "4b": {
       label: "Step 4b",
-      title: "Dynamics-only finetuning loop",
+      title: "Dynamics Finetuning",
       copy:
-        "Collect robot trajectories, finetune only the latent dynamics model, and iterate. Adaptation is supervised short-horizon system identification rather than end-to-end RL bootstrapping.",
-      transfer:
-        "Global task structure from frozen modules remains intact through adaptation.",
-      adapt:
-        "Only latent dynamics parameters are updated online.",
+        "Finetune only latent dynamics on real data, then redeploy. Adaptation becomes supervised system identification instead of end-to-end RL relearning.",
     },
   };
 
@@ -255,15 +235,12 @@
   }
 
   function initMethodInteraction() {
-    const hotspots = Array.from(document.querySelectorAll(".hotspot"));
-    const controls = Array.from(document.querySelectorAll("[data-step-btn]"));
+    const nodes = Array.from(document.querySelectorAll(".method-node"));
     const title = document.getElementById("method-step-title");
     const copy = document.getElementById("method-step-copy");
-    const transfer = document.getElementById("method-transfer");
-    const adapt = document.getElementById("method-adapt");
     const label = document.getElementById("method-step-label");
 
-    if (!hotspots.length || !controls.length || !title || !copy || !transfer || !adapt || !label) {
+    if (!nodes.length || !title || !copy || !label) {
       return;
     }
 
@@ -276,32 +253,18 @@
       label.textContent = payload.label;
       title.textContent = payload.title;
       copy.textContent = payload.copy;
-      transfer.textContent = payload.transfer;
-      adapt.textContent = payload.adapt;
 
-      for (const hotspot of hotspots) {
-        hotspot.classList.toggle("active", hotspot.dataset.step === stepId);
-      }
-
-      for (const control of controls) {
-        control.classList.toggle("active", control.dataset.stepBtn === stepId);
+      for (const node of nodes) {
+        node.classList.toggle("active", node.dataset.step === stepId);
       }
     };
 
-    for (const hotspot of hotspots) {
-      const step = hotspot.dataset.step;
+    for (const node of nodes) {
+      const step = node.dataset.step;
       const handler = () => applyStep(step);
-      hotspot.addEventListener("mouseenter", handler);
-      hotspot.addEventListener("focus", handler);
-      hotspot.addEventListener("click", handler);
-    }
-
-    for (const control of controls) {
-      const step = control.dataset.stepBtn;
-      const handler = () => applyStep(step);
-      control.addEventListener("mouseenter", handler);
-      control.addEventListener("focus", handler);
-      control.addEventListener("click", handler);
+      node.addEventListener("mouseenter", handler);
+      node.addEventListener("focus", handler);
+      node.addEventListener("click", handler);
     }
 
     applyStep("1");

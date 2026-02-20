@@ -601,72 +601,96 @@ main {
   padding: 0.9rem;
 }
 
-.method-figure-wrap {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(17, 30, 47, 0.1);
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
-.method-figure img {
+.method-node {
+  border: 1px solid rgba(17, 30, 47, 0.2);
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.72rem;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.45rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.method-node:hover,
+.method-node:focus-visible,
+.method-node.active {
+  border-color: rgba(11, 154, 182, 0.58);
+  box-shadow: 0 0 0 3px rgba(11, 154, 182, 0.14);
+  transform: translateY(-1px);
+}
+
+.method-node--1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+.method-node--2 {
+  grid-column: 3 / span 2;
+  grid-row: 1;
+}
+
+.method-node--3 {
+  grid-column: 5 / span 2;
+  grid-row: 1;
+}
+
+.method-node--4a {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+}
+
+.method-node--4b {
+  grid-column: 4 / span 2;
+  grid-row: 2;
+}
+
+.method-node-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 2.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 154, 182, 0.36);
+  background: rgba(11, 154, 182, 0.1);
+  color: #0b6175;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.method-node h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.method-node-media {
+  border: 1px solid rgba(16, 23, 34, 0.16);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #020617;
+  aspect-ratio: 16 / 9;
+}
+
+.method-node-media video,
+.method-node-media img {
   display: block;
   width: 100%;
-  height: auto;
-}
-
-.hotspot-layer {
-  position: absolute;
-  inset: 0;
-}
-
-.hotspot {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--w);
-  height: var(--h);
-  border: 2px solid rgba(15, 127, 102, 0.2);
-  background: rgba(15, 127, 102, 0.06);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
-}
-
-.hotspot:hover,
-.hotspot:focus-visible,
-.hotspot.active {
-  border-color: var(--accent-2);
-  background: rgba(11, 154, 182, 0.2);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-.method-figure figcaption {
-  margin-top: 0.58rem;
-  color: var(--ink-1);
-  font-size: 0.88rem;
-}
-
-.method-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.75rem;
-}
-
-.method-controls button {
-  border: 1px solid var(--line-strong);
-  background: #fff;
-  border-radius: 999px;
-  padding: 0.45rem 0.7rem;
-  font-family: inherit;
-  font-size: 0.84rem;
-  cursor: pointer;
-}
-
-.method-controls button.active {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+  height: 100%;
+  object-fit: cover;
 }
 
 .method-panel {
@@ -695,22 +719,6 @@ main {
 
 .method-panel p {
   margin: 0;
-  color: var(--ink-1);
-}
-
-.method-panel dl {
-  margin: 1rem 0 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.method-panel dt {
-  font-weight: 600;
-  font-size: 0.88rem;
-}
-
-.method-panel dd {
-  margin: 0.22rem 0 0;
   color: var(--ink-1);
 }
 
@@ -1243,6 +1251,23 @@ a:focus-visible {
   .results-media {
     position: static;
   }
+
+  .method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-node--1,
+  .method-node--2,
+  .method-node--3,
+  .method-node--4a,
+  .method-node--4b {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .method-node--4b {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 880px) {
@@ -1303,8 +1328,12 @@ a:focus-visible {
     transform: rotate(90deg);
   }
 
-  .method-controls {
-    justify-content: flex-start;
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .method-node--4b {
+    grid-column: auto;
   }
 }
 

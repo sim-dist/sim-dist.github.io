@@ -275,75 +275,90 @@
         <div class="section-head" data-reveal>
           <h2>Introducing Simulation Distillation</h2>
           <p>
-            Hover, focus, or click each stage in Figure 2 to inspect what is trained in simulation,
-            what transfers to hardware, and what is adapted online.
+            Hover, focus, or click each stage to inspect how the pipeline moves from simulation
+            pretraining to real-world adaptation.
           </p>
         </div>
         <div class="method-shell">
           <figure class="method-figure" data-reveal>
-            <div class="method-figure-wrap">
-              <img
-                src="assets/figures/fig2_simdist-overview.svg"
-                alt="SimDist overview with simulation pretraining, world model transfer, and dynamics-only finetuning loop"
-              />
-              <div class="hotspot-layer" aria-hidden="false">
-                <button
-                  class="hotspot"
-                  data-step="1"
-                  style="--x: 2%; --y: 1%; --w: 29%; --h: 52%;"
-                  aria-label="Step 1: expert policy and value training in simulation"
-                ></button>
-                <button
-                  class="hotspot"
-                  data-step="2"
-                  style="--x: 31%; --y: 1%; --w: 36%; --h: 52%;"
-                  aria-label="Step 2: diverse trajectory generation"
-                ></button>
-                <button
-                  class="hotspot"
-                  data-step="3"
-                  style="--x: 68%; --y: 1%; --w: 30%; --h: 52%;"
-                  aria-label="Step 3: world model pretraining"
-                ></button>
-                <button
-                  class="hotspot"
-                  data-step="4a"
-                  style="--x: 2%; --y: 56%; --w: 47%; --h: 41%;"
-                  aria-label="Step 4a: transfer frozen modules and plan on robot"
-                ></button>
-                <button
-                  class="hotspot"
-                  data-step="4b"
-                  style="--x: 50%; --y: 56%; --w: 47%; --h: 41%;"
-                  aria-label="Step 4b: finetune dynamics with real data"
-                ></button>
-              </div>
-            </div>
-            <figcaption>
-              Figure 2 from the paper is preserved and augmented with a hotspot overlay.
-            </figcaption>
-            <div class="method-controls" role="list" aria-label="Method step controls">
-              <button type="button" data-step-btn="1">Step 1</button>
-              <button type="button" data-step-btn="2">Step 2</button>
-              <button type="button" data-step-btn="3">Step 3</button>
-              <button type="button" data-step-btn="4a">Step 4a</button>
-              <button type="button" data-step-btn="4b">Step 4b</button>
+            <div class="method-grid" role="list" aria-label="Simulation Distillation stages">
+              <button
+                type="button"
+                class="method-node method-node--1"
+                data-step="1"
+                role="listitem"
+                aria-label="Step 1: Expert Policy Training"
+              >
+                <span class="method-node-kicker">1</span>
+                <h3>Expert Policy Training</h3>
+                <div class="method-node-media">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/video/rl_qped.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </button>
+              <button
+                type="button"
+                class="method-node method-node--2"
+                data-step="2"
+                role="listitem"
+                aria-label="Step 2: Data Generation"
+              >
+                <span class="method-node-kicker">2</span>
+                <h3>Data Generation</h3>
+                <div class="method-node-media">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/video/data_gen.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </button>
+              <button
+                type="button"
+                class="method-node method-node--3"
+                data-step="3"
+                role="listitem"
+                aria-label="Step 3: World Model Pretraining"
+              >
+                <span class="method-node-kicker">3</span>
+                <h3>World Model Pretraining</h3>
+                <div class="method-node-media">
+                  <img src="assets/figures/world_model.png" alt="World model architecture" />
+                </div>
+              </button>
+              <button
+                type="button"
+                class="method-node method-node--4a"
+                data-step="4a"
+                role="listitem"
+                aria-label="Step 4a: Real-World Deployment"
+              >
+                <span class="method-node-kicker">4a</span>
+                <h3>Real-World Deployment</h3>
+                <div class="method-node-media">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/video/ptfe_plan.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </button>
+              <button
+                type="button"
+                class="method-node method-node--4b"
+                data-step="4b"
+                role="listitem"
+                aria-label="Step 4b: Dynamics Finetuning"
+              >
+                <span class="method-node-kicker">4b</span>
+                <h3>Dynamics Finetuning</h3>
+                <div class="method-node-media">
+                  <img src="assets/figures/world_model.png" alt="World model architecture" />
+                </div>
+              </button>
             </div>
           </figure>
-          <aside class="method-panel" data-reveal>
+          <aside class="method-panel" data-reveal aria-live="polite">
             <p class="method-step-label" id="method-step-label">Step 1</p>
-            <h3 id="method-step-title">Simulation teacher and value pretraining</h3>
+            <h3 id="method-step-title">Expert Policy Training</h3>
             <p id="method-step-copy"></p>
-            <dl>
-              <div>
-                <dt>Transfer status</dt>
-                <dd id="method-transfer"></dd>
-              </div>
-              <div>
-                <dt>Adaptation status</dt>
-                <dd id="method-adapt"></dd>
-              </div>
-            </dl>
           </aside>
         </div>
       </section>
