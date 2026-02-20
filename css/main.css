@@ -603,7 +603,7 @@ main {
 
 .method-grid {
   display: grid;
-  grid-template-columns: minmax(2.2rem, 2.7rem) repeat(57, minmax(0, 1fr));
+  grid-template-columns: minmax(1.7rem, 2rem) repeat(57, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -648,7 +648,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 0;
+  padding: 0.25rem 0;
 }
 
 .method-row-label span {
