@@ -583,7 +583,7 @@ main {
   max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
   align-items: start;
 }
@@ -603,7 +603,7 @@ main {
 
 .method-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(57, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -613,7 +613,7 @@ main {
   border-radius: 14px;
   padding: 0.72rem;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   gap: 0.45rem;
   text-align: left;
   cursor: pointer;
@@ -630,27 +630,27 @@ main {
 }
 
 .method-node--1 {
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 16;
   grid-row: 1;
 }
 
 .method-node--2 {
-  grid-column: 3 / span 2;
+  grid-column: 17 / span 16;
   grid-row: 1;
 }
 
 .method-node--3 {
-  grid-column: 5 / span 2;
+  grid-column: 33 / span 25;
   grid-row: 1;
 }
 
 .method-node--4a {
-  grid-column: 2 / span 2;
+  grid-column: 1 / span 30;
   grid-row: 2;
 }
 
 .method-node--4b {
-  grid-column: 4 / span 2;
+  grid-column: 33 / span 25;
   grid-row: 2;
 }
 
@@ -673,6 +673,9 @@ main {
 
 .method-node h3 {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 0.98rem;
   line-height: 1.25;
 }
@@ -685,6 +688,51 @@ main {
   aspect-ratio: 16 / 9;
 }
 
+.method-node--1 .method-node-media,
+.method-node--2 .method-node-media {
+  aspect-ratio: 1 / 1;
+}
+
+.method-node--1 .method-node-media video,
+.method-node--2 .method-node-media video {
+  object-fit: contain;
+}
+
+.method-node--3 .method-node-media,
+.method-node--4b .method-node-media {
+  background: #ffffff;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.method-node--3 .method-node-media {
+  aspect-ratio: 420.6614 / 176.0341;
+}
+
+.method-node--4b .method-node-media {
+  aspect-ratio: 457.0236 / 178.5118;
+}
+
+.method-node--3 .method-node-media img,
+.method-node--4b .method-node-media img {
+  object-fit: contain;
+  object-position: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+}
+
+.method-node--1 .method-node-media video,
+.method-node--2 .method-node-media video,
+.method-node--4a .method-node-media video {
+  transform: scale(1.05);
+  transform-origin: center;
+}
+
 .method-node-media video,
 .method-node-media img {
   display: block;
@@ -695,8 +743,7 @@ main {
 
 .method-panel {
   padding: 1rem;
-  position: sticky;
-  top: calc(var(--header-h) + 0.9rem);
+  position: static;
 }
 
 .method-step-label {
