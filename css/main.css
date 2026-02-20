@@ -333,6 +333,23 @@ main {
   border-bottom-color: rgba(255, 255, 255, 0.95);
 }
 
+.hero-authors sup {
+  font-size: 0.75em;
+}
+
+.hero-affiliations {
+  margin: -0.3rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  color: rgba(246, 248, 251, 0.76);
+  font-size: clamp(0.82rem, 1.05vw, 0.94rem);
+}
+
+.hero-affiliations span {
+  white-space: nowrap;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
