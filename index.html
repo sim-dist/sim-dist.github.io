@@ -26,7 +26,6 @@
         <a href="#outcomes" data-nav="outcomes">Overview</a>
         <!-- <a href="#overview" data-nav="overview">Overview</a> -->
         <a href="#method" data-nav="method">Method</a>
-        <!-- <a href="#planning" data-nav="planning">Planning</a> -->
         <a href="#results" data-nav="results">Results</a>
         <a href="#values" data-nav="values">Analysis</a>
         <!-- <a href="#slip" data-nav="slip">Slip</a> -->
@@ -381,68 +380,6 @@
         </div>
       </section>
 
-      <section class="section section-worldmodel">
-        <div class="section-head" data-reveal>
-          <h2>What transfers, what changes</h2>
-        </div>
-        <div class="worldmodel-shell">
-          <figure class="worldmodel-figure" data-reveal>
-            <img
-              src="assets/figures/fig3_world-model-arch-simple.png"
-              alt="World model architecture with encoder, latent dynamics, reward/value heads, and planning"
-            />
-            <figcaption>Figure 3: planning-oriented latent world model.</figcaption>
-          </figure>
-          <div class="worldmodel-cards">
-            <article class="wm-card" data-reveal>
-              <h3>Encoder</h3>
-              <p>
-                Robust visual randomization enables transferable scene representations from raw images.
-              </p>
-              <span class="pill pill-transfer">Transfer</span>
-            </article>
-            <article class="wm-card" data-reveal>
-              <h3>Reward + value</h3>
-              <p>
-                Dense planning signals remain informative in reality and can be reused directly at deployment.
-              </p>
-              <span class="pill pill-transfer">Transfer</span>
-            </article>
-            <article class="wm-card" data-reveal>
-              <h3>Latent dynamics</h3>
-              <p>
-                Dynamics absorb domain mismatch and are the only module finetuned online with real rollouts.
-              </p>
-              <span class="pill pill-adapt">Adapt</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="planning" class="section section-planning">
-        <div class="section-head" data-reveal>
-          <h2>Online reasoning with the adapted world model</h2>
-          <p>
-            These split-screen rollouts show planning and real execution synchronized in time.
-            As dynamics predictions improve, behavior improves immediately.
-          </p>
-        </div>
-        <div class="planning-grid">
-          <article class="video-card" data-reveal>
-            <h3>PTFE slope planning</h3>
-            <video autoplay muted loop playsinline preload="metadata" controls>
-              <source src="assets/video/ptfe_plan.mp4" type="video/mp4" />
-            </video>
-          </article>
-          <article class="video-card" data-reveal>
-            <h3>Foam terrain planning</h3>
-            <video autoplay muted loop playsinline preload="metadata" controls>
-              <source src="assets/video/foam_plan.mp4" type="video/mp4" />
-            </video>
-          </article>
-        </div>
-      </section>
-
       <section id="results" class="section section-results">
         <div class="section-head" data-reveal>
           <h2>Real-world adaptation across six tasks</h2>
@@ -575,15 +512,6 @@
         </div>
       </section>
 
-      <section class="section section-failures">
-        <div class="section-head" data-reveal>
-          <h2>Current limits and open opportunities</h2>
-          <p>
-            SimDist improves adaptation speed and stability, but robust handling of severe contact
-            discontinuities and broader out-of-distribution shifts remains an open research problem.
-          </p>
-        </div>
-      </section>
     </main>
 
     <footer id="paper" class="site-footer">
