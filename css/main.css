@@ -692,7 +692,7 @@ main {
 }
 
 .method-node--4a {
-  grid-column: 2 / span 30;
+  grid-column: 2 / span 25;
   grid-row: 2;
   --row-rgb: 147, 196, 125;
 }
@@ -742,6 +742,10 @@ main {
   aspect-ratio: 4 / 3;
 }
 
+.method-node--4a .method-node-media {
+  aspect-ratio: 13.5 / 9;
+}
+
 .method-node--1 .method-node-media video {
   object-fit: cover;
   object-position: center;
@@ -778,6 +782,11 @@ main {
 .method-node--4a .method-node-media video {
   transform: scale(1.05);
   transform-origin: center;
+}
+
+.method-node--4a .method-node-media video {
+  object-position: left center;
+  transform-origin: left center;
 }
 
 .method-node-media video,
