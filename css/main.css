@@ -475,7 +475,7 @@ main {
 .outcome-video video {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid var(--line);
+  border: 0;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
@@ -537,18 +537,17 @@ main {
 
 .narrative-card {
   background: var(--card-strong);
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: var(--radius-lg);
   padding: 1rem;
   box-shadow: var(--shadow);
   display: grid;
   grid-template-rows: auto auto 1fr;
   gap: 0.72rem;
-  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transition: box-shadow 160ms ease, transform 160ms ease;
 }
 
 .narrative-card:hover {
-  border-color: rgba(11, 154, 182, 0.56);
   box-shadow: 0 12px 24px rgba(17, 30, 47, 0.12);
   transform: translateY(-1px);
 }
@@ -564,8 +563,15 @@ main {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 12px;
+  background: transparent;
+}
+
+.narrative-card img {
   border: 1px solid rgba(16, 23, 34, 0.16);
-  background: #020617;
+}
+
+.narrative-card img.narrative-image-plain {
+  border: 0;
 }
 
 .narrative-card p {
@@ -747,7 +753,7 @@ main {
 }
 
 .method-node-media {
-  border: 1px solid rgba(16, 23, 34, 0.16);
+  border: 0;
   border-radius: 10px;
   overflow: hidden;
   background: #020617;
@@ -919,7 +925,17 @@ video {
   display: block;
   width: 100%;
   border-radius: 11px;
-  background: #000;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  clip-path: inset(0 round 11px);
+}
+
+video:focus,
+video:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .section-results {
