@@ -232,80 +232,42 @@
 
       <section id="overview" class="section section-overview">
         <div class="section-head" data-reveal>
-          <h2>From brittle finetuning to modular adaptation</h2>
+          <h2>Why World Models?</h2>
           <p>
             End-to-end RL finetuning in the real world often forgets useful priors from simulation.
-            SimDist keeps global task structure fixed and updates only what changes most across domains:
-            latent dynamics.
+            SimDist keeps global task structure fixed and updates only what changes most across domains: dynamics.
           </p>
         </div>
         <div class="overview-shell">
           <div class="narrative-grid">
-            <article
-              class="narrative-card"
-              data-reveal
-              data-story="failure"
-              role="button"
-              aria-pressed="true"
-              tabindex="0"
-            >
-            <h3>1. The failure mode</h3>
-            <p>
-              Sim-to-real policies fail under dynamics mismatch. Standard policy finetuning entangles
-              representation, dynamics, and returns, forcing relearning with very little real data.
-            </p>
+            <article class="narrative-card" data-reveal>
+              <h3>End-to-end RL Finetuning is Hard</h3>
+              <video autoplay muted loop playsinline preload="metadata" controls>
+                <source src="assets/video/rl_finetuning.mp4" type="video/mp4" />
+              </video>
+              <p>
+                Sim-to-real policies fail under dynamics mismatch.
+                Standard RL finetuning entangles representation, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain. 
+              </p>
             </article>
-            <article
-              class="narrative-card"
-              data-reveal
-              data-story="modular"
-              role="button"
-              aria-pressed="false"
-              tabindex="0"
-            >
-            <h3>2. Modular world models</h3>
-            <p>
-              World models separate encoding, dynamics prediction, and value estimation. That structure
-              makes transfer selective: preserve global structure, adapt only environment-specific dynamics.
-            </p>
+            <article class="narrative-card" data-reveal>
+              <h3>World Models Factorize Problem Structure</h3>
+              <img src="assets/figures/world_model.png" alt="World model architecture showing encoder, latent dynamics, and value components" />
+              <p>
+                World models decompose task structure in a modular format we can exploit for efficient real-world adaptation.
+              </p>
             </article>
-            <article
-              class="narrative-card"
-              data-reveal
-              data-story="consequence"
-              role="button"
-              aria-pressed="false"
-              tabindex="0"
-            >
-            <h3>3. Practical consequence</h3>
-            <p>
-              Real-world adaptation becomes supervised latent dynamics learning with online planning,
-              avoiding long-horizon bootstrapping that destabilizes many end-to-end baselines.
-            </p>
+            <article class="narrative-card" data-reveal>
+              <h3>Leveraging Simulation for Transferable Priors</h3>
+              <video autoplay muted loop playsinline preload="metadata" controls>
+                <source src="assets/video/domain_rand.mp4" type="video/mp4" />
+              </video>
+              <p>
+                Domain randomization and privileged state supervision yield robust representation and return models in simulation,
+                allowing real-world finetuning to focus solely on dynamics adaptation.
+              </p>
             </article>
           </div>
-          <aside class="overview-media" data-reveal>
-            <p class="overview-media-label" id="overview-media-label">1. The failure mode</p>
-            <h3 id="overview-media-title">Zero-shot failures under dynamics mismatch</h3>
-            <video
-              id="overview-media-video"
-              src="assets/video/failures_sequential.mp4"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              controls
-            ></video>
-            <p id="overview-media-copy">
-              Zero-shot sim-to-real transfer can break across all four tasks when dynamics shift.
-            </p>
-            <div class="overview-media-controls" role="group" aria-label="Overview story controls">
-              <button type="button" data-story-btn="failure" class="active">1</button>
-              <button type="button" data-story-btn="modular">2</button>
-              <button type="button" data-story-btn="consequence">3</button>
-            </div>
-          </aside>
         </div>
       </section>
 

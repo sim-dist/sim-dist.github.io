@@ -56,30 +56,6 @@
     },
   };
 
-  const OVERVIEW_STORIES = {
-    failure: {
-      label: "1. The failure mode",
-      title: "Zero-shot failures under dynamics mismatch",
-      copy:
-        "Zero-shot sim-to-real transfer can fail across all four tasks when real-world contact and friction dynamics diverge from simulation priors.",
-      src: "assets/video/failures_sequential.mp4",
-    },
-    modular: {
-      label: "2. Modular world models",
-      title: "Dynamics errors are localized and observable",
-      copy:
-        "With a modular world model, we can keep global task structure while exposing where dynamics predictions fail. Finetuned dynamics quickly learns to anticipate slip.",
-      src: "assets/video/foot_pred_slip.mp4",
-    },
-    consequence: {
-      label: "3. Practical consequence",
-      title: "Planning improves immediately as dynamics adapts",
-      copy:
-        "After only minutes of real data, online planning with updated dynamics increases forward progress and task completion under real hardware conditions.",
-      src: "assets/video/qped_ptfe_results.mp4",
-    },
-  };
-
   const TASK_ORDER = [
     "PEG_NARROW",
     "PEG_WIDE",
@@ -164,7 +140,6 @@
     initRevealAnimations();
     initSectionSpy();
     initHeroMotion();
-    initOverviewStoryMedia();
     initMethodInteraction();
     initResultsDashboard();
     initValuesTimeline();
@@ -277,73 +252,6 @@
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  function initOverviewStoryMedia() {
-    const cards = Array.from(document.querySelectorAll(".narrative-card[data-story]"));
-    const buttons = Array.from(document.querySelectorAll("[data-story-btn]"));
-    const labelNode = document.getElementById("overview-media-label");
-    const titleNode = document.getElementById("overview-media-title");
-    const copyNode = document.getElementById("overview-media-copy");
-    const videoNode = document.getElementById("overview-media-video");
-
-    if (!cards.length || !buttons.length || !labelNode || !titleNode || !copyNode || !videoNode) {
-      return;
-    }
-
-    const activateStory = (storyId) => {
-      const payload = OVERVIEW_STORIES[storyId];
-      if (!payload) {
-        return;
-      }
-
-      labelNode.textContent = payload.label;
-      titleNode.textContent = payload.title;
-      copyNode.textContent = payload.copy;
-
-      if (videoNode.getAttribute("src") !== payload.src) {
-        videoNode.setAttribute("src", payload.src);
-        videoNode.load();
-      }
-      safePlay(videoNode);
-
-      for (const card of cards) {
-        const isActive = card.dataset.story === storyId;
-        card.classList.toggle("is-active", isActive);
-        card.setAttribute("aria-pressed", isActive ? "true" : "false");
-      }
-
-      for (const button of buttons) {
-        const isActive = button.dataset.storyBtn === storyId;
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", isActive ? "true" : "false");
-      }
-    };
-
-    for (const card of cards) {
-      const storyId = card.dataset.story;
-      const trigger = () => activateStory(storyId);
-      card.addEventListener("mouseenter", trigger);
-      card.addEventListener("focus", trigger);
-      card.addEventListener("click", trigger);
-      card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          trigger();
-        }
-      });
-    }
-
-    for (const button of buttons) {
-      const storyId = button.dataset.storyBtn;
-      const trigger = () => activateStory(storyId);
-      button.addEventListener("mouseenter", trigger);
-      button.addEventListener("focus", trigger);
-      button.addEventListener("click", trigger);
-    }
-
-    const initial = cards[0] ? cards[0].dataset.story : "failure";
-    activateStory(initial);
   }
 
   function initMethodInteraction() {
