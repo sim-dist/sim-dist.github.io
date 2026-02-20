@@ -239,8 +239,9 @@
     const title = document.getElementById("method-step-title");
     const copy = document.getElementById("method-step-copy");
     const label = document.getElementById("method-step-label");
+    const panel = document.querySelector(".method-panel");
 
-    if (!nodes.length || !title || !copy || !label) {
+    if (!nodes.length || !title || !copy || !label || !panel) {
       return;
     }
 
@@ -259,6 +260,59 @@
       }
     };
 
+    const applyPanelSizeForLongestStep = () => {
+      const panelWidth = panel.getBoundingClientRect().width;
+      if (panelWidth <= 0) {
+        return;
+      }
+
+      const probe = panel.cloneNode(true);
+      const probeLabel = probe.querySelector("#method-step-label");
+      const probeTitle = probe.querySelector("#method-step-title");
+      const probeCopy = probe.querySelector("#method-step-copy");
+
+      if (!probeLabel || !probeTitle || !probeCopy) {
+        return;
+      }
+
+      probe.removeAttribute("data-reveal");
+      probe.style.position = "absolute";
+      probe.style.left = "-9999px";
+      probe.style.top = "0";
+      probe.style.visibility = "hidden";
+      probe.style.pointerEvents = "none";
+      probe.style.height = "auto";
+      probe.style.minHeight = "0";
+      probe.style.width = panelWidth + "px";
+
+      document.body.appendChild(probe);
+
+      let maxHeight = 0;
+      for (const payload of Object.values(METHOD_STEPS)) {
+        probeLabel.textContent = payload.label;
+        probeTitle.textContent = payload.title;
+        probeCopy.textContent = payload.copy;
+        maxHeight = Math.max(maxHeight, Math.ceil(probe.getBoundingClientRect().height));
+      }
+
+      probe.remove();
+
+      if (maxHeight > 0) {
+        panel.style.minHeight = maxHeight + "px";
+      }
+    };
+
+    let resizeFrame = 0;
+    const queuePanelResize = () => {
+      if (resizeFrame) {
+        window.cancelAnimationFrame(resizeFrame);
+      }
+      resizeFrame = window.requestAnimationFrame(() => {
+        resizeFrame = 0;
+        applyPanelSizeForLongestStep();
+      });
+    };
+
     for (const node of nodes) {
       const step = node.dataset.step;
       const handler = () => applyStep(step);
@@ -268,6 +322,12 @@
     }
 
     applyStep("1");
+    applyPanelSizeForLongestStep();
+    window.addEventListener("resize", queuePanelResize, { passive: true });
+    window.addEventListener("load", queuePanelResize, { passive: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(queuePanelResize);
+    }
   }
 
   async function initResultsDashboard() {
