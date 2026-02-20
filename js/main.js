@@ -238,10 +238,10 @@
     const nodes = Array.from(document.querySelectorAll(".method-node"));
     const title = document.getElementById("method-step-title");
     const copy = document.getElementById("method-step-copy");
-    const label = document.getElementById("method-step-label");
+    const stepButtons = Array.from(document.querySelectorAll(".method-step-button"));
     const panel = document.querySelector(".method-panel");
 
-    if (!nodes.length || !title || !copy || !label || !panel) {
+    if (!nodes.length || !title || !copy || !panel) {
       return;
     }
 
@@ -251,12 +251,17 @@
         return;
       }
 
-      label.textContent = payload.label;
       title.textContent = payload.title;
       copy.textContent = payload.copy;
 
       for (const node of nodes) {
         node.classList.toggle("active", node.dataset.step === stepId);
+      }
+
+      for (const button of stepButtons) {
+        const isActive = button.dataset.step === stepId;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
       }
     };
 
@@ -267,11 +272,10 @@
       }
 
       const probe = panel.cloneNode(true);
-      const probeLabel = probe.querySelector("#method-step-label");
       const probeTitle = probe.querySelector("#method-step-title");
       const probeCopy = probe.querySelector("#method-step-copy");
 
-      if (!probeLabel || !probeTitle || !probeCopy) {
+      if (!probeTitle || !probeCopy) {
         return;
       }
 
@@ -289,7 +293,6 @@
 
       let maxHeight = 0;
       for (const payload of Object.values(METHOD_STEPS)) {
-        probeLabel.textContent = payload.label;
         probeTitle.textContent = payload.title;
         probeCopy.textContent = payload.copy;
         maxHeight = Math.max(maxHeight, Math.ceil(probe.getBoundingClientRect().height));
@@ -319,6 +322,13 @@
       node.addEventListener("mouseenter", handler);
       node.addEventListener("focus", handler);
       node.addEventListener("click", handler);
+    }
+
+    for (const button of stepButtons) {
+      button.setAttribute("aria-pressed", "false");
+      button.addEventListener("click", () => {
+        applyStep(button.dataset.step);
+      });
     }
 
     applyStep("1");

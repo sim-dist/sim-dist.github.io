@@ -744,21 +744,58 @@ main {
   position: static;
 }
 
-.method-step-label {
-  margin: 0;
-  display: inline-block;
+.method-step-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.method-step-button {
   border: 1px solid rgba(11, 154, 182, 0.35);
   color: #0a6174;
-  background: rgba(11, 154, 182, 0.14);
-  padding: 0.25rem 0.55rem;
+  background: rgba(11, 154, 182, 0.09);
+  padding: 0.24rem 0.58rem;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.method-step-button:hover,
+.method-step-button:focus-visible {
+  border-color: rgba(11, 154, 182, 0.6);
+  background: rgba(11, 154, 182, 0.18);
+  color: #074d5e;
+}
+
+.method-step-button.active,
+.method-step-button[aria-pressed="true"] {
+  border-color: #06607a;
+  background: #0b7f9b;
+  color: #ffffff;
+  box-shadow: 0 8px 16px rgba(7, 88, 110, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.method-step-button.active:hover,
+.method-step-button.active:focus-visible,
+.method-step-button[aria-pressed="true"]:hover,
+.method-step-button[aria-pressed="true"]:focus-visible {
+  border-color: #04566e;
+  background: #086d86;
 }
 
 .method-panel h3 {
-  margin: 0.65rem 0 0.55rem;
+  margin: 0.2rem 0 0.55rem;
   font-size: 1.22rem;
 }
 
