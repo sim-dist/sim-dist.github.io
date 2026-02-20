@@ -690,12 +690,17 @@ main {
 
 .method-node--1 .method-node-media,
 .method-node--2 .method-node-media {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
 }
 
-.method-node--1 .method-node-media video,
+.method-node--1 .method-node-media video {
+  object-fit: cover;
+  object-position: center;
+}
+
 .method-node--2 .method-node-media video {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 .method-node--3 .method-node-media,
