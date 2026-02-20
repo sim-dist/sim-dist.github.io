@@ -692,7 +692,7 @@ main {
 }
 
 .method-node--4a {
-  grid-column: 2 / span 25;
+  grid-column: 2 / span 26;
   grid-row: 2;
   --row-rgb: 147, 196, 125;
 }
@@ -701,6 +701,23 @@ main {
   grid-column: 34 / span 25;
   grid-row: 2;
   --row-rgb: 147, 196, 125;
+}
+
+.method-exchange {
+  grid-column: 28 / span 6;
+  grid-row: 2;
+  align-self: center;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.method-exchange-svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .method-node-kicker {
@@ -743,7 +760,7 @@ main {
 }
 
 .method-node--4a .method-node-media {
-  aspect-ratio: 13.5 / 9;
+  aspect-ratio: 14 / 9;
 }
 
 .method-node--1 .method-node-media video {
@@ -1415,6 +1432,10 @@ a:focus-visible {
   }
 
   .method-row-label {
+    display: none;
+  }
+
+  .method-exchange {
     display: none;
   }
 
