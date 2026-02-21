@@ -38,10 +38,10 @@
 
   const TASK_ORDER = [
     "PEG_NARROW",
-    "PEG_WIDE",
     "TABLE_NARROW",
-    "TABLE_WIDE",
     "PTFE",
+    "PEG_WIDE",
+    "TABLE_WIDE",
     "FOAM",
   ];
 
@@ -640,10 +640,9 @@
     const panel = document.querySelector(".results-panel");
     const preview = document.getElementById("results-hover-preview");
     const title = document.getElementById("results-hover-preview-title");
-    const caption = document.getElementById("results-hover-preview-caption");
     const video = document.getElementById("results-hover-preview-video");
 
-    if (!panel || !preview || !title || !caption || !video || !resultsState.data) {
+    if (!panel || !preview || !title || !video || !resultsState.data) {
       return;
     }
 
@@ -654,7 +653,6 @@
 
     const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
     title.textContent = task.title;
-    caption.textContent = mapping.caption;
 
     if (video.getAttribute("src") !== mapping.src) {
       video.setAttribute("src", mapping.src);
