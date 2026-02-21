@@ -361,6 +361,59 @@ main {
   margin-top: 0.35rem;
 }
 
+.hero-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  z-index: 4;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  color: rgba(246, 248, 251, 0.9);
+  text-shadow: 0 2px 14px rgba(7, 13, 21, 0.65);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.hero.hero-scrolled .hero-scroll-cue {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.hero-scroll-cue-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hero-scroll-cue-icon {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: center;
+  animation: heroCueFloat 1800ms ease-in-out infinite;
+}
+
+.hero-scroll-cue-icon span {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(246, 248, 251, 0.86);
+  border-bottom: 2px solid rgba(246, 248, 251, 0.86);
+  transform: rotate(45deg);
+}
+
+@keyframes heroCueFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
 .btn {
   text-decoration: none;
   border-radius: 999px;
@@ -1552,6 +1605,10 @@ a:focus-visible {
 
   .hero-content {
     padding-top: calc(var(--header-h) + 2.4rem);
+  }
+
+  .hero-scroll-cue {
+    bottom: 0.8rem;
   }
 
   .section {

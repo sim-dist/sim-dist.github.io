@@ -216,22 +216,26 @@
   }
 
   function initHeroMotion() {
-    if (REDUCED_MOTION) {
-      return;
-    }
-
+    const hero = document.querySelector(".hero");
     const heroVideo = document.querySelector(".hero-video");
-    if (!heroVideo) {
+    if (!hero && !heroVideo) {
       return;
     }
 
     const onScroll = () => {
       const y = window.scrollY || 0;
-      const vh = Math.max(window.innerHeight, 1);
-      const p = Math.min(1, y / vh);
-      const scale = 1.05 + p * 0.07;
-      const shift = p * 26;
-      heroVideo.style.transform = "translate3d(0," + shift.toFixed(2) + "px,0) scale(" + scale.toFixed(4) + ")";
+      if (hero) {
+        hero.classList.toggle("hero-scrolled", y > 56);
+      }
+
+      if (heroVideo && !REDUCED_MOTION) {
+        const vh = Math.max(window.innerHeight, 1);
+        const p = Math.min(1, y / vh);
+        const scale = 1.05 + p * 0.07;
+        const shift = p * 26;
+        heroVideo.style.transform =
+          "translate3d(0," + shift.toFixed(2) + "px,0) scale(" + scale.toFixed(4) + ")";
+      }
     };
 
     onScroll();
