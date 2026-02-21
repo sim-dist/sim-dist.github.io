@@ -1126,7 +1126,7 @@ video:focus-visible {
   position: absolute;
   left: 10px;
   top: 10px;
-  width: min(360px, calc(100% - 20px));
+  width: min(500px, calc(100% - 20px));
   padding: 0.58rem;
   border-radius: 12px;
   border: 1px solid rgba(17, 30, 47, 0.2);
