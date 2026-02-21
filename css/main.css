@@ -1061,6 +1061,12 @@ video:focus-visible {
   overflow: hidden;
 }
 
+.results-interaction-hint {
+  margin: 0 0 0.6rem;
+  color: var(--ink-1);
+  font-size: 0.84rem;
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1085,18 +1091,34 @@ video:focus-visible {
 }
 
 .chart-card {
+  position: relative;
   border: 1px solid var(--line);
   background: #fff;
   border-radius: 12px;
   padding: 0.65rem;
   outline: none;
+  cursor: pointer;
   transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.chart-video-hint {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.56rem;
+  font-size: 0.62rem;
+  color: rgba(45, 58, 71, 0.72);
+  background: rgba(17, 30, 47, 0.05);
+  border: 1px solid rgba(17, 30, 47, 0.14);
+  border-radius: 999px;
+  padding: 0.1rem 0.34rem;
+  line-height: 1.2;
 }
 
 .chart-card h3 {
   margin: 0;
   font-size: 0.93rem;
   line-height: 1.2;
+  padding-right: 6.5rem;
 }
 
 .chart-card.is-selected,

@@ -566,10 +566,15 @@
       const title = document.createElement("h3");
       title.textContent = task.title;
 
+      const hoverHint = document.createElement("span");
+      hoverHint.className = "chart-video-hint";
+      hoverHint.textContent = "▶ Hover for video";
+
       const wrap = document.createElement("div");
       wrap.className = "chart-wrap";
       wrap.appendChild(buildTaskChartSvg(task));
 
+      card.appendChild(hoverHint);
       card.appendChild(title);
       card.appendChild(wrap);
 
