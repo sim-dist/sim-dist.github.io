@@ -343,9 +343,8 @@
   async function initResultsDashboard() {
     const grid = document.getElementById("results-grid");
     const legendRoot = document.getElementById("results-legend");
-    const resetBtn = document.getElementById("legend-reset");
 
-    if (!grid || !legendRoot || !resetBtn) {
+    if (!grid || !legendRoot) {
       return;
     }
 
@@ -368,13 +367,6 @@
     resultsState.methods = collectMethodNames(payload);
 
     buildLegend(legendRoot, resultsState.methods);
-
-    resetBtn.addEventListener("click", () => {
-      resultsState.hidden.clear();
-      resultsState.hovered = null;
-      refreshLegendUI();
-      renderResultsCharts();
-    });
 
     renderResultsCharts();
     refreshLegendUI();
@@ -474,6 +466,19 @@
 
       root.appendChild(button);
     }
+
+    const resetButton = document.createElement("button");
+    resetButton.type = "button";
+    resetButton.id = "legend-reset";
+    resetButton.className = "legend-item legend-item-reset";
+    resetButton.textContent = "Reset";
+    resetButton.addEventListener("click", () => {
+      resultsState.hidden.clear();
+      resultsState.hovered = null;
+      refreshLegendUI();
+      renderResultsCharts();
+    });
+    root.appendChild(resetButton);
   }
 
   function renderMethodLabel(node, methodName) {
@@ -495,13 +500,21 @@
   }
 
   function refreshLegendUI() {
-    const legendButtons = document.querySelectorAll(".legend-item");
+    const legendButtons = document.querySelectorAll(".legend-item[data-method]");
 
     for (const button of legendButtons) {
       const method = button.dataset.method;
       button.classList.toggle("hidden", resultsState.hidden.has(method));
       button.classList.toggle("hovered", resultsState.hovered === method);
       button.setAttribute("aria-pressed", resultsState.hidden.has(method) ? "true" : "false");
+    }
+
+    const resetButton = document.getElementById("legend-reset");
+    if (resetButton) {
+      const shouldShow = resultsState.hidden.size > 0;
+      resetButton.classList.toggle("is-visible", shouldShow);
+      resetButton.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+      resetButton.tabIndex = shouldShow ? 0 : -1;
     }
   }
 

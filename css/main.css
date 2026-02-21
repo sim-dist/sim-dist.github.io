@@ -976,8 +976,22 @@ video:focus-visible {
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(280px, 360px) 1fr;
-  gap: 1rem;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
   align-items: start;
+}
+
+.results-legend-bar {
+  grid-column: 1 / -1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 0.95rem;
+  background: var(--card-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .results-media,
@@ -1005,24 +1019,14 @@ video:focus-visible {
   font-size: 0.9rem;
 }
 
-.legend-toolbar {
-  margin-top: 0.8rem;
-}
-
-.legend-toolbar button {
-  border: 1px solid var(--line-strong);
-  background: #fff;
-  border-radius: 999px;
-  padding: 0.42rem 0.7rem;
-  font-family: inherit;
-  cursor: pointer;
-}
-
 .results-legend {
-  margin-top: 0.65rem;
+  flex: 1 1 auto;
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 0.45rem;
+  align-content: flex-start;
 }
 
 .legend-item {
@@ -1036,6 +1040,16 @@ video:focus-visible {
   font-size: 0.76rem;
   cursor: pointer;
   user-select: none;
+}
+
+.legend-item-reset {
+  display: none;
+  border-style: dashed;
+  color: #3f4a58;
+}
+
+.legend-item-reset.is-visible {
+  display: inline-flex;
 }
 
 .legend-item:hover,
