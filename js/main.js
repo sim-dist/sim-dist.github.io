@@ -754,7 +754,7 @@
           createSvgElement("circle", {
             cx: point[0],
             cy: point[1],
-            r: isHovered ? "3" : "2.2",
+            r: isHovered ? "4.6" : "3.6",
             fill: "#ffffff",
             stroke: colorForMethod(name),
             "stroke-width": "1.5",
