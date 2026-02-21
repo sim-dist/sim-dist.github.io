@@ -104,6 +104,7 @@
     hidden: new Set(),
     hovered: null,
     selectedTask: null,
+    previewLocked: false,
   };
 
   const valuesState = {
@@ -343,8 +344,9 @@
   async function initResultsDashboard() {
     const grid = document.getElementById("results-grid");
     const legendRoot = document.getElementById("results-legend");
+    const panel = document.querySelector(".results-panel");
 
-    if (!grid || !legendRoot) {
+    if (!grid || !legendRoot || !panel) {
       return;
     }
 
@@ -370,10 +372,32 @@
 
     renderResultsCharts();
     refreshLegendUI();
+    hideResultsHoverPreview();
 
-    if (resultsState.selectedTask) {
-      updateResultsMedia(resultsState.selectedTask);
-    }
+    panel.addEventListener("mouseleave", () => {
+      if (!resultsState.previewLocked) {
+        hideResultsHoverPreview();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!resultsState.previewLocked) {
+        return;
+      }
+      if (panel.contains(event.target)) {
+        return;
+      }
+      resultsState.previewLocked = false;
+      hideResultsHoverPreview();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !resultsState.previewLocked) {
+        return;
+      }
+      resultsState.previewLocked = false;
+      hideResultsHoverPreview();
+    });
   }
 
   function collectMethodNames(data) {
@@ -524,6 +548,8 @@
       return;
     }
 
+    resultsState.previewLocked = false;
+    hideResultsHoverPreview();
     grid.innerHTML = "";
 
     for (const key of TASK_ORDER) {
@@ -555,12 +581,46 @@
       const selectTask = () => {
         resultsState.selectedTask = key;
         markSelectedTaskCard();
-        updateResultsMedia(key);
       };
 
-      card.addEventListener("mouseenter", selectTask);
-      card.addEventListener("focus", selectTask);
-      card.addEventListener("click", selectTask);
+      const previewOnPointer = (event) => {
+        if (resultsState.previewLocked) {
+          return;
+        }
+        selectTask();
+        showResultsHoverPreview(key, event, card);
+      };
+
+      card.addEventListener("mouseenter", previewOnPointer);
+      card.addEventListener("mousemove", previewOnPointer);
+      card.addEventListener("focus", () => {
+        if (resultsState.previewLocked) {
+          return;
+        }
+        selectTask();
+        showResultsHoverPreview(key, null, card);
+      });
+      card.addEventListener("blur", () => {
+        if (!resultsState.previewLocked) {
+          hideResultsHoverPreview();
+        }
+      });
+      card.addEventListener("mouseleave", () => {
+        if (!resultsState.previewLocked) {
+          hideResultsHoverPreview();
+        }
+      });
+      card.addEventListener("click", (event) => {
+        const wasLockedOnSameTask = resultsState.previewLocked && resultsState.selectedTask === key;
+        selectTask();
+        if (wasLockedOnSameTask) {
+          resultsState.previewLocked = false;
+          hideResultsHoverPreview();
+          return;
+        }
+        resultsState.previewLocked = true;
+        showResultsHoverPreview(key, event, card);
+      });
 
       grid.appendChild(card);
     }
@@ -571,16 +631,19 @@
   function markSelectedTaskCard() {
     const cards = document.querySelectorAll(".chart-card");
     for (const card of cards) {
-      card.classList.toggle("is-selected", card.dataset.task === resultsState.selectedTask);
+      const isSelected = card.dataset.task === resultsState.selectedTask;
+      card.classList.toggle("is-selected", isSelected);
     }
   }
 
-  function updateResultsMedia(taskKey) {
-    const title = document.getElementById("results-media-title");
-    const caption = document.getElementById("results-media-caption");
-    const video = document.getElementById("results-media-video");
+  function showResultsHoverPreview(taskKey, event, anchorCard) {
+    const panel = document.querySelector(".results-panel");
+    const preview = document.getElementById("results-hover-preview");
+    const title = document.getElementById("results-hover-preview-title");
+    const caption = document.getElementById("results-hover-preview-caption");
+    const video = document.getElementById("results-hover-preview-video");
 
-    if (!title || !caption || !video || !resultsState.data) {
+    if (!panel || !preview || !title || !caption || !video || !resultsState.data) {
       return;
     }
 
@@ -590,16 +653,64 @@
     }
 
     const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
-
     title.textContent = task.title;
-    caption.textContent = mapping.caption + " Hover another chart to swap media.";
+    caption.textContent = mapping.caption;
 
     if (video.getAttribute("src") !== mapping.src) {
       video.setAttribute("src", mapping.src);
       video.load();
     }
 
-    safePlay(video);
+    preview.classList.add("is-visible");
+    preview.setAttribute("aria-hidden", "false");
+    positionResultsHoverPreview(preview, panel, event, anchorCard);
+    if (video.paused) {
+      safePlay(video);
+    }
+  }
+
+  function hideResultsHoverPreview() {
+    const preview = document.getElementById("results-hover-preview");
+    const video = document.getElementById("results-hover-preview-video");
+    if (preview) {
+      preview.classList.remove("is-visible");
+      preview.setAttribute("aria-hidden", "true");
+    }
+    if (video) {
+      video.pause();
+    }
+  }
+
+  function positionResultsHoverPreview(preview, panel, event, anchorCard) {
+    const panelRect = panel.getBoundingClientRect();
+    const padding = 10;
+    let x = padding;
+    let y = padding;
+
+    if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+      x = event.clientX - panelRect.left + 16;
+      y = event.clientY - panelRect.top + 16;
+    } else if (anchorCard) {
+      const cardRect = anchorCard.getBoundingClientRect();
+      x = cardRect.right - panelRect.left + 14;
+      y = cardRect.top - panelRect.top + 10;
+    }
+
+    const previewWidth = preview.offsetWidth || 320;
+    const previewHeight = preview.offsetHeight || 250;
+
+    if (x + previewWidth > panelRect.width - padding) {
+      x -= previewWidth + 32;
+    }
+    if (y + previewHeight > panelRect.height - padding) {
+      y = panelRect.height - previewHeight - padding;
+    }
+
+    x = Math.max(padding, x);
+    y = Math.max(padding, y);
+
+    preview.style.left = x.toFixed(1) + "px";
+    preview.style.top = y.toFixed(1) + "px";
   }
 
   function buildTaskChartSvg(task) {

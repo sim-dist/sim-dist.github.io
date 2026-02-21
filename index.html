@@ -407,24 +407,6 @@
             <div id="results-legend" class="results-legend" aria-label="Results legend"></div>
           </div>
 
-          <aside class="results-media" data-reveal>
-            <h3 id="results-media-title">Peg Insertion (Narrow)</h3>
-            <video
-              id="results-media-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              controls
-            >
-              <source src="assets/video/peg_win.mp4" type="video/mp4" />
-            </video>
-            <p id="results-media-caption">
-              Media updates when you focus or hover a chart card.
-            </p>
-          </aside>
-
           <div class="results-panel" data-reveal>
             <div id="results-grid" class="results-grid">
               <div class="results-fallback">
@@ -434,6 +416,18 @@
                 />
                 <p>Interactive charts load here from <code>assets/data/results.json</code>.</p>
               </div>
+            </div>
+            <div id="results-hover-preview" class="results-hover-preview" aria-hidden="true">
+              <p id="results-hover-preview-title" class="results-hover-preview-title"></p>
+              <video
+                id="results-hover-preview-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <p id="results-hover-preview-caption" class="results-hover-preview-caption"></p>
             </div>
           </div>
         </div>
