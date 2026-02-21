@@ -638,6 +638,12 @@ main {
   padding: 0.9rem;
 }
 
+.method-interaction-hint {
+  margin: 0 0 0.62rem;
+  color: var(--ink-1);
+  font-size: 0.84rem;
+}
+
 .method-grid {
   display: grid;
   grid-template-columns: minmax(1.7rem, 2rem) repeat(57, minmax(0, 1fr));
@@ -859,8 +865,15 @@ main {
 .method-step-controls {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.45rem;
   margin-bottom: 0.6rem;
+}
+
+.method-step-hint {
+  margin: 0;
+  color: var(--ink-1);
+  font-size: 0.79rem;
 }
 
 .method-step-button {
