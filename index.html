@@ -457,9 +457,16 @@
 
       <section id="values" class="section section-values">
         <div class="section-head" data-reveal>
-          <h2>Value prediction trajectories during success vs failure</h2>
+          <h2>Successful Return Model Transfer</h2>
           <p>
-            Move across the timeline to scrub synchronized videos and inspect how value estimates diverge.
+            The planner used by SimDist can only improve behavior if it can reliably distinguish
+            trajectories with high and low returns. This requires both accurate dynamics prediction and
+            successful transfer of reward and value models. We examine value transfer below,
+            which plots predicted values over time for successful and failed trajectories.
+          </p>
+          <p>
+            For the successful rollout, predicted value increases consistently over time, while remaining lower for the failed trajectory.
+            Thus the transfered encoder and value function can reliably discriminate between successful and failed trajectories.
           </p>
         </div>
 
@@ -484,9 +491,7 @@
               <figcaption>Success run (peg_win.mp4)</figcaption>
               <video
                 id="values-video-success"
-                autoplay
                 muted
-                loop
                 playsinline
                 preload="metadata"
                 controls
@@ -498,9 +503,7 @@
               <figcaption>Failure run (peg_fail.mp4)</figcaption>
               <video
                 id="values-video-fail"
-                autoplay
                 muted
-                loop
                 playsinline
                 preload="metadata"
                 controls

@@ -1251,10 +1251,8 @@
       cursor: "crosshair",
     });
 
-    eventRect.addEventListener("mousemove", (event) => {
-      if (valuesState.locked) {
-        return;
-      }
+    let draggingPointerId = null;
+    const updateFromPointerEvent = (event) => {
       const step = stepFromEvent(event, svg, margin.left, plotWidth, xMin, xMax);
       setValuesStep(step, {
         cursorLine,
@@ -1263,18 +1261,37 @@
         scaleX,
         scaleY,
       });
+    };
+
+    eventRect.addEventListener("pointerdown", (event) => {
+      draggingPointerId = event.pointerId;
+      if (eventRect.setPointerCapture) {
+        eventRect.setPointerCapture(event.pointerId);
+      }
+      updateFromPointerEvent(event);
     });
 
-    eventRect.addEventListener("click", (event) => {
-      const step = stepFromEvent(event, svg, margin.left, plotWidth, xMin, xMax);
-      setValuesStep(step, {
-        cursorLine,
-        successDot,
-        failDot,
-        scaleX,
-        scaleY,
-      });
+    eventRect.addEventListener("pointermove", (event) => {
+      const isDragging = draggingPointerId === event.pointerId;
+      if (!isDragging && valuesState.locked) {
+        return;
+      }
+      updateFromPointerEvent(event);
     });
+
+    const stopDragging = (event) => {
+      if (draggingPointerId !== event.pointerId) {
+        return;
+      }
+      if (eventRect.hasPointerCapture && eventRect.hasPointerCapture(event.pointerId)) {
+        eventRect.releasePointerCapture(event.pointerId);
+      }
+      draggingPointerId = null;
+    };
+
+    eventRect.addEventListener("pointerup", stopDragging);
+    eventRect.addEventListener("pointercancel", stopDragging);
+    eventRect.addEventListener("click", updateFromPointerEvent);
 
     svg.appendChild(eventRect);
 
@@ -1305,14 +1322,14 @@
 
       if (valuesState.locked) {
         lockButton.textContent = "Unlock Frame";
-        status.textContent = "Frame locked";
+        status.textContent = "Frame locked (click or drag to scrub)";
         successVideo.pause();
         failVideo.pause();
       } else {
         lockButton.textContent = "Lock Frame";
         status.textContent = "Scrub mode active";
-        safePlay(successVideo);
-        safePlay(failVideo);
+        successVideo.pause();
+        failVideo.pause();
         if (valuesState.chart) {
           setValuesStep(valuesState.currentStep, valuesState.chart);
         }
@@ -1345,13 +1362,11 @@
 
     updateValuesReadout(clamped, successPoint.value, failPoint.value);
 
-    if (!valuesState.locked) {
-      const ratio = (clamped - valuesState.minStep) / (valuesState.maxStep - valuesState.minStep || 1);
-      const successVideo = document.getElementById("values-video-success");
-      const failVideo = document.getElementById("values-video-fail");
-      syncVideoToRatio(successVideo, ratio);
-      syncVideoToRatio(failVideo, ratio);
-    }
+    const ratio = (clamped - valuesState.minStep) / (valuesState.maxStep - valuesState.minStep || 1);
+    const successVideo = document.getElementById("values-video-success");
+    const failVideo = document.getElementById("values-video-fail");
+    syncVideoToRatio(successVideo, ratio);
+    syncVideoToRatio(failVideo, ratio);
   }
 
   function updateValuesReadout(step, successValue, failValue) {
@@ -1412,6 +1427,8 @@
     if (!video) {
       return;
     }
+
+    video.pause();
 
     if (!Number.isFinite(video.duration) || video.duration <= 0) {
       return;
