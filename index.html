@@ -412,7 +412,7 @@
 
           <div class="results-panel" data-reveal>
             <p class="results-interaction-hint">
-              Hover a plot to preview its video. Click to pin. Press Esc to close.
+              Hover a plot to preview its video. Click to expand.
             </p>
             <div id="results-grid" class="results-grid">
               <div class="results-fallback">
@@ -437,6 +437,23 @@
           </div>
         </div>
       </section>
+      <div id="results-video-modal" class="results-video-modal" hidden>
+        <div class="results-video-modal-card" role="dialog" aria-modal="true" aria-labelledby="results-modal-title">
+          <div class="results-video-modal-head">
+            <h3 id="results-modal-title"></h3>
+            <button type="button" id="results-modal-close" aria-label="Close expanded video">Close</button>
+          </div>
+          <video
+            id="results-modal-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+        </div>
+      </div>
 
       <section id="values" class="section section-values">
         <div class="section-head" data-reveal>

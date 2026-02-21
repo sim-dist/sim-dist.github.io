@@ -104,7 +104,6 @@
     hidden: new Set(),
     hovered: null,
     selectedTask: null,
-    previewLocked: false,
   };
 
   const valuesState = {
@@ -369,33 +368,13 @@
     resultsState.methods = collectMethodNames(payload);
 
     buildLegend(legendRoot, resultsState.methods);
+    initResultsVideoModal();
 
     renderResultsCharts();
     refreshLegendUI();
     hideResultsHoverPreview();
 
     panel.addEventListener("mouseleave", () => {
-      if (!resultsState.previewLocked) {
-        hideResultsHoverPreview();
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!resultsState.previewLocked) {
-        return;
-      }
-      if (panel.contains(event.target)) {
-        return;
-      }
-      resultsState.previewLocked = false;
-      hideResultsHoverPreview();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !resultsState.previewLocked) {
-        return;
-      }
-      resultsState.previewLocked = false;
       hideResultsHoverPreview();
     });
   }
@@ -548,7 +527,6 @@
       return;
     }
 
-    resultsState.previewLocked = false;
     hideResultsHoverPreview();
     grid.innerHTML = "";
 
@@ -584,9 +562,6 @@
       };
 
       const previewOnPointer = (event) => {
-        if (resultsState.previewLocked) {
-          return;
-        }
         selectTask();
         showResultsHoverPreview(key, event, card);
       };
@@ -594,32 +569,19 @@
       card.addEventListener("mouseenter", previewOnPointer);
       card.addEventListener("mousemove", previewOnPointer);
       card.addEventListener("focus", () => {
-        if (resultsState.previewLocked) {
-          return;
-        }
         selectTask();
         showResultsHoverPreview(key, null, card);
       });
       card.addEventListener("blur", () => {
-        if (!resultsState.previewLocked) {
-          hideResultsHoverPreview();
-        }
+        hideResultsHoverPreview();
       });
       card.addEventListener("mouseleave", () => {
-        if (!resultsState.previewLocked) {
-          hideResultsHoverPreview();
-        }
+        hideResultsHoverPreview();
       });
       card.addEventListener("click", (event) => {
-        const wasLockedOnSameTask = resultsState.previewLocked && resultsState.selectedTask === key;
         selectTask();
-        if (wasLockedOnSameTask) {
-          resultsState.previewLocked = false;
-          hideResultsHoverPreview();
-          return;
-        }
-        resultsState.previewLocked = true;
         showResultsHoverPreview(key, event, card);
+        openResultsVideoModal(key);
       });
 
       grid.appendChild(card);
@@ -677,6 +639,72 @@
     if (video) {
       video.pause();
     }
+  }
+
+  function initResultsVideoModal() {
+    const modal = document.getElementById("results-video-modal");
+    const closeButton = document.getElementById("results-modal-close");
+    if (!modal || !closeButton || modal.dataset.bound === "true") {
+      return;
+    }
+
+    modal.dataset.bound = "true";
+
+    closeButton.addEventListener("click", () => {
+      closeResultsVideoModal();
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeResultsVideoModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeResultsVideoModal();
+      }
+    });
+  }
+
+  function openResultsVideoModal(taskKey) {
+    const modal = document.getElementById("results-video-modal");
+    const title = document.getElementById("results-modal-title");
+    const video = document.getElementById("results-modal-video");
+    if (!modal || !title || !video || !resultsState.data) {
+      return;
+    }
+
+    const task = resultsState.data[taskKey];
+    if (!task) {
+      return;
+    }
+
+    const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
+    title.textContent = task.title;
+    if (video.getAttribute("src") !== mapping.src) {
+      video.setAttribute("src", mapping.src);
+      video.load();
+    }
+
+    hideResultsHoverPreview();
+    modal.hidden = false;
+    modal.classList.add("is-open");
+    document.body.classList.add("results-modal-open");
+    safePlay(video);
+  }
+
+  function closeResultsVideoModal() {
+    const modal = document.getElementById("results-video-modal");
+    const video = document.getElementById("results-modal-video");
+    if (!modal || !video) {
+      return;
+    }
+
+    modal.classList.remove("is-open");
+    modal.hidden = true;
+    document.body.classList.remove("results-modal-open");
+    video.pause();
   }
 
   function positionResultsHoverPreview(preview, panel, event, anchorCard) {
