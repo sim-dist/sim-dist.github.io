@@ -55,19 +55,19 @@
       caption: "Peg insertion real-world rollouts.",
     },
     TABLE_NARROW: {
-      src: "assets/video/manip_leg_results.mp4",
+      src: "assets/video/leg_win.mp4",
       caption: "Table-leg assembly real-world rollouts.",
     },
     TABLE_WIDE: {
-      src: "assets/video/manip_leg_results.mp4",
+      src: "assets/video/leg_win.mp4",
       caption: "Table-leg assembly real-world rollouts.",
     },
     PTFE: {
-      src: "assets/video/qped_ptfe_results.mp4",
+      src: "assets/video/ptfe_wins.mp4",
       caption: "Quadruped PTFE slope experiments.",
     },
     FOAM: {
-      src: "assets/video/qped_foam_results.mp4",
+      src: "assets/video/foam_wins.mp4",
       caption: "Quadruped foam terrain experiments.",
     },
   };
