@@ -429,7 +429,7 @@
       swatch.style.backgroundColor = colorForMethod(method);
 
       const label = document.createElement("span");
-      label.textContent = method;
+      renderMethodLabel(label, method);
 
       button.appendChild(swatch);
       button.appendChild(label);
@@ -473,6 +473,24 @@
       });
 
       root.appendChild(button);
+    }
+  }
+
+  function renderMethodLabel(node, methodName) {
+    const match = methodName.match(/^pi_([0-9.]+)(.*)$/);
+    if (!match) {
+      node.textContent = methodName;
+      return;
+    }
+
+    const [, subscript, suffix] = match;
+    node.textContent = "";
+    node.appendChild(document.createTextNode("π"));
+    const sub = document.createElement("sub");
+    sub.textContent = subscript;
+    node.appendChild(sub);
+    if (suffix) {
+      node.appendChild(document.createTextNode(suffix));
     }
   }
 
