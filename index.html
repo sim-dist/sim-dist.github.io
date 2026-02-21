@@ -392,10 +392,13 @@
 
       <section id="results" class="section section-results">
         <div class="section-head" data-reveal>
-          <h2>Real-world adaptation across six tasks</h2>
+          <h2>Real-World Results</h2>
           <p>
-            Hover legend entries to highlight methods, click to toggle visibility, and hover any task
-            to load the corresponding experiment video.
+            Success rate for two manipulation tasks, computed over 20 trials, and average forward progress for two quadruped locomotion tasks,
+            averaged across all 15 trials (3 speeds, 5 trials each), as a function of real-world finetuning data.
+            SimDist exhibits rapid and consistent improvement with limited data by finetuning only the latent dynamics model
+            while planning with frozen reward and value models. In contrast, direct policy finetuning with the baselines shows limited or no
+            improvement under the same data budgets.
           </p>
         </div>
 
