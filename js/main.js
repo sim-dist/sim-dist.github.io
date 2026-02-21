@@ -37,11 +37,11 @@
   };
 
   const TASK_ORDER = [
-    "PEG_NARROW",
-    "TABLE_NARROW",
-    "PTFE",
     "PEG_WIDE",
     "TABLE_WIDE",
+    "PTFE",
+    "PEG_NARROW",
+    "TABLE_NARROW",
     "FOAM",
   ];
 
@@ -570,13 +570,8 @@
       wrap.className = "chart-wrap";
       wrap.appendChild(buildTaskChartSvg(task));
 
-      const meta = document.createElement("p");
-      meta.className = "chart-meta";
-      meta.textContent = task.xlabel + " | " + task.ylabel;
-
       card.appendChild(title);
       card.appendChild(wrap);
-      card.appendChild(meta);
 
       const selectTask = () => {
         resultsState.selectedTask = key;
@@ -713,8 +708,8 @@
 
   function buildTaskChartSvg(task) {
     const width = 560;
-    const height = 280;
-    const margin = { top: 16, right: 14, bottom: 40, left: 48 };
+    const height = 340;
+    const margin = { top: 16, right: 14, bottom: 58, left: 70 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
 
@@ -751,6 +746,15 @@
     } else {
       yMin = Math.min(0, yMin * 0.95);
       yMax = yMax * 1.05;
+    }
+
+    const customYMaxRaw = task.y_max ?? task.yMax ?? task.ymax;
+    const customYMax = Number(customYMaxRaw);
+    if (Number.isFinite(customYMax)) {
+      yMax = customYMax;
+      if (yMax <= yMin) {
+        yMin = Math.min(0, yMax - 1);
+      }
     }
 
     if (Math.abs(yMax - yMin) < 1e-8) {
@@ -801,7 +805,7 @@
           x: margin.left - 8,
           y: y + 4,
           fill: "#49576a",
-          "font-size": "11",
+          "font-size": "14",
           "text-anchor": "end",
           "font-family": "Sora, sans-serif",
           textContent: formatTick(value),
@@ -826,9 +830,9 @@
       svg.appendChild(
         createSvgElement("text", {
           x: x,
-          y: margin.top + plotHeight + 18,
+          y: margin.top + plotHeight + 22,
           fill: "#49576a",
-          "font-size": "11",
+          "font-size": "14",
           "text-anchor": "middle",
           "font-family": "Sora, sans-serif",
           textContent: String(value),
@@ -849,7 +853,7 @@
           x2: margin.left + plotWidth,
           y2: y,
           stroke: colorForMethod(name),
-          "stroke-width": isHovered ? "3" : "2",
+          "stroke-width": isHovered ? "4" : "3",
           "stroke-dasharray": "6 5",
           "stroke-linecap": "round",
           opacity: String(opacity),
@@ -871,7 +875,7 @@
       const isHovered = resultsState.hovered === name;
       const isMuted = Boolean(resultsState.hovered && !isHovered);
       const lineOpacity = isMuted ? 0.22 : 1;
-      const strokeWidth = isHovered ? 3.2 : 2.3;
+      const strokeWidth = isHovered ? 4.2 : 3.2;
 
       const d = points
         .map((point, index) => (index === 0 ? "M" : "L") + point[0].toFixed(2) + " " + point[1].toFixed(2))
@@ -894,10 +898,10 @@
           createSvgElement("circle", {
             cx: point[0],
             cy: point[1],
-            r: isHovered ? "4.6" : "3.6",
-            fill: "#ffffff",
-            stroke: colorForMethod(name),
-            "stroke-width": "1.5",
+            r: isHovered ? "5.8" : "4.8",
+            fill: colorForMethod(name),
+            stroke: "none",
+            "stroke-width": "0",
             opacity: String(lineOpacity),
           })
         );
@@ -907,9 +911,9 @@
     svg.appendChild(
       createSvgElement("text", {
         x: margin.left + plotWidth / 2,
-        y: height - 8,
+        y: height - 10,
         fill: "#3a4657",
-        "font-size": "11",
+        "font-size": "16",
         "text-anchor": "middle",
         "font-family": "Sora, sans-serif",
         textContent: task.xlabel,
@@ -918,12 +922,12 @@
 
     svg.appendChild(
       createSvgElement("text", {
-        x: 14,
+        x: 16,
         y: margin.top + plotHeight / 2,
         fill: "#3a4657",
-        "font-size": "11",
+        "font-size": "16",
         "text-anchor": "middle",
-        transform: "rotate(-90 14 " + (margin.top + plotHeight / 2) + ")",
+        transform: "rotate(-90 16 " + (margin.top + plotHeight / 2) + ")",
         "font-family": "Sora, sans-serif",
         textContent: task.ylabel,
       })

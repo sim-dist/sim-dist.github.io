@@ -2,6 +2,7 @@
   "PEG_NARROW": {
     "title": "Peg Insertion (Narrow)",
     "x": [0, 20, 40, 60],
+    "y_max": 0.85,
     "data": {
       "Simulation Distillation": [0.25, 0.5, 0.7, 0.85],
       "Simulation Distillation+BC": [0.25, 0.35, 0.5, 0.75],
@@ -21,6 +22,7 @@
   "PEG_WIDE": {
     "title": "Peg Insertion (Wide)",
     "x": [0, 20, 40, 60, 80],
+    "y_max": 0.80,
     "data": {
       "Simulation Distillation": [0.3, 0.4, 0.6, 0.55, 0.8],
       "Simulation Distillation+BC": [0.3, 0.4, 0.45, 0.5, 0.7],
@@ -40,6 +42,7 @@
   "TABLE_NARROW": {
     "title": "Table Leg (Narrow)",
     "x": [0, 20, 40, 60],
+    "y_max": 0.85,
     "data": {
       "Simulation Distillation": [0.1, 0.3, 0.5, 0.6],
       "Simulation Distillation+BC": [0.1, 0.6, 0.7, 0.85],
@@ -59,6 +62,7 @@
   "TABLE_WIDE": {
     "title": "Table Leg (Wide)",
     "x": [0, 20, 40, 60, 80],
+    "y_max": 0.80,
     "data": {
       "Simulation Distillation": [0.1, 0.4, 0.45, 0.5, 0.7],
       "Simulation Distillation+BC": [0.1, 0.3, 0.5, 0.6, 0.8],
