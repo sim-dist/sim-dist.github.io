@@ -114,6 +114,10 @@
     currentStep: 0,
     locked: false,
     chart: null,
+    lastWidth: 0,
+    lastHeight: 0,
+    resizeObserver: null,
+    resizeRaf: 0,
   };
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -1010,6 +1014,7 @@
 
       buildValuesChart();
       bindValuesLockToggle();
+      observeValuesChartResize();
     } catch (error) {
       const status = document.getElementById("values-status");
       if (status) {
@@ -1044,11 +1049,17 @@
       return;
     }
 
-    const width = 900;
-    const height = 360;
+    const DEFAULT_WIDTH = 900;
+    const DEFAULT_HEIGHT = 460;
+    const bounds = svg.getBoundingClientRect();
+    const width = Math.round(bounds.width) > 0 ? Math.round(bounds.width) : DEFAULT_WIDTH;
+    const height = Math.round(bounds.height) > 0 ? Math.round(bounds.height) : DEFAULT_HEIGHT;
+    valuesState.lastWidth = width;
+    valuesState.lastHeight = height;
     const margin = { top: 18, right: 12, bottom: 42, left: 50 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
 
     const success = valuesState.success;
     const fail = valuesState.fail;
@@ -1306,8 +1317,45 @@
     setValuesStep(valuesState.currentStep, valuesState.chart);
   }
 
+  function observeValuesChartResize() {
+    const svg = document.getElementById("values-chart");
+    if (!svg || !("ResizeObserver" in window)) {
+      return;
+    }
+
+    if (valuesState.resizeObserver) {
+      valuesState.resizeObserver.disconnect();
+    }
+
+    valuesState.resizeObserver = new ResizeObserver(() => {
+      const bounds = svg.getBoundingClientRect();
+      const width = Math.round(bounds.width);
+      const height = Math.round(bounds.height);
+
+      if (width <= 0 || height <= 0) {
+        return;
+      }
+
+      if (width === valuesState.lastWidth && height === valuesState.lastHeight) {
+        return;
+      }
+
+      if (valuesState.resizeRaf) {
+        window.cancelAnimationFrame(valuesState.resizeRaf);
+      }
+
+      valuesState.resizeRaf = window.requestAnimationFrame(() => {
+        valuesState.resizeRaf = 0;
+        buildValuesChart();
+      });
+    });
+
+    valuesState.resizeObserver.observe(svg);
+  }
+
   function bindValuesLockToggle() {
     const lockButton = document.getElementById("values-lock");
+    const lockLabel = document.getElementById("values-lock-label");
     const status = document.getElementById("values-status");
     const successVideo = document.getElementById("values-video-success");
     const failVideo = document.getElementById("values-video-fail");
@@ -1316,18 +1364,26 @@
       return;
     }
 
+    const setLockLabel = (text) => {
+      if (lockLabel) {
+        lockLabel.textContent = text;
+      } else {
+        lockButton.textContent = text;
+      }
+    };
+
     lockButton.addEventListener("click", () => {
       valuesState.locked = !valuesState.locked;
       lockButton.setAttribute("aria-pressed", valuesState.locked ? "true" : "false");
 
       if (valuesState.locked) {
-        lockButton.textContent = "Unlock Frame";
-        status.textContent = "Frame locked (click or drag to scrub)";
+        setLockLabel("Unlock Frame");
+        status.textContent = "Frame locked. Click or drag on the plot change frames.";
         successVideo.pause();
         failVideo.pause();
       } else {
-        lockButton.textContent = "Lock Frame";
-        status.textContent = "Scrub mode active";
+        setLockLabel("Lock Frame");
+        status.textContent = "Hover over the plot to view the associated video frame.";
         successVideo.pause();
         failVideo.pause();
         if (valuesState.chart) {
@@ -1360,8 +1416,6 @@
       chartRefs.failDot.setAttribute("cy", chartRefs.scaleY(failPoint.value));
     }
 
-    updateValuesReadout(clamped, successPoint.value, failPoint.value);
-
     const ratio = (clamped - valuesState.minStep) / (valuesState.maxStep - valuesState.minStep || 1);
     const successVideo = document.getElementById("values-video-success");
     const failVideo = document.getElementById("values-video-fail");
@@ -1369,41 +1423,12 @@
     syncVideoToRatio(failVideo, ratio);
   }
 
-  function updateValuesReadout(step, successValue, failValue) {
-    const stepNode = document.getElementById("values-step");
-    const successNode = document.getElementById("values-success");
-    const failNode = document.getElementById("values-fail");
-    const successTimeNode = document.getElementById("values-success-time");
-    const failTimeNode = document.getElementById("values-fail-time");
-
-    if (stepNode) {
-      stepNode.textContent = String(step);
-    }
-
-    if (successNode) {
-      successNode.textContent = Number(successValue).toFixed(3);
-    }
-
-    if (failNode) {
-      failNode.textContent = Number(failValue).toFixed(3);
-    }
-
-    const successVideo = document.getElementById("values-video-success");
-    const failVideo = document.getElementById("values-video-fail");
-
-    if (successTimeNode) {
-      successTimeNode.textContent = formatVideoTime(successVideo);
-    }
-
-    if (failTimeNode) {
-      failTimeNode.textContent = formatVideoTime(failVideo);
-    }
-  }
-
   function stepFromEvent(event, svg, xOrigin, plotWidth, minStep, maxStep) {
     const rect = svg.getBoundingClientRect();
-    const xPx = event.clientX - rect.left;
-    const normalized = Math.max(0, Math.min(1, (xPx - (xOrigin / 900) * rect.width) / ((plotWidth / 900) * rect.width)));
+    const viewWidth = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal.width : 0;
+    const localX = (event.clientX - rect.left) / (rect.width || 1);
+    const xSvg = localX * (viewWidth || rect.width || 1);
+    const normalized = Math.max(0, Math.min(1, (xSvg - xOrigin) / (plotWidth || 1)));
     return minStep + normalized * (maxStep - minStep);
   }
 
@@ -1442,17 +1467,6 @@
         return;
       }
     }
-  }
-
-  function formatVideoTime(video) {
-    if (!video || !Number.isFinite(video.currentTime)) {
-      return "-";
-    }
-
-    const totalSeconds = Math.max(0, Math.floor(video.currentTime));
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return String(minutes) + ":" + String(seconds).padStart(2, "0");
   }
 
   function pickXAxisTicks(values) {

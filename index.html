@@ -473,50 +473,49 @@
         <div class="values-shell">
           <div class="values-chart-card" data-reveal>
             <div class="values-toolbar">
-              <button type="button" id="values-lock" aria-pressed="false">Lock Frame</button>
-              <p id="values-status">Scrub mode active</p>
+              <p id="values-status">Hover over the plot to view the associated video frame.</p>
+              <button type="button" id="values-lock" aria-pressed="false">
+                <svg class="values-lock-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M7.5 10V7.5a4.5 4.5 0 1 1 9 0V10M6.5 10h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span id="values-lock-label">Lock Frame</span>
+              </button>
             </div>
-            <svg id="values-chart" viewBox="0 0 900 360" role="img" aria-label="Success and failure value trajectories"></svg>
-            <div class="values-readout">
-              <p>Step: <strong id="values-step">0</strong></p>
-              <p>Success value: <strong id="values-success">-</strong></p>
-              <p>Failure value: <strong id="values-fail">-</strong></p>
-              <p>Success video time: <strong id="values-success-time">-</strong></p>
-              <p>Failure video time: <strong id="values-fail-time">-</strong></p>
-            </div>
+            <svg id="values-chart" viewBox="0 0 900 460" role="img" aria-label="Success and failure value trajectories"></svg>
           </div>
 
           <div class="values-videos" data-reveal>
             <figure>
-              <figcaption>Success run (peg_win.mp4)</figcaption>
+              <figcaption>Success</figcaption>
               <video
                 id="values-video-success"
                 muted
                 playsinline
                 preload="metadata"
-                controls
               >
                 <source src="assets/video/peg_win.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure>
-              <figcaption>Failure run (peg_fail.mp4)</figcaption>
+              <figcaption>Failure</figcaption>
               <video
                 id="values-video-fail"
                 muted
                 playsinline
                 preload="metadata"
-                controls
               >
                 <source src="assets/video/peg_fail.mp4" type="video/mp4" />
               </video>
             </figure>
           </div>
         </div>
-        <p class="values-note" data-reveal>
-          Figure 5 timeline is synchronized to the specified peg runs: <code>peg_win.mp4</code> and
-          <code>peg_fail.mp4</code>.
-        </p>
       </section>
 
       <section id="slip" class="section section-slip">
