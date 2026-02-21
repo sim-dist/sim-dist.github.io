@@ -73,16 +73,16 @@
   };
 
   const METHOD_COLOR_MAP = {
-    "Simulation Distillation": "#0f7f66",
-    "Simulation Distillation+BC": "#1f9ad1",
-    IQL: "#c95a2a",
-    RLPD: "#9b7e12",
-    SGFT: "#4f5e78",
-    "Diffusion Policy (Real Demos)": "#9f3f2a",
-    "Diffusion Polcy (Real + Sim Demos)": "#3e7a40",
-    "pi_0.5 (Real Demos)": "#7a4f2a",
-    "pi_0.5 (Real + Sim Demos)": "#2f6f8a",
-    "Quadruped Success": "#111827",
+    "Simulation Distillation": "#4C72B0",
+    "Simulation Distillation+BC": "#DD8452",
+    IQL: "#55A868",
+    RLPD: "#C44E52",
+    SGFT: "#8172B3",
+    "Diffusion Policy (Real Demos)": "#937860",
+    "Diffusion Polcy (Real + Sim Demos)": "#DA8BC3",
+    "pi_0.5 (Real Demos)": "#8C8C8C",
+    "pi_0.5 (Real + Sim Demos)": "#CCB974",
+    "Quadruped Success": "#64B5CD",
   };
 
   const RESULTS_METHOD_PRIORITY = [
