@@ -120,6 +120,17 @@
     resizeRaf: 0,
   };
 
+  const consistencyState = {
+    pretrained: [],
+    finetuned: [],
+    hidden: new Set(),
+    hovered: null,
+    lastWidth: 0,
+    lastHeight: 0,
+    resizeObserver: null,
+    resizeRaf: 0,
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     initRevealAnimations();
     initSectionSpy();
@@ -127,6 +138,7 @@
     initMethodInteraction();
     initResultsDashboard();
     initValuesTimeline();
+    initConsistencyLossChart();
   });
 
   function initRevealAnimations() {
@@ -1027,6 +1039,47 @@
     }
   }
 
+  async function initConsistencyLossChart() {
+    const svg = document.getElementById("slip-consistency-chart");
+    if (!svg) {
+      return;
+    }
+
+    try {
+      const [pretrainedText, finetunedText] = await Promise.all([
+        fetch("assets/data/consist_losses.csv", { cache: "no-store" }).then((res) => {
+          if (!res.ok) {
+            throw new Error("consist_losses.csv load failed");
+          }
+          return res.text();
+        }),
+        fetch("assets/data/consist_losses_ft.csv", { cache: "no-store" }).then((res) => {
+          if (!res.ok) {
+            throw new Error("consist_losses_ft.csv load failed");
+          }
+          return res.text();
+        }),
+      ]);
+
+      consistencyState.pretrained = parseSingleColumnCsv(pretrainedText);
+      consistencyState.finetuned = parseSingleColumnCsv(finetunedText);
+
+      if (!consistencyState.pretrained.length || !consistencyState.finetuned.length) {
+        throw new Error("consistency loss CSV files are empty");
+      }
+
+      bindConsistencyLegendControls();
+      refreshConsistencyLegendUI();
+      buildConsistencyLossChart();
+      observeConsistencyChartResize();
+    } catch (error) {
+      const status = document.getElementById("slip-chart-status");
+      if (status) {
+        status.textContent = "Consistency loss chart could not be loaded.";
+      }
+    }
+  }
+
   function parseValueCsv(text) {
     const rows = text.trim().split(/\r?\n/);
     const points = [];
@@ -1045,6 +1098,24 @@
     }
 
     return points;
+  }
+
+  function parseSingleColumnCsv(text) {
+    const rows = text.trim().split(/\r?\n/);
+    const values = [];
+
+    for (const row of rows) {
+      const raw = row.trim();
+      if (!raw) {
+        continue;
+      }
+      const value = Number(raw.split(",")[0]);
+      if (Number.isFinite(value)) {
+        values.push(value);
+      }
+    }
+
+    return values;
   }
 
   function buildValuesChart() {
@@ -1321,6 +1392,254 @@
     setValuesStep(valuesState.currentStep, valuesState.chart);
   }
 
+  function bindConsistencyLegendControls() {
+    const legend = document.querySelector(".slip-chart-legend");
+    if (!legend || legend.dataset.bound === "true") {
+      return;
+    }
+
+    legend.dataset.bound = "true";
+
+    const buttons = Array.from(legend.querySelectorAll(".slip-legend-item[data-series]"));
+    for (const button of buttons) {
+      const seriesName = button.dataset.series;
+      if (!seriesName) {
+        continue;
+      }
+
+      button.addEventListener("mouseenter", () => {
+        consistencyState.hovered = seriesName;
+        refreshConsistencyLegendUI();
+        buildConsistencyLossChart();
+      });
+
+      button.addEventListener("mouseleave", () => {
+        if (consistencyState.hovered === seriesName) {
+          consistencyState.hovered = null;
+          refreshConsistencyLegendUI();
+          buildConsistencyLossChart();
+        }
+      });
+
+      button.addEventListener("focus", () => {
+        consistencyState.hovered = seriesName;
+        refreshConsistencyLegendUI();
+        buildConsistencyLossChart();
+      });
+
+      button.addEventListener("blur", () => {
+        if (consistencyState.hovered === seriesName) {
+          consistencyState.hovered = null;
+          refreshConsistencyLegendUI();
+          buildConsistencyLossChart();
+        }
+      });
+
+      button.addEventListener("click", () => {
+        if (consistencyState.hidden.has(seriesName)) {
+          consistencyState.hidden.delete(seriesName);
+        } else {
+          consistencyState.hidden.add(seriesName);
+        }
+        refreshConsistencyLegendUI();
+        buildConsistencyLossChart();
+      });
+    }
+  }
+
+  function refreshConsistencyLegendUI() {
+    const buttons = document.querySelectorAll(".slip-legend-item[data-series]");
+    for (const button of buttons) {
+      const seriesName = button.dataset.series;
+      const hidden = consistencyState.hidden.has(seriesName);
+      const hovered = consistencyState.hovered === seriesName;
+      button.setAttribute("aria-pressed", hidden ? "true" : "false");
+      button.classList.toggle("is-hovered", hovered);
+    }
+  }
+
+  function buildConsistencyLossChart() {
+    const svg = document.getElementById("slip-consistency-chart");
+    if (!svg) {
+      return;
+    }
+
+    const pretrained = consistencyState.pretrained;
+    const finetuned = consistencyState.finetuned;
+    if (!pretrained.length || !finetuned.length) {
+      return;
+    }
+
+    const DEFAULT_WIDTH = 900;
+    const DEFAULT_HEIGHT = 420;
+    const bounds = svg.getBoundingClientRect();
+    const width = Math.round(bounds.width) > 0 ? Math.round(bounds.width) : DEFAULT_WIDTH;
+    const height =
+      Math.round(bounds.height) > 0 ? Math.round(bounds.height) : Math.round((width / DEFAULT_WIDTH) * DEFAULT_HEIGHT);
+
+    consistencyState.lastWidth = width;
+    consistencyState.lastHeight = height;
+
+    const margin = { top: 18, right: 14, bottom: 46, left: 64 };
+    const plotWidth = Math.max(10, width - margin.left - margin.right);
+    const plotHeight = Math.max(10, height - margin.top - margin.bottom);
+    const seriesLength = Math.max(pretrained.length, finetuned.length);
+    const xMin = 0;
+    const xMax = Math.max(0, seriesLength - 1);
+
+    const visibleValues = [];
+    if (!consistencyState.hidden.has("pretrained")) {
+      visibleValues.push.apply(visibleValues, pretrained);
+    }
+    if (!consistencyState.hidden.has("finetuned")) {
+      visibleValues.push.apply(visibleValues, finetuned);
+    }
+    if (!visibleValues.length) {
+      visibleValues.push.apply(visibleValues, pretrained);
+      visibleValues.push.apply(visibleValues, finetuned);
+    }
+
+    let yMin = 0;
+    let yMax = Math.max.apply(null, visibleValues);
+    yMax = Math.max(0.01, yMax * 1.08);
+    if (Math.abs(yMax - yMin) < 1e-9) {
+      yMax = yMin + 1;
+    }
+
+    const scaleX = (x) => margin.left + ((x - xMin) / (xMax - xMin || 1)) * plotWidth;
+    const scaleY = (y) => margin.top + (1 - (y - yMin) / (yMax - yMin || 1)) * plotHeight;
+
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    svg.innerHTML = "";
+
+    svg.appendChild(
+      createSvgElement("rect", {
+        x: margin.left,
+        y: margin.top,
+        width: plotWidth,
+        height: plotHeight,
+        fill: "#ffffff",
+        stroke: "rgba(16, 23, 34, 0.16)",
+        "stroke-width": "1",
+        rx: "8",
+      })
+    );
+
+    const yTicks = 5;
+    for (let i = 0; i < yTicks; i += 1) {
+      const t = i / (yTicks - 1);
+      const y = margin.top + t * plotHeight;
+      const value = yMin + (1 - t) * (yMax - yMin);
+      svg.appendChild(
+        createSvgElement("line", {
+          x1: margin.left,
+          y1: y,
+          x2: margin.left + plotWidth,
+          y2: y,
+          stroke: "rgba(16, 23, 34, 0.12)",
+          "stroke-width": i === yTicks - 1 ? "1.05" : "0.8",
+        })
+      );
+      svg.appendChild(
+        createSvgElement("text", {
+          x: margin.left - 8,
+          y: y + 4,
+          fill: "#49576a",
+          "font-size": width < 620 ? "11" : "12",
+          "text-anchor": "end",
+          "font-family": "Sora, sans-serif",
+          textContent: formatTick(value),
+        })
+      );
+    }
+
+    const xTickCount = 6;
+    for (let i = 0; i < xTickCount; i += 1) {
+      const t = i / (xTickCount - 1);
+      const tick = Math.round(xMin + t * (xMax - xMin));
+      const x = scaleX(tick);
+      svg.appendChild(
+        createSvgElement("line", {
+          x1: x,
+          y1: margin.top,
+          x2: x,
+          y2: margin.top + plotHeight,
+          stroke: "rgba(16, 23, 34, 0.08)",
+          "stroke-width": "0.8",
+        })
+      );
+      svg.appendChild(
+        createSvgElement("text", {
+          x,
+          y: margin.top + plotHeight + 20,
+          fill: "#49576a",
+          "font-size": width < 620 ? "11" : "12",
+          "text-anchor": "middle",
+          "font-family": "Sora, sans-serif",
+          textContent: String(tick),
+        })
+      );
+    }
+
+    const seriesDefs = [
+      { key: "pretrained", color: "#4C72B0", values: pretrained },
+      { key: "finetuned", color: "#DD8452", values: finetuned },
+    ];
+
+    for (const series of seriesDefs) {
+      const isHidden = consistencyState.hidden.has(series.key);
+      const isHovered = consistencyState.hovered === series.key;
+      const isMuted = Boolean(consistencyState.hovered && !isHovered);
+      const opacity = isHidden ? 0 : isMuted ? 0.22 : 1;
+      const strokeWidth = isHovered ? 3.6 : 2.8;
+
+      const d = series.values
+        .map((value, idx) => {
+          const x = scaleX(idx);
+          const y = scaleY(value);
+          return (idx === 0 ? "M" : "L") + x.toFixed(2) + " " + y.toFixed(2);
+        })
+        .join(" ");
+
+      const line = createSvgElement("path", {
+        d,
+        fill: "none",
+        stroke: series.color,
+        "stroke-width": String(strokeWidth),
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        opacity: String(opacity),
+      });
+      svg.appendChild(line);
+    }
+
+    svg.appendChild(
+      createSvgElement("text", {
+        x: margin.left + plotWidth / 2,
+        y: height - 8,
+        fill: "#3a4657",
+        "font-size": width < 620 ? "11" : "12",
+        "font-family": "Sora, sans-serif",
+        "text-anchor": "middle",
+        textContent: "Timestep",
+      })
+    );
+
+    svg.appendChild(
+      createSvgElement("text", {
+        x: 18,
+        y: margin.top + plotHeight / 2,
+        fill: "#3a4657",
+        "font-size": width < 620 ? "11" : "12",
+        "font-family": "Sora, sans-serif",
+        "text-anchor": "middle",
+        transform: "rotate(-90 18 " + (margin.top + plotHeight / 2) + ")",
+        textContent: "Latent Dynamics Loss",
+      })
+    );
+
+  }
+
   function observeValuesChartResize() {
     const svg = document.getElementById("values-chart");
     if (!svg || !("ResizeObserver" in window)) {
@@ -1355,6 +1674,42 @@
     });
 
     valuesState.resizeObserver.observe(svg);
+  }
+
+  function observeConsistencyChartResize() {
+    const svg = document.getElementById("slip-consistency-chart");
+    if (!svg || !("ResizeObserver" in window)) {
+      return;
+    }
+
+    if (consistencyState.resizeObserver) {
+      consistencyState.resizeObserver.disconnect();
+    }
+
+    consistencyState.resizeObserver = new ResizeObserver(() => {
+      const bounds = svg.getBoundingClientRect();
+      const width = Math.round(bounds.width);
+      const height = Math.round(bounds.height);
+
+      if (width <= 0 || height <= 0) {
+        return;
+      }
+
+      if (width === consistencyState.lastWidth && height === consistencyState.lastHeight) {
+        return;
+      }
+
+      if (consistencyState.resizeRaf) {
+        window.cancelAnimationFrame(consistencyState.resizeRaf);
+      }
+
+      consistencyState.resizeRaf = window.requestAnimationFrame(() => {
+        consistencyState.resizeRaf = 0;
+        buildConsistencyLossChart();
+      });
+    });
+
+    consistencyState.resizeObserver.observe(svg);
   }
 
   function bindValuesLockToggle() {

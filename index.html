@@ -533,11 +533,24 @@
         </div>
         <div class="slip-shell">
           <figure class="slip-figure" data-reveal>
-            <img
-              src="assets/figures/fig7a_consistency-loss-plot.png"
-              alt="Consistency loss plot showing pretrained vs finetuned latent dynamics"
-            />
-            <figcaption>Figure 7a: latent dynamics loss drops after real-world finetuning.</figcaption>
+            <div class="slip-chart-toolbar">
+              <div class="slip-chart-legend" aria-label="Consistency loss legend">
+                <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--pretrained" aria-hidden="true"></span>
+                  Pretrained
+                </button>
+                <button type="button" class="slip-legend-item" data-series="finetuned" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--finetuned" aria-hidden="true"></span>
+                  Finetuned
+                </button>
+              </div>
+            </div>
+            <svg
+              id="slip-consistency-chart"
+              viewBox="0 0 900 420"
+              role="img"
+              aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
+            ></svg>
           </figure>
           <article class="video-card" data-reveal>
             <h3>Foot prediction during slip</h3>
