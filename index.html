@@ -529,10 +529,15 @@
 
       <section id="slip" class="section section-slip">
         <div class="section-head" data-reveal>
-          <h2>Finetuned dynamics predicts slip, pretrained dynamics does not</h2>
+          <h2>How Finetuning Impacts Dynamics Prediction</h2>
+          <p>
+            Next, we examine the effect finetuning has on dynamics prediction accuracy.
+            Adapting the dynamics model is essential for effective planning, as both the
+            reward and value estimates are computed over predicted trajectories.
+          </p>
         </div>
         <div class="slip-shell">
-          <figure class="slip-figure" data-reveal>
+          <figure class="slip-card slip-card--plot" data-reveal>
             <div class="slip-chart-toolbar">
               <div class="slip-chart-legend" aria-label="Consistency loss legend">
                 <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
@@ -551,16 +556,22 @@
               role="img"
               aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
             ></svg>
+            <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
           </figure>
-          <article class="video-card" data-reveal>
-            <h3>Foot prediction during slip</h3>
+          <figure class="slip-card" data-reveal>
             <video autoplay muted loop playsinline preload="metadata" controls>
-              <source src="assets/video/foot_pred_slip.mp4" type="video/mp4" />
+              <source src="assets/video/foot_slip.mp4" type="video/mp4" />
             </video>
-            <p>
-              The finetuned model anticipates future slip trajectories, directly changing sampled plans.
-            </p>
-          </article>
+            <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
+          </figure>
+          <figure class="slip-card" data-reveal>
+            <img
+              class="slip-card-image"
+              src="assets/figures/fig7c_foot-preds.png"
+              alt="Foot prediction comparison visualization during slip event"
+            />
+            <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
+          </figure>
         </div>
       </section>
 
