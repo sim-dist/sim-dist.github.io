@@ -1055,15 +1055,34 @@ video:focus-visible {
 }
 
 .planning-grid {
+  --planning-video-h: clamp(180px, 18vw, 250px);
+  --planning-card-pad: 0.5rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(
+    100%,
+    calc(
+      (var(--planning-video-h) * 920 / 780) +
+      (var(--planning-video-h) * 16 / 9) +
+      (var(--planning-video-h) * 16 / 9) +
+      (var(--planning-card-pad) * 2 * 3) +
+      (0.65rem * 2)
+    )
+  );
+  margin: 0 auto;
+  grid-template-columns:
+    calc((var(--planning-video-h) * 920 / 780) + (var(--planning-card-pad) * 2))
+    calc((var(--planning-video-h) * 16 / 9) + (var(--planning-card-pad) * 2))
+    calc((var(--planning-video-h) * 16 / 9) + (var(--planning-card-pad) * 2));
   gap: 0.65rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .planning-card {
   margin: 0;
   padding: 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background: var(--card-strong);
@@ -1071,8 +1090,14 @@ video:focus-visible {
 }
 
 .planning-card video {
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: var(--planning-video-h);
   object-fit: cover;
+  background: transparent;
+}
+
+.planning-card--native-aspect video {
+  object-fit: contain;
 }
 
 .planning-card figcaption {
@@ -1080,7 +1105,7 @@ video:focus-visible {
   color: var(--ink-1);
   font-size: 0.82rem;
   line-height: 1.35;
-  text-align: center;
+  text-align: left;
 }
 
 .results-shell {
@@ -1728,6 +1753,16 @@ a:focus-visible {
   .results-grid,
   .planning-grid {
     grid-template-columns: 1fr;
+  }
+
+  .planning-grid {
+    width: 100%;
+    margin: 0;
+  }
+
+  .planning-card,
+  .planning-card--native-aspect {
+    width: 100%;
   }
 }
 
