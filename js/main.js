@@ -118,6 +118,8 @@
     lastHeight: 0,
     resizeObserver: null,
     resizeRaf: 0,
+    videoScrubState: new WeakMap(),
+    objectUrls: [],
   };
 
   const consistencyState = {
@@ -1031,6 +1033,7 @@
       buildValuesChart();
       bindValuesLockToggle();
       observeValuesChartResize();
+      primeValuesVideos();
     } catch (error) {
       const status = document.getElementById("values-status");
       if (status) {
@@ -1116,6 +1119,100 @@
     }
 
     return values;
+  }
+
+  function primeValuesVideos() {
+    const successVideo = document.getElementById("values-video-success");
+    const failVideo = document.getElementById("values-video-fail");
+    if (!successVideo || !failVideo) {
+      return;
+    }
+
+    const syncCurrentFrame = () => {
+      if (valuesState.chart) {
+        setValuesStep(valuesState.currentStep, valuesState.chart);
+      }
+    };
+
+    for (const video of [successVideo, failVideo]) {
+      if (video.dataset.valuesPrimed !== "true") {
+        video.dataset.valuesPrimed = "true";
+        video.setAttribute("preload", "auto");
+        video.muted = true;
+        video.addEventListener("loadedmetadata", syncCurrentFrame);
+        video.addEventListener("durationchange", syncCurrentFrame);
+        video.addEventListener("canplay", syncCurrentFrame);
+      }
+
+      if (video.readyState === 0) {
+        try {
+          video.load();
+        } catch (error) {
+          continue;
+        }
+      }
+
+      hydrateValuesVideo(video).then(syncCurrentFrame);
+      warmupValuesVideo(video, syncCurrentFrame);
+    }
+
+    syncCurrentFrame();
+  }
+
+  function warmupValuesVideo(video, onReady) {
+    if (!video || video.dataset.valuesWarmupTried === "true") {
+      return;
+    }
+
+    video.dataset.valuesWarmupTried = "true";
+    const tryWarmup = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(() => {
+            video.pause();
+            if (typeof onReady === "function") {
+              onReady();
+            }
+          })
+          .catch(() => {});
+      }
+    };
+
+    if (video.readyState >= 2) {
+      tryWarmup();
+      return;
+    }
+
+    video.addEventListener("canplay", tryWarmup, { once: true });
+  }
+
+  async function hydrateValuesVideo(video) {
+    if (!video || video.dataset.valuesHydrateTried === "true") {
+      return;
+    }
+
+    video.dataset.valuesHydrateTried = "true";
+    const source = video.querySelector("source");
+    const src = source ? source.getAttribute("src") : video.getAttribute("src");
+    if (!src) {
+      return;
+    }
+
+    try {
+      const response = await fetch(src, { cache: "no-store" });
+      if (!response.ok) {
+        return;
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      valuesState.objectUrls.push(objectUrl);
+      video.setAttribute("src", objectUrl);
+      video.load();
+    } catch (error) {
+      return;
+    }
   }
 
   function buildValuesChart() {
@@ -1333,7 +1430,9 @@
       y: margin.top,
       width: plotWidth,
       height: plotHeight,
-      fill: "transparent",
+      fill: "rgba(0, 0, 0, 0.001)",
+      "pointer-events": "all",
+      "touch-action": "none",
       cursor: "crosshair",
     });
 
@@ -1378,6 +1477,17 @@
     eventRect.addEventListener("pointerup", stopDragging);
     eventRect.addEventListener("pointercancel", stopDragging);
     eventRect.addEventListener("click", updateFromPointerEvent);
+
+    if (!("PointerEvent" in window)) {
+      eventRect.addEventListener("mousemove", (event) => {
+        if (valuesState.locked) {
+          return;
+        }
+        updateFromPointerEvent(event);
+      });
+
+      eventRect.addEventListener("mousedown", updateFromPointerEvent);
+    }
 
     svg.appendChild(eventRect);
 
@@ -1812,19 +1922,67 @@
       return;
     }
 
-    video.pause();
+    const boundedRatio = Math.max(0, Math.min(1, ratio));
+    let scrub = valuesState.videoScrubState.get(video);
+    if (!scrub) {
+      scrub = { ratio: boundedRatio, raf: 0 };
+      valuesState.videoScrubState.set(video, scrub);
+    }
 
-    if (!Number.isFinite(video.duration) || video.duration <= 0) {
+    scrub.ratio = boundedRatio;
+    if (scrub.raf) {
       return;
     }
 
-    const target = ratio * video.duration;
-    if (Math.abs(video.currentTime - target) > 0.08) {
-      try {
-        video.currentTime = target;
-      } catch (error) {
-        return;
+    scrub.raf = window.requestAnimationFrame(() => {
+      scrub.raf = 0;
+      applyVideoScrub(video, scrub.ratio);
+    });
+  }
+
+  function applyVideoScrub(video, ratio) {
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+
+    const hasFiniteDuration = Number.isFinite(video.duration) && video.duration > 0;
+    const seekableDuration =
+      video.seekable && video.seekable.length > 0 ? video.seekable.end(video.seekable.length - 1) : 0;
+    const effectiveDuration = hasFiniteDuration ? video.duration : seekableDuration;
+
+    if (!Number.isFinite(effectiveDuration) || effectiveDuration <= 0) {
+      if (video.dataset.valuesLoadRequested !== "true") {
+        video.dataset.valuesLoadRequested = "true";
+        try {
+          video.load();
+        } catch (error) {
+          return;
+        }
       }
+      return;
+    }
+
+    let target = Math.max(0, Math.min(1, ratio)) * effectiveDuration;
+    if (video.seekable && video.seekable.length > 0) {
+      const rangeStart = video.seekable.start(0);
+      const rangeEnd = video.seekable.end(video.seekable.length - 1);
+      target = Math.max(rangeStart, Math.min(rangeEnd - 0.001, target));
+    }
+
+    if (Math.abs(video.currentTime - target) <= 1 / 24) {
+      return;
+    }
+
+    try {
+      if (typeof video.fastSeek === "function") {
+        video.fastSeek(target);
+      } else {
+        video.currentTime = target;
+      }
+    } catch (error) {
+      return;
     }
   }
 
@@ -1908,4 +2066,11 @@
       playPromise.catch(() => {});
     }
   }
+
+  window.addEventListener("beforeunload", () => {
+    for (const url of valuesState.objectUrls) {
+      URL.revokeObjectURL(url);
+    }
+    valuesState.objectUrls = [];
+  });
 })();
