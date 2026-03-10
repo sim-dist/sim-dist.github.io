@@ -262,6 +262,8 @@
     const copy = document.getElementById("method-step-copy");
     const stepButtons = Array.from(document.querySelectorAll(".method-step-button"));
     const panel = document.querySelector(".method-panel");
+    const scrollShell = document.querySelector(".method-scroll-shell");
+    const scrollFrame = document.querySelector(".method-scroll-frame");
 
     if (!nodes.length || !title || !copy || !panel) {
       return;
@@ -327,14 +329,29 @@
       }
     };
 
+    const updateScrollIndicators = () => {
+      if (!scrollShell || !scrollFrame) {
+        return;
+      }
+
+      const maxScroll = Math.max(0, scrollFrame.scrollWidth - scrollFrame.clientWidth);
+      const reachedRightEdge = maxScroll > 12 && scrollFrame.scrollLeft >= maxScroll - 12;
+      const canScrollLeft = reachedRightEdge;
+      const canScrollRight = maxScroll > 12 && scrollFrame.scrollLeft < maxScroll - 12;
+
+      scrollShell.classList.toggle("can-scroll-left", canScrollLeft);
+      scrollShell.classList.toggle("can-scroll-right", canScrollRight);
+    };
+
     let resizeFrame = 0;
-    const queuePanelResize = () => {
+    const queueLayoutUpdate = () => {
       if (resizeFrame) {
         window.cancelAnimationFrame(resizeFrame);
       }
       resizeFrame = window.requestAnimationFrame(() => {
         resizeFrame = 0;
         applyPanelSizeForLongestStep();
+        updateScrollIndicators();
       });
     };
 
@@ -353,12 +370,21 @@
       });
     }
 
+    if (scrollFrame) {
+      scrollFrame.addEventListener("scroll", updateScrollIndicators, { passive: true });
+      if ("ResizeObserver" in window) {
+        const scrollResizeObserver = new ResizeObserver(queueLayoutUpdate);
+        scrollResizeObserver.observe(scrollFrame);
+      }
+    }
+
     applyStep("1");
     applyPanelSizeForLongestStep();
-    window.addEventListener("resize", queuePanelResize, { passive: true });
-    window.addEventListener("load", queuePanelResize, { passive: true });
+    updateScrollIndicators();
+    window.addEventListener("resize", queueLayoutUpdate, { passive: true });
+    window.addEventListener("load", queueLayoutUpdate, { passive: true });
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(queuePanelResize);
+      document.fonts.ready.then(queueLayoutUpdate);
     }
   }
 

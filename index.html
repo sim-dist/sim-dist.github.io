@@ -306,90 +306,102 @@
         <div class="method-shell">
           <figure class="method-figure" data-reveal>
             <p class="method-interaction-hint">Hover over a box to view its detail below.</p>
-            <div class="method-grid" role="list" aria-label="Simulation Distillation stages">
-              <div
-                class="method-row-label method-row-label--pretraining"
-                aria-hidden="true"
-                role="presentation"
-              >
-                <span>Pretraining</span>
+            <div class="method-scroll-shell">
+              <div class="method-scroll-frame">
+                <div class="method-grid" role="list" aria-label="Simulation Distillation stages">
+                  <div
+                    class="method-row-label method-row-label--pretraining"
+                    aria-hidden="true"
+                    role="presentation"
+                  >
+                    <span>Pretraining</span>
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--1"
+                    data-step="1"
+                    role="listitem"
+                    aria-label="Step 1: Expert Policy Training"
+                  >
+                    <h3><span class="method-node-kicker">1</span>Expert Policy Training</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="metadata">
+                        <source src="assets/video/rl_qped.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    class="method-node method-node--2"
+                    data-step="2"
+                    role="listitem"
+                    aria-label="Step 2: Data Generation"
+                  >
+                    <h3><span class="method-node-kicker">2</span>Data Generation</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="metadata">
+                        <source src="assets/video/data_gen.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    class="method-node method-node--3"
+                    data-step="3"
+                    role="listitem"
+                    aria-label="Step 3: World Model Pretraining"
+                  >
+                    <h3><span class="method-node-kicker">3</span>World Model Pretraining</h3>
+                    <div class="method-node-media">
+                      <img src="assets/figures/pretraining.svg" alt="World model pretraining diagram" />
+                    </div>
+                  </button>
+                  <div
+                    class="method-row-label method-row-label--improvement"
+                    aria-hidden="true"
+                    role="presentation"
+                  >
+                    <span>Real-World Improvement</span>
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--4a"
+                    data-step="4a"
+                    role="listitem"
+                    aria-label="Step 4a: Real-World Deployment"
+                  >
+                    <h3><span class="method-node-kicker">4a</span>Real-World Deployment</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="metadata">
+                        <source src="assets/video/ptfe_plan.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <div class="method-exchange" aria-hidden="true" role="presentation">
+                    <img class="method-exchange-svg" src="assets/figures/iteration_arrows.svg" alt="" />
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--4b"
+                    data-step="4b"
+                    role="listitem"
+                    aria-label="Step 4b: Dynamics Finetuning"
+                  >
+                    <h3><span class="method-node-kicker">4b</span>Dynamics Finetuning</h3>
+                    <div class="method-node-media">
+                      <img src="assets/figures/finetuning.svg" alt="Dynamics finetuning diagram" />
+                    </div>
+                  </button>
+                </div>
               </div>
-              <button
-                type="button"
-                class="method-node method-node--1"
-                data-step="1"
-                role="listitem"
-                aria-label="Step 1: Expert Policy Training"
-              >
-                <h3><span class="method-node-kicker">1</span>Expert Policy Training</h3>
-                <div class="method-node-media">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/video/rl_qped.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              </button>
-              <button
-                type="button"
-                class="method-node method-node--2"
-                data-step="2"
-                role="listitem"
-                aria-label="Step 2: Data Generation"
-              >
-                <h3><span class="method-node-kicker">2</span>Data Generation</h3>
-                <div class="method-node-media">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/video/data_gen.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              </button>
-              <button
-                type="button"
-                class="method-node method-node--3"
-                data-step="3"
-                role="listitem"
-                aria-label="Step 3: World Model Pretraining"
-              >
-                <h3><span class="method-node-kicker">3</span>World Model Pretraining</h3>
-                <div class="method-node-media">
-                  <img src="assets/figures/pretraining.svg" alt="World model pretraining diagram" />
-                </div>
-              </button>
-              <div
-                class="method-row-label method-row-label--improvement"
-                aria-hidden="true"
-                role="presentation"
-              >
-                <span>Real-World Improvement</span>
+              <div class="method-scroll-indicator method-scroll-indicator--left" aria-hidden="true">
+                <span></span>
+                <span></span>
               </div>
-              <button
-                type="button"
-                class="method-node method-node--4a"
-                data-step="4a"
-                role="listitem"
-                aria-label="Step 4a: Real-World Deployment"
-              >
-                <h3><span class="method-node-kicker">4a</span>Real-World Deployment</h3>
-                <div class="method-node-media">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/video/ptfe_plan.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              </button>
-              <div class="method-exchange" aria-hidden="true" role="presentation">
-                <img class="method-exchange-svg" src="assets/figures/iteration_arrows.svg" alt="" />
+              <div class="method-scroll-indicator method-scroll-indicator--right" aria-hidden="true">
+                <span></span>
+                <span></span>
               </div>
-              <button
-                type="button"
-                class="method-node method-node--4b"
-                data-step="4b"
-                role="listitem"
-                aria-label="Step 4b: Dynamics Finetuning"
-              >
-                <h3><span class="method-node-kicker">4b</span>Dynamics Finetuning</h3>
-                <div class="method-node-media">
-                  <img src="assets/figures/finetuning.svg" alt="Dynamics finetuning diagram" />
-                </div>
-              </button>
             </div>
           </figure>
           <aside class="method-panel" data-reveal aria-live="polite">
