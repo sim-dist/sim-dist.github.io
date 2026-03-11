@@ -385,6 +385,14 @@
           };
     };
 
+    const shouldUseMethodTouchPan = () => {
+      if (!scrollFrame) {
+        return false;
+      }
+
+      return useTouchInteractionCopy() && scrollFrame.scrollWidth > scrollFrame.clientWidth + 12;
+    };
+
     const applyStep = (stepId) => {
       const payload = METHOD_STEPS[stepId];
       if (!payload) {
@@ -427,6 +435,10 @@
       const defaultCopy = getMethodDefaultCopy();
       if (interactionHint) {
         interactionHint.textContent = defaultCopy.hint;
+      }
+
+      if (scrollFrame) {
+        scrollFrame.style.touchAction = shouldUseMethodTouchPan() ? "pan-y pinch-zoom" : "";
       }
 
       const hasActiveStep = stepButtons.some((button) => button.classList.contains("active"));
@@ -613,6 +625,7 @@
         updateFloatingSheetMode();
         applyPanelSizeForLongestStep();
         updateFloatingSheetMode();
+        syncMethodInteractionCopy();
         updateScrollIndicators();
       });
     };
@@ -646,6 +659,96 @@
 
     if (scrollFrame) {
       scrollFrame.addEventListener("scroll", updateScrollIndicators, { passive: true });
+
+      let touchPanState = null;
+      let queuedTouchPanFrame = 0;
+      let queuedTouchPanLeft = scrollFrame.scrollLeft;
+
+      const flushTouchPan = () => {
+        queuedTouchPanFrame = 0;
+        scrollFrame.scrollLeft = queuedTouchPanLeft;
+      };
+
+      const queueTouchPan = (nextLeft) => {
+        queuedTouchPanLeft = nextLeft;
+
+        if (queuedTouchPanFrame) {
+          return;
+        }
+
+        queuedTouchPanFrame = window.requestAnimationFrame(flushTouchPan);
+      };
+
+      scrollFrame.addEventListener(
+        "touchstart",
+        (event) => {
+          if (!shouldUseMethodTouchPan() || event.touches.length !== 1) {
+            touchPanState = null;
+            return;
+          }
+
+          if (queuedTouchPanFrame) {
+            window.cancelAnimationFrame(queuedTouchPanFrame);
+            flushTouchPan();
+          }
+
+          const touch = event.touches[0];
+          touchPanState = {
+            startX: touch.clientX,
+            startY: touch.clientY,
+            startScrollLeft: scrollFrame.scrollLeft,
+            dragging: false,
+            horizontalDragActive: false,
+          };
+          queuedTouchPanLeft = touchPanState.startScrollLeft;
+        },
+        { passive: true }
+      );
+
+      scrollFrame.addEventListener(
+        "touchmove",
+        (event) => {
+          if (!shouldUseMethodTouchPan() || !touchPanState || event.touches.length !== 1) {
+            return;
+          }
+
+          const touch = event.touches[0];
+          const deltaX = touchPanState.startX - touch.clientX;
+          const deltaY = touchPanState.startY - touch.clientY;
+          const absDeltaX = Math.abs(deltaX);
+          const absDeltaY = Math.abs(deltaY);
+
+          if (!touchPanState.dragging && absDeltaX + absDeltaY < 6) {
+            return;
+          }
+
+          touchPanState.dragging = true;
+          if (!touchPanState.horizontalDragActive) {
+            // Let pure vertical swipes stay native. Only steer the pipeline once
+            // there is clear horizontal intent, including diagonal drags.
+            if (absDeltaX < 10 || absDeltaX < absDeltaY * 0.5) {
+              return;
+            }
+
+            touchPanState.horizontalDragActive = true;
+          }
+
+          queueTouchPan(touchPanState.startScrollLeft + deltaX);
+        },
+        { passive: true }
+      );
+
+      const resetTouchPanState = () => {
+        if (queuedTouchPanFrame) {
+          window.cancelAnimationFrame(queuedTouchPanFrame);
+          flushTouchPan();
+        }
+        touchPanState = null;
+      };
+
+      scrollFrame.addEventListener("touchend", resetTouchPanState, { passive: true });
+      scrollFrame.addEventListener("touchcancel", resetTouchPanState, { passive: true });
+
       if ("ResizeObserver" in window) {
         const scrollResizeObserver = new ResizeObserver(queueLayoutUpdate);
         scrollResizeObserver.observe(scrollFrame);
@@ -653,6 +756,7 @@
     }
 
     clearStepSelection();
+    syncMethodInteractionCopy();
     updateFloatingSheetMode();
     applyPanelSizeForLongestStep();
     updateFloatingSheetMode();
