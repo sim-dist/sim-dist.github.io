@@ -2,6 +2,11 @@
   "use strict";
 
   const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const TOUCH_PRIMARY_POINTER = window.matchMedia("(hover: none) and (pointer: coarse)");
+  const NARROW_METHOD_VIEWPORT = window.matchMedia("(max-width: 900px)");
+  const MOBILE_USER_AGENT =
+    (navigator.userAgentData && navigator.userAgentData.mobile) ||
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   const METHOD_STEPS = {
     "1": {
@@ -33,6 +38,41 @@
       title: "Dynamics Finetuning",
       copy:
         "Real-world data is then used to finetune only the dynamics via supervised system identification, with representations, rewards, and values frozen. Deployment and finetuning are iterated, enabling rapid and stable real-world adaptation.",
+    },
+  };
+
+  const METHOD_DEFAULT_STATE = {
+    title: "Select a Step",
+    hoverCopy: "Choose a step above or click a box in the pipeline to view its details.",
+    touchCopy: "Choose a step above or tap a box in the pipeline to view its details.",
+    hoverHint: "Hover over a box to view its detail below.",
+    touchHint: "Tap a box to view its detail below.",
+  };
+
+  const INTERACTION_COPY = {
+    methodStepHint: {
+      desktop: "Click to learn more:",
+      touch: "Tap to learn more:",
+    },
+    resultsLegend: {
+      desktop: "Hover a legend item to highlight a curve.<br />Click to toggle it on/off.",
+      touch: "Tap a legend item to toggle it on/off.",
+    },
+    resultsPlot: {
+      desktop: "Hover a plot to preview its video. Click to expand.",
+      touch: "Tap a plot to view its video.",
+    },
+    resultsChartHint: {
+      desktop: "▶ Hover for video",
+      touch: "▶ Tap for video",
+    },
+    valuesStatus: {
+      desktop: "Hover over the plot to view the associated video frame.",
+      touch: "Tap the plot to view the associated video frame.",
+    },
+    valuesLocked: {
+      desktop: "Frame locked. Click or drag on the plot to change frames.",
+      touch: "Frame locked. Tap or drag on the plot to change frames.",
     },
   };
 
@@ -133,7 +173,20 @@
     resizeRaf: 0,
   };
 
+  function useTouchInteractionCopy() {
+    return MOBILE_USER_AGENT || (TOUCH_PRIMARY_POINTER.matches && NARROW_METHOD_VIEWPORT.matches);
+  }
+
+  function addMediaQueryChangeListener(query, handler) {
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", handler);
+    } else if (typeof query.addListener === "function") {
+      query.addListener(handler);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
+    initResponsiveInteractionCopy();
     initRevealAnimations();
     initSectionSpy();
     initHeroMotion();
@@ -173,6 +226,52 @@
     for (const node of nodes) {
       observer.observe(node);
     }
+  }
+
+  function initResponsiveInteractionCopy() {
+    const methodStepHint = document.querySelector(".method-step-hint");
+    const resultsLegendHint = document.querySelector(".results-legend-hint");
+    const resultsInteractionHint = document.querySelector(".results-interaction-hint");
+    const valuesStatus = document.getElementById("values-status");
+
+    const syncCopy = () => {
+      const useTouchCopy = useTouchInteractionCopy();
+
+      if (methodStepHint) {
+        methodStepHint.textContent = useTouchCopy
+          ? INTERACTION_COPY.methodStepHint.touch
+          : INTERACTION_COPY.methodStepHint.desktop;
+      }
+
+      if (resultsLegendHint) {
+        resultsLegendHint.innerHTML = useTouchCopy
+          ? INTERACTION_COPY.resultsLegend.touch
+          : INTERACTION_COPY.resultsLegend.desktop;
+      }
+
+      if (resultsInteractionHint) {
+        resultsInteractionHint.textContent = useTouchCopy
+          ? INTERACTION_COPY.resultsPlot.touch
+          : INTERACTION_COPY.resultsPlot.desktop;
+      }
+
+      if (valuesStatus && !valuesState.locked) {
+        valuesStatus.textContent = useTouchCopy
+          ? INTERACTION_COPY.valuesStatus.touch
+          : INTERACTION_COPY.valuesStatus.desktop;
+      }
+
+      const chartHints = document.querySelectorAll(".chart-video-hint");
+      for (const hint of chartHints) {
+        hint.textContent = useTouchCopy
+          ? INTERACTION_COPY.resultsChartHint.touch
+          : INTERACTION_COPY.resultsChartHint.desktop;
+      }
+    };
+
+    syncCopy();
+    addMediaQueryChangeListener(TOUCH_PRIMARY_POINTER, syncCopy);
+    addMediaQueryChangeListener(NARROW_METHOD_VIEWPORT, syncCopy);
   }
 
   function initSectionSpy() {
@@ -257,6 +356,7 @@
   }
 
   function initMethodInteraction() {
+    const interactionHint = document.querySelector(".method-interaction-hint");
     const nodes = Array.from(document.querySelectorAll(".method-node"));
     const title = document.getElementById("method-step-title");
     const copy = document.getElementById("method-step-copy");
@@ -264,6 +364,7 @@
     const methodSection = document.getElementById("method");
     const methodShell = document.querySelector(".method-shell");
     const figure = document.querySelector(".method-figure");
+    const siteHeader = document.querySelector(".site-header");
     const panel = document.querySelector(".method-panel");
     const scrollShell = document.querySelector(".method-scroll-shell");
     const scrollFrame = document.querySelector(".method-scroll-frame");
@@ -271,6 +372,18 @@
     if (!nodes.length || !title || !copy || !panel || !methodSection || !methodShell || !figure) {
       return;
     }
+
+    const getMethodDefaultCopy = () => {
+      return useTouchInteractionCopy()
+        ? {
+            hint: METHOD_DEFAULT_STATE.touchHint,
+            copy: METHOD_DEFAULT_STATE.touchCopy,
+          }
+        : {
+            hint: METHOD_DEFAULT_STATE.hoverHint,
+            copy: METHOD_DEFAULT_STATE.hoverCopy,
+          };
+    };
 
     const applyStep = (stepId) => {
       const payload = METHOD_STEPS[stepId];
@@ -290,6 +403,99 @@
         button.classList.toggle("active", isActive);
         button.setAttribute("aria-pressed", isActive ? "true" : "false");
       }
+    };
+
+    const clearStepSelection = () => {
+      const defaultCopy = getMethodDefaultCopy();
+      if (interactionHint) {
+        interactionHint.textContent = defaultCopy.hint;
+      }
+      title.textContent = METHOD_DEFAULT_STATE.title;
+      copy.textContent = defaultCopy.copy;
+
+      for (const node of nodes) {
+        node.classList.remove("active", "method-node-guided");
+      }
+
+      for (const button of stepButtons) {
+        button.classList.remove("active");
+        button.setAttribute("aria-pressed", "false");
+      }
+    };
+
+    const syncMethodInteractionCopy = () => {
+      const defaultCopy = getMethodDefaultCopy();
+      if (interactionHint) {
+        interactionHint.textContent = defaultCopy.hint;
+      }
+
+      const hasActiveStep = stepButtons.some((button) => button.classList.contains("active"));
+      if (!hasActiveStep) {
+        title.textContent = METHOD_DEFAULT_STATE.title;
+        copy.textContent = defaultCopy.copy;
+      }
+    };
+
+    let guidedNodeTimer = 0;
+    const focusMethodNodeFromSheet = (stepId) => {
+      if (!scrollFrame || !methodSection.classList.contains("method-sheet-enabled")) {
+        return;
+      }
+
+      const targetNode = nodes.find((node) => node.dataset.step === stepId);
+      if (!targetNode) {
+        return;
+      }
+
+      const frameWidth = scrollFrame.clientWidth;
+      if (frameWidth > 0) {
+        const maxScroll = Math.max(0, scrollFrame.scrollWidth - frameWidth);
+        const leftInset = 20;
+        const targetScrollLeft = Math.max(
+          0,
+          Math.min(maxScroll, targetNode.offsetLeft - leftInset)
+        );
+
+        scrollFrame.scrollTo({
+          left: targetScrollLeft,
+          behavior: REDUCED_MOTION ? "auto" : "smooth",
+        });
+      }
+
+      const nodeRect = targetNode.getBoundingClientRect();
+      const nodeCenterAbsoluteY = window.scrollY + nodeRect.top + nodeRect.height / 2;
+      const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
+      const panelTop = methodSection.classList.contains("method-sheet-active")
+        ? panel.getBoundingClientRect().top
+        : window.innerHeight;
+      const visibleTop = headerBottom + 12;
+      const visibleBottom = Math.max(visibleTop + 40, panelTop - 12);
+      const targetCenterViewportY = (visibleTop + visibleBottom) / 2;
+      const targetScrollTop = Math.max(0, nodeCenterAbsoluteY - targetCenterViewportY);
+
+      window.scrollTo({
+        top: targetScrollTop,
+        behavior: REDUCED_MOTION ? "auto" : "smooth",
+      });
+
+      if (guidedNodeTimer) {
+        window.clearTimeout(guidedNodeTimer);
+      }
+
+      for (const node of nodes) {
+        node.classList.remove("method-node-guided");
+      }
+
+      if (REDUCED_MOTION) {
+        return;
+      }
+
+      void targetNode.offsetWidth;
+      targetNode.classList.add("method-node-guided");
+      guidedNodeTimer = window.setTimeout(() => {
+        targetNode.classList.remove("method-node-guided");
+        guidedNodeTimer = 0;
+      }, 950);
     };
 
     const measurePanelHeightForWidth = (panelWidth) => {
@@ -434,6 +640,7 @@
       button.setAttribute("aria-pressed", "false");
       button.addEventListener("click", () => {
         applyStep(button.dataset.step);
+        focusMethodNodeFromSheet(button.dataset.step);
       });
     }
 
@@ -445,7 +652,7 @@
       }
     }
 
-    applyStep("1");
+    clearStepSelection();
     updateFloatingSheetMode();
     applyPanelSizeForLongestStep();
     updateFloatingSheetMode();
@@ -456,6 +663,8 @@
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(queueLayoutUpdate);
     }
+    addMediaQueryChangeListener(TOUCH_PRIMARY_POINTER, syncMethodInteractionCopy);
+    addMediaQueryChangeListener(NARROW_METHOD_VIEWPORT, syncMethodInteractionCopy);
   }
 
   async function initResultsDashboard() {
@@ -664,7 +873,9 @@
 
       const hoverHint = document.createElement("span");
       hoverHint.className = "chart-video-hint";
-      hoverHint.textContent = "▶ Hover for video";
+      hoverHint.textContent = useTouchInteractionCopy()
+        ? INTERACTION_COPY.resultsChartHint.touch
+        : INTERACTION_COPY.resultsChartHint.desktop;
 
       const wrap = document.createElement("div");
       wrap.className = "chart-wrap";
@@ -1943,12 +2154,16 @@
 
       if (valuesState.locked) {
         setLockLabel("Unlock Frame");
-        status.textContent = "Frame locked. Click or drag on the plot change frames.";
+        status.textContent = useTouchInteractionCopy()
+          ? INTERACTION_COPY.valuesLocked.touch
+          : INTERACTION_COPY.valuesLocked.desktop;
         successVideo.pause();
         failVideo.pause();
       } else {
         setLockLabel("Lock Frame");
-        status.textContent = "Hover over the plot to view the associated video frame.";
+        status.textContent = useTouchInteractionCopy()
+          ? INTERACTION_COPY.valuesStatus.touch
+          : INTERACTION_COPY.valuesStatus.desktop;
         successVideo.pause();
         failVideo.pause();
         if (valuesState.chart) {

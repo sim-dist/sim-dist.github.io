@@ -828,6 +828,36 @@ main {
   }
 }
 
+@keyframes method-node-guided {
+  0% {
+    transform: translateY(-2px) scale(1);
+    box-shadow:
+      0 0 0 5px rgba(var(--row-rgb), 0.48),
+      0 16px 28px rgba(17, 30, 47, 0.16);
+  }
+
+  35% {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:
+      0 0 0 12px rgba(var(--row-rgb), 0.18),
+      0 26px 40px rgba(17, 30, 47, 0.22);
+  }
+
+  68% {
+    transform: translateY(-1px) scale(0.995);
+    box-shadow:
+      0 0 0 8px rgba(var(--row-rgb), 0.12),
+      0 18px 30px rgba(17, 30, 47, 0.18);
+  }
+
+  100% {
+    transform: translateY(-2px) scale(1);
+    box-shadow:
+      0 0 0 5px rgba(var(--row-rgb), 0.48),
+      0 16px 28px rgba(17, 30, 47, 0.16);
+  }
+}
+
 .method-node {
   --row-rgb: 246, 178, 107;
   border: 2px solid rgba(var(--row-rgb), 0.92);
@@ -862,6 +892,10 @@ main {
 .method-node.active .method-node-kicker {
   border-color: rgba(var(--row-rgb), 0.86);
   background: rgba(var(--row-rgb), 0.34);
+}
+
+.method-node.active.method-node-guided {
+  animation: method-node-guided 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .method-row-label {
