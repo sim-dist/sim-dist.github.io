@@ -277,12 +277,12 @@
 
   function initSectionSpy() {
     const navLinks = Array.from(document.querySelectorAll(".site-nav a[data-nav]"));
-    if (!navLinks.length || !("IntersectionObserver" in window)) {
+    if (!navLinks.length) {
       return;
     }
 
-    const idToLink = new Map();
     const sections = [];
+    const siteHeader = document.querySelector(".site-header");
 
     for (const link of navLinks) {
       const id = link.dataset.nav;
@@ -291,7 +291,10 @@
         continue;
       }
       sections.push(section);
-      idToLink.set(id, link);
+    }
+
+    if (!sections.length) {
+      return;
     }
 
     const setActive = (id) => {
@@ -304,29 +307,43 @@
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    let updateRaf = 0;
 
-        if (visible.length > 0) {
-          setActive(visible[0].target.id);
+    const syncActiveSection = () => {
+      const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
+      const probeY = headerBottom + Math.min(window.innerHeight * 0.22, 160);
+      let activeId = sections[0].id;
+
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= probeY) {
+          activeId = section.id;
+        } else {
+          break;
         }
-      },
-      {
-        threshold: [0.2, 0.45, 0.7],
-        rootMargin: "-30% 0px -45% 0px",
       }
-    );
 
-    for (const section of sections) {
-      observer.observe(section);
+      setActive(activeId);
+    };
+
+    const queueSyncActiveSection = () => {
+      if (updateRaf) {
+        return;
+      }
+      updateRaf = window.requestAnimationFrame(() => {
+        updateRaf = 0;
+        syncActiveSection();
+      });
+    };
+
+    for (const link of navLinks) {
+      link.addEventListener("click", () => {
+        setActive(link.dataset.nav);
+      });
     }
 
-    if (sections[0]) {
-      setActive(sections[0].id);
-    }
+    queueSyncActiveSection();
+    window.addEventListener("scroll", queueSyncActiveSection, { passive: true });
+    window.addEventListener("resize", queueSyncActiveSection, { passive: true });
   }
 
   function initCompactHeader() {
