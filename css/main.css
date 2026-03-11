@@ -2031,6 +2031,44 @@ a:focus-visible {
     transform: rotate(90deg);
   }
 
+  .results-legend-bar {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    gap: 0.62rem;
+    padding: 0.72rem 0.78rem;
+  }
+
+  .results-legend-hint {
+    white-space: normal;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .results-legend-bar .results-legend {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.42rem;
+  }
+
+  .results-legend .legend-item {
+    width: auto;
+    max-width: 100%;
+    flex: 0 1 auto;
+    min-height: 2rem;
+    justify-content: flex-start;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    padding: 0.3rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  .results-legend .legend-item-reset {
+    justify-content: center;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
