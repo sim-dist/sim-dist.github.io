@@ -724,10 +724,6 @@ main {
   top: 0;
   bottom: 0;
   width: 4.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.18rem;
   z-index: 2;
   opacity: 0;
   pointer-events: none;
@@ -740,9 +736,17 @@ main {
   inset: 0;
 }
 
-.method-scroll-indicator span {
+.method-scroll-indicator-group {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+}
+
+.method-scroll-indicator-group span {
+  position: relative;
   width: 0.78rem;
   height: 0.78rem;
   border-top: 3px solid rgba(11, 154, 182, 0.95);
@@ -758,24 +762,44 @@ main {
   background: linear-gradient(90deg, rgba(248, 245, 239, 0), rgba(248, 245, 239, 0.92) 68%);
 }
 
-.method-scroll-indicator--right span {
-  transform: rotate(45deg);
-  animation: method-scroll-right 1.35s ease-in-out infinite;
+.method-scroll-indicator--right .method-scroll-indicator-group {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.method-scroll-indicator--right span:nth-child(2) {
-  animation-delay: 130ms;
+.method-scroll-indicator-group--top {
+  top: 25%;
+  --method-scroll-delay: 0ms;
+}
+
+.method-scroll-indicator-group--bottom {
+  top: 75%;
+  --method-scroll-delay: 220ms;
+}
+
+.method-scroll-indicator--right .method-scroll-indicator-group span {
+  transform: rotate(45deg);
+  animation: method-scroll-right 1.35s ease-in-out infinite;
+  animation-delay: var(--method-scroll-delay, 0ms);
+}
+
+.method-scroll-indicator--right .method-scroll-indicator-group span:nth-child(2) {
+  animation-delay: calc(var(--method-scroll-delay, 0ms) + 130ms);
 }
 
 .method-scroll-indicator--left {
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .method-scroll-indicator--left::before {
   background: linear-gradient(270deg, rgba(248, 245, 239, 0), rgba(248, 245, 239, 0.84) 68%);
 }
 
-.method-scroll-indicator--left span {
+.method-scroll-indicator--left .method-scroll-indicator-group span {
   transform: rotate(-135deg);
 }
 
