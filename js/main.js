@@ -281,7 +281,9 @@
       return;
     }
 
+    const MOBILE_NAV_VIEWPORT = window.matchMedia("(max-width: 760px)");
     const sections = [];
+    const sectionById = new Map();
     const siteHeader = document.querySelector(".site-header");
 
     for (const link of navLinks) {
@@ -291,6 +293,7 @@
         continue;
       }
       sections.push(section);
+      sectionById.set(id, section);
     }
 
     if (!sections.length) {
@@ -336,8 +339,47 @@
     };
 
     for (const link of navLinks) {
-      link.addEventListener("click", () => {
-        setActive(link.dataset.nav);
+      link.addEventListener("click", (event) => {
+        const id = link.dataset.nav;
+        if (!id) {
+          return;
+        }
+
+        setActive(id);
+
+        if (
+          !MOBILE_NAV_VIEWPORT.matches ||
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        ) {
+          return;
+        }
+
+        const targetSection = sectionById.get(id);
+        if (!targetSection) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
+        const targetTop = window.scrollY + targetSection.getBoundingClientRect().top;
+        const nextY = Math.max(0, targetTop - headerBottom - 10);
+
+        window.scrollTo({
+          top: nextY,
+          behavior: REDUCED_MOTION ? "auto" : "smooth",
+        });
+
+        if (window.history && typeof window.history.pushState === "function") {
+          window.history.pushState(null, "", "#" + id);
+        } else {
+          window.location.hash = id;
+        }
       });
     }
 
