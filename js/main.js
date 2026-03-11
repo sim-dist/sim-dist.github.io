@@ -677,8 +677,8 @@
 
       const rect = methodSection.getBoundingClientRect();
       const panelHeight = Math.ceil(panel.getBoundingClientRect().height);
-      const enterThreshold = Math.ceil(panelHeight * 1.25);
-      const exitThreshold = Math.ceil(panelHeight * 1.00);
+      const enterThreshold = Math.ceil(panelHeight * 2.5);
+      const exitThreshold = Math.ceil(panelHeight * 2.0);
       // const exitThreshold = Math.max(140, Math.min(220, Math.ceil(panelHeight * 0.62)));
       const isActive = rect.top < window.innerHeight - enterThreshold && rect.bottom > exitThreshold;
       methodSection.classList.toggle("method-sheet-active", isActive);
