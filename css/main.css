@@ -2016,10 +2016,21 @@ a:focus-visible {
   }
 
   .outcome-videos {
-    width: min(100%, 320px);
+    width: 100%;
+    margin: 0 auto;
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 0.48rem;
+  }
+
+  .outcome-video {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .outcome-video-before,
+  .outcome-video-after {
+    justify-self: center;
   }
 
   .outcome-bridge {
