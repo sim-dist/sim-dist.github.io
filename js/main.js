@@ -189,6 +189,7 @@
     initResponsiveInteractionCopy();
     initRevealAnimations();
     initSectionSpy();
+    initCompactHeader();
     initHeroMotion();
     initMethodInteraction();
     initResultsDashboard();
@@ -326,6 +327,30 @@
     if (sections[0]) {
       setActive(sections[0].id);
     }
+  }
+
+  function initCompactHeader() {
+    const header = document.querySelector(".site-header");
+    if (!header) {
+      return;
+    }
+
+    const compactViewport = window.matchMedia("(max-width: 760px)");
+    const compactThreshold = 44;
+
+    const syncCompactState = () => {
+      if (!compactViewport.matches) {
+        header.classList.remove("is-compact");
+        return;
+      }
+
+      const y = window.scrollY || 0;
+      header.classList.toggle("is-compact", y > compactThreshold);
+    };
+
+    syncCompactState();
+    window.addEventListener("scroll", syncCompactState, { passive: true });
+    addMediaQueryChangeListener(compactViewport, syncCompactState);
   }
 
   function initHeroMotion() {

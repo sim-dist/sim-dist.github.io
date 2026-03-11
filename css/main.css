@@ -157,6 +157,7 @@ a {
   background: rgba(9, 16, 28, 0.62);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--ink-inverse);
+  transition: padding 170ms ease, gap 170ms ease, background-color 170ms ease, border-color 170ms ease;
 }
 
 .site-brand {
@@ -1986,20 +1987,95 @@ a:focus-visible {
     --header-h: 64px;
   }
 
+  .site-brand {
+    display: none;
+  }
+
   .site-header {
     grid-template-columns: 1fr;
-    padding: 0.5rem 0.75rem;
+    row-gap: 0.34rem;
+    padding: 0.46rem 0.62rem;
   }
 
   .site-nav {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+    flex-wrap: nowrap;
+    justify-content: center;
     overflow-x: auto;
     white-space: nowrap;
-    padding-bottom: 0.25rem;
+    padding: 0 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav a {
+    font-size: 0.69rem;
+    padding: 0.3rem 0.42rem;
   }
 
   .site-links {
     grid-column: 1;
-    justify-self: start;
+    justify-self: center;
+    gap: 0.45rem;
+  }
+
+  .site-links a {
+    font-size: 0.69rem;
+  }
+
+  .site-header.is-compact {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.42rem;
+    row-gap: 0;
+    padding: 0.32rem 0.56rem;
+    overflow: hidden;
+    background: rgba(9, 16, 28, 0.8);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .site-header.is-compact .site-nav {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    padding-bottom: 0;
+  }
+
+  .site-header.is-compact .site-links {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    gap: 0.28rem;
+  }
+
+  .site-header.is-compact .site-links a {
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    width: 1.95rem;
+    height: 1.95rem;
+    border-radius: 999px;
+  }
+
+  .site-header.is-compact .site-links a span {
+    display: none;
+  }
+
+  .site-header.is-compact .site-links .link-icon {
+    width: 0.96rem;
+    height: 0.96rem;
+  }
+
+  .site-header.is-compact .site-links .link-icon--arxiv {
+    width: 0.82rem;
+    height: 0.96rem;
   }
 
   .hero-content {
