@@ -2091,6 +2091,17 @@ a:focus-visible {
     padding-right: 0.78rem;
   }
 
+  .section-method.method-sheet-enabled .method-panel h3 {
+    margin: 0.04rem 0 0.34rem;
+    font-size: 0.98rem;
+    line-height: 1.15;
+  }
+
+  .section-method.method-sheet-enabled .method-panel p {
+    font-size: 0.82rem;
+    line-height: 1.3;
+  }
+
   .outcome-videos {
     width: 100%;
     margin: 0 auto;

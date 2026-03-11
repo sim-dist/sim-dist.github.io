@@ -399,6 +399,7 @@
 
   function initMethodInteraction() {
     const FORCE_METHOD_FLOATING_SHEET = true;
+    const MOBILE_METHOD_PANEL = window.matchMedia("(max-width: 760px)");
     const interactionHint = document.querySelector(".method-interaction-hint");
     const nodes = Array.from(document.querySelectorAll(".method-node"));
     const title = document.getElementById("method-step-title");
@@ -591,6 +592,11 @@
     };
 
     const applyPanelSizeForLongestStep = () => {
+      if (MOBILE_METHOD_PANEL.matches) {
+        panel.style.minHeight = "0";
+        return;
+      }
+
       const panelWidth = panel.getBoundingClientRect().width;
       const maxHeight = measurePanelHeightForWidth(panelWidth);
       if (maxHeight > 0) {
@@ -816,6 +822,7 @@
     }
     addMediaQueryChangeListener(TOUCH_PRIMARY_POINTER, syncMethodInteractionCopy);
     addMediaQueryChangeListener(NARROW_METHOD_VIEWPORT, syncMethodInteractionCopy);
+    addMediaQueryChangeListener(MOBILE_METHOD_PANEL, queueLayoutUpdate);
   }
 
   async function initResultsDashboard() {
