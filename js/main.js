@@ -356,6 +356,7 @@
   }
 
   function initMethodInteraction() {
+    const FORCE_METHOD_FLOATING_SHEET = true;
     const interactionHint = document.querySelector(".method-interaction-hint");
     const nodes = Array.from(document.querySelectorAll(".method-node"));
     const title = document.getElementById("method-step-title");
@@ -556,6 +557,10 @@
     };
 
     const shouldUseFloatingSheet = () => {
+      if (FORCE_METHOD_FLOATING_SHEET) {
+        return true;
+      }
+
       const shellWidth = methodShell.getBoundingClientRect().width;
       const figureHeight = Math.ceil(figure.getBoundingClientRect().height);
       if (shellWidth <= 0 || figureHeight <= 0) {
