@@ -261,11 +261,14 @@
     const title = document.getElementById("method-step-title");
     const copy = document.getElementById("method-step-copy");
     const stepButtons = Array.from(document.querySelectorAll(".method-step-button"));
+    const methodSection = document.getElementById("method");
+    const methodShell = document.querySelector(".method-shell");
+    const figure = document.querySelector(".method-figure");
     const panel = document.querySelector(".method-panel");
     const scrollShell = document.querySelector(".method-scroll-shell");
     const scrollFrame = document.querySelector(".method-scroll-frame");
 
-    if (!nodes.length || !title || !copy || !panel) {
+    if (!nodes.length || !title || !copy || !panel || !methodSection || !methodShell || !figure) {
       return;
     }
 
@@ -289,10 +292,9 @@
       }
     };
 
-    const applyPanelSizeForLongestStep = () => {
-      const panelWidth = panel.getBoundingClientRect().width;
+    const measurePanelHeightForWidth = (panelWidth) => {
       if (panelWidth <= 0) {
-        return;
+        return 0;
       }
 
       const probe = panel.cloneNode(true);
@@ -300,7 +302,7 @@
       const probeCopy = probe.querySelector("#method-step-copy");
 
       if (!probeTitle || !probeCopy) {
-        return;
+        return 0;
       }
 
       probe.removeAttribute("data-reveal");
@@ -324,9 +326,61 @@
 
       probe.remove();
 
+      return maxHeight;
+    };
+
+    const applyPanelSizeForLongestStep = () => {
+      const panelWidth = panel.getBoundingClientRect().width;
+      const maxHeight = measurePanelHeightForWidth(panelWidth);
       if (maxHeight > 0) {
         panel.style.minHeight = maxHeight + "px";
       }
+    };
+
+    const shouldUseFloatingSheet = () => {
+      const shellWidth = methodShell.getBoundingClientRect().width;
+      const figureHeight = Math.ceil(figure.getBoundingClientRect().height);
+      if (shellWidth <= 0 || figureHeight <= 0) {
+        return false;
+      }
+
+      const shellStyles = window.getComputedStyle(methodShell);
+      const gap = Number.parseFloat(shellStyles.rowGap || shellStyles.gap || "0") || 0;
+      const naturalPanelHeight = measurePanelHeightForWidth(shellWidth);
+
+      if (naturalPanelHeight <= 0) {
+        return false;
+      }
+
+      return figureHeight + naturalPanelHeight + gap + 32 > window.innerHeight;
+    };
+
+    const updateFloatingSheetVisibility = () => {
+      const sheetEnabled = methodSection.classList.contains("method-sheet-enabled");
+      if (!sheetEnabled) {
+        methodSection.classList.remove("method-sheet-active");
+        return;
+      }
+
+      const rect = methodSection.getBoundingClientRect();
+      const panelHeight = Math.ceil(panel.getBoundingClientRect().height);
+      const enterThreshold = Math.ceil(panelHeight * 1.25);
+      const exitThreshold = Math.ceil(panelHeight * 1.00);
+      // const exitThreshold = Math.max(140, Math.min(220, Math.ceil(panelHeight * 0.62)));
+      const isActive = rect.top < window.innerHeight - enterThreshold && rect.bottom > exitThreshold;
+      methodSection.classList.toggle("method-sheet-active", isActive);
+    };
+
+    const updateFloatingSheetMode = () => {
+      const shouldFloat = shouldUseFloatingSheet();
+      methodSection.classList.toggle("method-sheet-enabled", shouldFloat);
+
+      if (!shouldFloat) {
+        methodSection.classList.remove("method-sheet-active");
+        return;
+      }
+
+      updateFloatingSheetVisibility();
     };
 
     const updateScrollIndicators = () => {
@@ -350,8 +404,21 @@
       }
       resizeFrame = window.requestAnimationFrame(() => {
         resizeFrame = 0;
+        updateFloatingSheetMode();
         applyPanelSizeForLongestStep();
+        updateFloatingSheetMode();
         updateScrollIndicators();
+      });
+    };
+
+    let visibilityFrame = 0;
+    const queueFloatingSheetVisibility = () => {
+      if (visibilityFrame) {
+        window.cancelAnimationFrame(visibilityFrame);
+      }
+      visibilityFrame = window.requestAnimationFrame(() => {
+        visibilityFrame = 0;
+        updateFloatingSheetVisibility();
       });
     };
 
@@ -379,10 +446,13 @@
     }
 
     applyStep("1");
+    updateFloatingSheetMode();
     applyPanelSizeForLongestStep();
+    updateFloatingSheetMode();
     updateScrollIndicators();
     window.addEventListener("resize", queueLayoutUpdate, { passive: true });
     window.addEventListener("load", queueLayoutUpdate, { passive: true });
+    window.addEventListener("scroll", queueFloatingSheetVisibility, { passive: true });
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(queueLayoutUpdate);
     }

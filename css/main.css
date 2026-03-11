@@ -1101,6 +1101,67 @@ main {
   color: var(--ink-1);
 }
 
+.section-method.method-sheet-enabled .method-panel {
+  position: fixed;
+  left: 50%;
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  z-index: 180;
+  width: min(720px, calc(100vw - 1rem));
+  max-height: min(46svh, 340px);
+  overflow-y: auto;
+  padding: 0.95rem 1rem calc(1rem + env(safe-area-inset-bottom));
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 28px 70px rgba(8, 20, 34, 0.22),
+    0 0 0 1px rgba(17, 30, 47, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, calc(100% + 1rem));
+  transition: transform 220ms ease, opacity 180ms ease;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.section-method.method-sheet-enabled .method-panel::before {
+  content: "";
+  display: block;
+  width: 2.65rem;
+  height: 0.28rem;
+  margin: 0 auto 0.8rem;
+  border-radius: 999px;
+  background: rgba(17, 30, 47, 0.18);
+}
+
+.section-method.method-sheet-enabled .method-panel[data-reveal],
+.section-method.method-sheet-enabled .method-panel[data-reveal].is-visible {
+  opacity: 0;
+  transform: translate(-50%, calc(100% + 1rem));
+}
+
+.section-method.method-sheet-active .method-panel,
+.section-method.method-sheet-active .method-panel[data-reveal],
+.section-method.method-sheet-active .method-panel[data-reveal].is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.section-method.method-sheet-enabled .method-step-controls {
+  position: sticky;
+  top: -0.95rem;
+  z-index: 1;
+  margin: -0.95rem -1rem 0.7rem;
+  padding: 0.95rem 1rem 0.7rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.88));
+  backdrop-filter: blur(18px);
+}
+
+.section-method.method-sheet-enabled .method-panel h3 {
+  margin-top: 0;
+}
+
 .video-card {
   background: var(--card-strong);
   border: 1px solid var(--line);
