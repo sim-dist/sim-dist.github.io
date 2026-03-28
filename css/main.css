@@ -677,7 +677,7 @@ main {
 }
 
 .method-shell {
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -689,6 +689,9 @@ main {
 .method-panel {
   min-width: 0;
   margin: 0;
+}
+
+.method-panel {
   background: var(--card-strong);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -697,7 +700,7 @@ main {
 
 .method-figure {
   position: relative;
-  padding: 0.9rem;
+  padding: 0.15rem 0 0;
 }
 
 .method-interaction-hint {
@@ -818,8 +821,9 @@ main {
 .method-grid {
   display: grid;
   grid-template-columns: minmax(1.7rem, 2rem) repeat(57, minmax(0, 1fr));
-  gap: 0.75rem;
-  width: calc(1180px - 1.8rem - 2px);
+  gap: clamp(0.55rem, 0.7vw, 0.75rem);
+  width: 100%;
+  min-width: 1100px;
 }
 
 @keyframes method-scroll-right {
@@ -2338,7 +2342,6 @@ body {
 .values-videos figure,
 .slip-card,
 .planning-card,
-.method-figure,
 .method-panel,
 .method-node,
 .narrative-card,
@@ -2347,7 +2350,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.section-method .method-figure,
 .section-method .method-panel,
 .section-method .method-node,
 .section-results .results-legend-bar,
