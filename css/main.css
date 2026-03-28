@@ -2327,14 +2327,31 @@ body {
 
 .results-legend-bar,
 .results-panel,
+.chart-card,
 .values-chart-card,
+.values-videos figure,
 .slip-card,
 .planning-card,
 .method-figure,
 .method-panel,
+.method-node,
 .narrative-card,
 .outcome-card {
+  background: var(--bg-elevated);
   box-shadow: var(--shadow-sm);
+}
+
+.section-method .method-figure,
+.section-method .method-panel,
+.section-method .method-node,
+.section-results .results-legend-bar,
+.section-results .results-panel,
+.section-results .chart-card {
+  background: var(--bg-surface);
+}
+
+.section-overview .narrative-card {
+  border: 1px solid var(--border-subtle);
 }
 
 .site-footer {
