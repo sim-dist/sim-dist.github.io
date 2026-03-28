@@ -276,38 +276,123 @@
   }
 
   function initSectionSpy() {
-    const navLinks = Array.from(document.querySelectorAll(".site-nav a[data-nav]"));
-    if (!navLinks.length) {
+    const navEntries = [];
+
+    for (const link of document.querySelectorAll(".site-nav a[data-nav]")) {
+      const id = link.dataset.nav;
+      if (!id) {
+        continue;
+      }
+      navEntries.push({
+        id,
+        link,
+        progressItem: link.closest(".progress-item"),
+      });
+    }
+
+    for (const item of document.querySelectorAll(".progress-item[data-section]")) {
+      const link = item.querySelector("a");
+      const id = item.dataset.section || (link ? link.dataset.nav : "");
+      if (!link || !id) {
+        continue;
+      }
+      navEntries.push({
+        id,
+        link,
+        progressItem: item,
+      });
+    }
+
+    if (!navEntries.length) {
       return;
     }
 
-    const MOBILE_NAV_VIEWPORT = window.matchMedia("(max-width: 760px)");
     const sections = [];
     const sectionById = new Map();
+    const navOrder = [];
+    const entryGroups = new Map();
     const siteHeader = document.querySelector(".site-header");
+    const progressTrack = document.querySelector(".progress-track");
+    const progressFill = progressTrack ? progressTrack.querySelector(".progress-line-fill") : null;
 
-    for (const link of navLinks) {
-      const id = link.dataset.nav;
+    for (const entry of navEntries) {
+      const id = entry.id;
       const section = document.getElementById(id);
       if (!section) {
         continue;
       }
-      sections.push(section);
-      sectionById.set(id, section);
+
+      if (!sectionById.has(id)) {
+        sections.push(section);
+        sectionById.set(id, section);
+        navOrder.push(id);
+      }
+
+      if (!entryGroups.has(id)) {
+        entryGroups.set(id, []);
+      }
+      entryGroups.get(id).push(entry);
     }
 
     if (!sections.length) {
       return;
     }
 
+    const updateProgressFill = (activeIndex) => {
+      if (!progressTrack || !progressFill) {
+        return;
+      }
+
+      const progressItems = navOrder
+        .map((id) => {
+          const group = entryGroups.get(id) || [];
+          return group.find((entry) => entry.progressItem)?.progressItem || null;
+        })
+        .filter(Boolean);
+
+      if (!progressItems.length || activeIndex < 0) {
+        progressFill.style.height = "0px";
+        return;
+      }
+
+      const firstDot = progressItems[0].querySelector(".progress-dot");
+      const activeItem = progressItems[Math.min(activeIndex, progressItems.length - 1)];
+      const activeDot = activeItem ? activeItem.querySelector(".progress-dot") : null;
+      if (!firstDot || !activeDot) {
+        progressFill.style.height = "0px";
+        return;
+      }
+
+      const trackRect = progressTrack.getBoundingClientRect();
+      const start = firstDot.getBoundingClientRect().top + firstDot.offsetHeight / 2 - trackRect.top;
+      const end = activeDot.getBoundingClientRect().top + activeDot.offsetHeight / 2 - trackRect.top;
+
+      progressFill.style.top = start + "px";
+      progressFill.style.height = Math.max(0, end - start) + "px";
+    };
+
     const setActive = (id) => {
-      for (const link of navLinks) {
-        if (link.dataset.nav === id) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
+      const activeIndex = navOrder.indexOf(id);
+
+      for (const [entryId, group] of entryGroups.entries()) {
+        const isActive = entryId === id;
+        const isPassed = activeIndex >= 0 && navOrder.indexOf(entryId) < activeIndex;
+
+        for (const entry of group) {
+          if (isActive) {
+            entry.link.setAttribute("aria-current", "true");
+          } else {
+            entry.link.removeAttribute("aria-current");
+          }
+
+          if (entry.progressItem) {
+            entry.progressItem.classList.toggle("active", isActive);
+            entry.progressItem.classList.toggle("passed", isPassed);
+          }
         }
       }
+
+      updateProgressFill(activeIndex);
     };
 
     let updateRaf = 0;
@@ -338,24 +423,16 @@
       });
     };
 
-    for (const link of navLinks) {
-      link.addEventListener("click", (event) => {
-        const id = link.dataset.nav;
+    for (const entry of navEntries) {
+      entry.link.addEventListener("click", (event) => {
+        const id = entry.id;
         if (!id) {
           return;
         }
 
         setActive(id);
 
-        if (
-          !MOBILE_NAV_VIEWPORT.matches ||
-          event.defaultPrevented ||
-          event.button !== 0 ||
-          event.metaKey ||
-          event.ctrlKey ||
-          event.shiftKey ||
-          event.altKey
-        ) {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
           return;
         }
 
@@ -1369,7 +1446,7 @@
           fill: "#49576a",
           "font-size": "14",
           "text-anchor": "end",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: formatTick(value),
         })
       );
@@ -1396,7 +1473,7 @@
           fill: "#49576a",
           "font-size": "14",
           "text-anchor": "middle",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: String(value),
         })
       );
@@ -1477,7 +1554,7 @@
         fill: "#3a4657",
         "font-size": "16",
         "text-anchor": "middle",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         textContent: task.xlabel,
       })
     );
@@ -1490,7 +1567,7 @@
         "font-size": "16",
         "text-anchor": "middle",
         transform: "rotate(-90 16 " + (margin.top + plotHeight / 2) + ")",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         textContent: task.ylabel,
       })
     );
@@ -1795,7 +1872,7 @@
           fill: "#49576a",
           "font-size": "11",
           "text-anchor": "end",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: formatTick(value),
         })
       );
@@ -1825,7 +1902,7 @@
           fill: "#49576a",
           "font-size": "11",
           "text-anchor": "middle",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: String(step),
         })
       );
@@ -1859,7 +1936,7 @@
         y: margin.top + 14,
         fill: "#0f7f66",
         "font-size": "12",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         textContent: "Success",
       })
     );
@@ -1870,7 +1947,7 @@
         y: margin.top + 14,
         fill: "#c95a2a",
         "font-size": "12",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         textContent: "Failure",
       })
     );
@@ -1913,7 +1990,7 @@
         y: height - 8,
         fill: "#3a4657",
         "font-size": "11",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         "text-anchor": "middle",
         textContent: "Step index",
       })
@@ -1925,7 +2002,7 @@
         y: margin.top + plotHeight / 2,
         fill: "#3a4657",
         "font-size": "11",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         "text-anchor": "middle",
         transform: "rotate(-90 14 " + (margin.top + plotHeight / 2) + ")",
         textContent: "Predicted value",
@@ -2164,7 +2241,7 @@
           fill: "#49576a",
           "font-size": width < 620 ? "11" : "12",
           "text-anchor": "end",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: formatTick(value),
         })
       );
@@ -2192,7 +2269,7 @@
           fill: "#49576a",
           "font-size": width < 620 ? "11" : "12",
           "text-anchor": "middle",
-          "font-family": "Sora, sans-serif",
+          "font-family": "Inter, sans-serif",
           textContent: String(tick),
         })
       );
@@ -2236,7 +2313,7 @@
         y: height - 8,
         fill: "#3a4657",
         "font-size": width < 620 ? "11" : "12",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         "text-anchor": "middle",
         textContent: "Timestep",
       })
@@ -2248,7 +2325,7 @@
         y: margin.top + plotHeight / 2,
         fill: "#3a4657",
         "font-size": width < 620 ? "11" : "12",
-        "font-family": "Sora, sans-serif",
+        "font-family": "Inter, sans-serif",
         "text-anchor": "middle",
         transform: "rotate(-90 18 " + (margin.top + plotHeight / 2) + ")",
         textContent: "Latent Dynamics Loss",

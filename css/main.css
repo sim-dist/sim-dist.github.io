@@ -2186,3 +2186,196 @@ a:focus-visible {
     transform: none;
   }
 }
+
+/* OmniReset compatibility layer */
+:root {
+  --bg-0: #fafafa;
+  --bg-1: #ffffff;
+  --bg-2: #1a1a1a;
+  --ink-0: var(--text-primary);
+  --ink-1: var(--text-secondary);
+  --ink-inverse: #ffffff;
+  --line: var(--border-subtle);
+  --line-strong: var(--border-light);
+  --card: rgba(255, 255, 255, 0.95);
+  --card-strong: #ffffff;
+  --accent: var(--honey-bronze);
+  --accent-2: var(--cool-horizon);
+  --warn: var(--hyper-magenta);
+  --focus: var(--honey-bronze);
+  --shadow: var(--shadow-md);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --header-h: 0px;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 120% 60% at 50% -20%, rgba(212, 148, 10, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(147, 51, 234, 0.03) 0%, transparent 50%);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  padding: 24px 28px 48px 28px;
+}
+
+.link-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.link-icon--arxiv {
+  width: 0.86rem;
+  height: 1rem;
+}
+
+.link-icon--fill {
+  fill: currentColor;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.main-content .section-card {
+  padding: 32px;
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border-top: 0;
+}
+
+.main-content .section {
+  padding: 32px;
+}
+
+.main-content .section-outcomes,
+.main-content .section-overview,
+.main-content .section-method,
+.main-content .section-results,
+.main-content .section-values,
+.main-content .section-slip,
+.main-content .section-planning {
+  background: var(--bg-surface);
+  border-top: 0;
+}
+
+.section-head {
+  max-width: none;
+  margin: 0 0 1.5rem;
+  justify-items: start;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.section-head p {
+  max-width: none;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.hero-flow {
+  margin-bottom: 4px;
+}
+
+.hero-video {
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 180ms ease-out;
+}
+
+.hero-actions {
+  flex-wrap: wrap;
+}
+
+.hero-actions .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.authors .author-note sup,
+.authors .affiliation sup {
+  font-size: inherit;
+  margin-right: 0;
+}
+
+.authors .author-note {
+  margin-top: 6px;
+}
+
+.results-legend-bar,
+.results-panel,
+.values-chart-card,
+.slip-card,
+.planning-card,
+.method-figure,
+.method-panel,
+.narrative-card,
+.outcome-card {
+  box-shadow: var(--shadow-sm);
+}
+
+.site-footer {
+  margin-top: 84px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.bibtex-code {
+  margin: 0 auto;
+  max-width: none;
+}
+
+.citation-block,
+.citation-block code {
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  .main-content .section-card,
+  .main-content .section {
+    padding: 16px;
+  }
+}

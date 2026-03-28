@@ -17,127 +17,185 @@
       name="description"
       content="SimDist: Pretraining world models in simulation for rapid real-world adaptation via planning and dynamics-only finetuning."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="css/omnireset-theme.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <a class="skip-link" href="#outcomes">Skip to content</a>
 
-    <header class="site-header">
-      <a class="site-brand" href="#top">SimDist</a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#outcomes" data-nav="outcomes">Overview</a>
-        <!-- <a href="#overview" data-nav="overview">Overview</a> -->
-        <a href="#method" data-nav="method">Method</a>
-        <a href="#results" data-nav="results">Results</a>
-        <a href="#values" data-nav="values">Analysis</a>
-        <!-- <a href="#slip" data-nav="slip">Slip</a> -->
-        <!-- <a href="#paper" data-nav="paper">Paper</a> -->
-      </nav>
-      <div class="site-links">
-        <a href="https://arxiv.org/abs/2603.15759" target="_blank" rel="noreferrer" aria-label="Paper">
-          <svg
-            class="link-icon link-icon--arxiv"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 135.611 163"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M456.756,249.1l-42.324,49.375c-1.885,2.01-3.054,5.535-2,8.066a6.9,6.9,0,0,0,6.443,4.27c1.6,0,2.911-.56,4.631-2.289l52.364-54.278a8.927,8.927,0,0,0,.061-12.584Z"
-              transform="translate(-391.029 -166.577)"
-              fill="currentColor"
-            ></path>
-            <path
-              d="M455.876,248.071l39.168-49.545c2.186-2.914,3.219-4.44,2.186-6.921a7.536,7.536,0,0,0-6.566-4.633h0a5.9,5.9,0,0,0-4.408,1.624l-50.072,53.061c-3.816,3.816-3.808,8.753.023,12.584l70.031,73.438a5.738,5.738,0,0,0,4.6,1.748c2.833,0,4.67-1.667,5.9-4.131,1.054-2.531-.112-5.038-2.056-7.664l-58.8-69.561"
-              transform="translate(-391.029 -166.577)"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-            <path
-              d="M475.931,241.657l-68.388-71.966s-2.511-3.048-5.165-3.112a6.75,6.75,0,0,0-6.357,4.084c-1.033,2.481-.291,4.223,1.977,7.47L456.756,249.1Z"
-              transform="translate(-391.029 -166.577)"
-              fill="currentColor"
-            ></path>
-          </svg>
-          <span>Paper</span>
-        </a>
-        <a
-          href="https://github.com/CLeARoboticsLab/simdist"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Code repository"
-        >
-          <svg
-            class="link-icon link-icon--fill"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.57c-2.6.57-3.15-1.1-3.15-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.92.06 1.4.95 1.4.95.83 1.4 2.17 1 2.7.77.08-.6.32-1 .58-1.22-2.08-.24-4.27-1.04-4.27-4.64 0-1.03.37-1.88.97-2.54-.09-.24-.42-1.2.1-2.5 0 0 .8-.26 2.62.97A9.2 9.2 0 0 1 12 7.82a9.2 9.2 0 0 1 2.38.32c1.82-1.23 2.62-.97 2.62-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.5.97 2.54 0 3.61-2.2 4.4-4.3 4.63.34.3.64.86.64 1.73v2.56c0 .24.17.55.65.45A9.5 9.5 0 0 0 12 2.5Z"
-            ></path>
-          </svg>
-          <span>Code</span>
-        </a>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        >
-          <source src="assets/video/hero-background-desktop.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-scrim"></div>
-        <div class="hero-content" data-reveal>
-          <h1 id="hero-title" class="hero-brand">SIMULATION DISTILLATION</h1>
-          <p class="hero-paper-title">
-            Pretraining World Models in Simulation for Rapid Real-World Adaptation
-          </p>
-          <p class="hero-authors">
-            <a href="https://jake-levy.github.io/">Jacob Levy</a><sup>*1</sup>, <a href="https://tyler-westenbroek.github.io/">Tyler Westenbroek</a><sup>*2</sup>,
-            <a href="https://kevinhuang8.github.io/">Kevin Huang</a><sup>2</sup>, <a href="https://palafox.info/">Fernando Palafox</a><sup>1</sup>,
-            <a href="https://patrickyin.me/">Patrick Yin</a><sup>2</sup>, <a href="https://www.linkedin.com/in/shayegan/">Shayegan Omidshafiei</a><sup>3</sup>,
-            <a href="https://dkkim93.github.io/">Dong-Ki Kim</a><sup>3</sup>, <a href="https://homes.cs.washington.edu/~abhgupta/">Abhishek Gupta</a><sup>2</sup>,
-            <a href="https://dfridovi.github.io/">David Fridovich-Keil</a><sup>1</sup>
-          </p>
-          <p class="hero-affiliations">
-            <span><sup>1</sup> UT Austin</span>
-            <span><sup>2</sup> UW</span>
-            <span><sup>3</sup> FieldAI</span>
-            <span><sup>*</sup> Equal Contribution</span>
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#outcomes">Start Exploring</a>
-          </div>
+    <nav class="progress-sidebar" aria-label="Page progress">
+      <div class="progress-track">
+        <div class="progress-line"></div>
+        <div class="progress-line-fill"></div>
+        <div class="progress-item" data-section="top">
+          <a href="#top" data-nav="top">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Intro</span>
+          </a>
         </div>
-        <div class="hero-scroll-cue" aria-hidden="true">
-          <span class="hero-scroll-cue-text">Scroll for more</span>
-          <span class="hero-scroll-cue-icon">
-            <span></span>
-            <span></span>
+        <div class="progress-item" data-section="outcomes">
+          <a href="#outcomes" data-nav="outcomes">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Overview</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="overview">
+          <a href="#overview" data-nav="overview">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Why World Models?</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="method">
+          <a href="#method" data-nav="method">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Method</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="results">
+          <a href="#results" data-nav="results">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Results</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="values">
+          <a href="#values" data-nav="values">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Analysis</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="slip">
+          <a href="#slip" data-nav="slip">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Dynamics</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="planning">
+          <a href="#planning" data-nav="planning">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Planning</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <section id="top" class="hero-flow" aria-labelledby="hero-title">
+        <div class="hero-orb" aria-hidden="true"></div>
+        <h1 id="hero-title" class="hero-text">SIMULATION DISTILLATION</h1>
+        <p class="sub-hero-text">
+          Pretraining World Models in Simulation for Rapid Real-World Adaptation
+        </p>
+
+        <div class="hero-video-wrap">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/video/hero-background-desktop.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="authors">
+          <a href="https://jake-levy.github.io/">Jacob Levy</a><sup>*1</sup>, <a href="https://tyler-westenbroek.github.io/">Tyler Westenbroek</a><sup>*2</sup>,
+          <a href="https://kevinhuang8.github.io/">Kevin Huang</a><sup>2</sup>, <a href="https://palafox.info/">Fernando Palafox</a><sup>1</sup>,
+          <a href="https://patrickyin.me/">Patrick Yin</a><sup>2</sup>, <a href="https://www.linkedin.com/in/shayegan/">Shayegan Omidshafiei</a><sup>3</sup>,
+          <a href="https://dkkim93.github.io/">Dong-Ki Kim</a><sup>3</sup>, <a href="https://homes.cs.washington.edu/~abhgupta/">Abhishek Gupta</a><sup>2</sup>,
+          <a href="https://dfridovi.github.io/">David Fridovich-Keil</a><sup>1</sup>
+          <span class="author-note"><sup>*</sup> Equal Contribution</span>
+          <span class="affiliation">
+            <sup>1</sup> UT Austin, <sup>2</sup> UW, <sup>3</sup> FieldAI
           </span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="cta primary" href="#outcomes">Start Exploring</a>
+          <a
+            class="cta"
+            href="https://arxiv.org/abs/2603.15759"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Paper"
+          >
+            <svg
+              class="link-icon link-icon--arxiv"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 135.611 163"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M456.756,249.1l-42.324,49.375c-1.885,2.01-3.054,5.535-2,8.066a6.9,6.9,0,0,0,6.443,4.27c1.6,0,2.911-.56,4.631-2.289l52.364-54.278a8.927,8.927,0,0,0,.061-12.584Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M455.876,248.071l39.168-49.545c2.186-2.914,3.219-4.44,2.186-6.921a7.536,7.536,0,0,0-6.566-4.633h0a5.9,5.9,0,0,0-4.408,1.624l-50.072,53.061c-3.816,3.816-3.808,8.753.023,12.584l70.031,73.438a5.738,5.738,0,0,0,4.6,1.748c2.833,0,4.67-1.667,5.9-4.131,1.054-2.531-.112-5.038-2.056-7.664l-58.8-69.561"
+                transform="translate(-391.029 -166.577)"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M475.931,241.657l-68.388-71.966s-2.511-3.048-5.165-3.112a6.75,6.75,0,0,0-6.357,4.084c-1.033,2.481-.291,4.223,1.977,7.47L456.756,249.1Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span>Paper</span>
+          </a>
+          <a
+            class="cta dark"
+            href="https://github.com/CLeARoboticsLab/simdist"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Code repository"
+          >
+            <svg
+              class="link-icon link-icon--fill"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.57c-2.6.57-3.15-1.1-3.15-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.92.06 1.4.95 1.4.95.83 1.4 2.17 1 2.7.77.08-.6.32-1 .58-1.22-2.08-.24-4.27-1.04-4.27-4.64 0-1.03.37-1.88.97-2.54-.09-.24-.42-1.2.1-2.5 0 0 .8-.26 2.62.97A9.2 9.2 0 0 1 12 7.82a9.2 9.2 0 0 1 2.38.32c1.82-1.23 2.62-.97 2.62-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.5.97 2.54 0 3.61-2.2 4.4-4.3 4.63.34.3.64.86.64 1.73v2.56c0 .24.17.55.65.45A9.5 9.5 0 0 0 12 2.5Z"
+              ></path>
+            </svg>
+            <span>Code</span>
+          </a>
+        </div>
+
+        <div class="hero-waves" aria-hidden="true">
+          <svg
+            class="waves-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28"
+            preserveAspectRatio="none"
+            shape-rendering="auto"
+          >
+            <defs>
+              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            </defs>
+            <g class="wave-parallax">
+              <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(212,148,10,0.25)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(147,51,234,0.2)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(59,130,246,0.18)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(37,99,235,0.25)"></use>
+            </g>
+          </svg>
         </div>
       </section>
 
-      <section id="outcomes" class="section section-outcomes" aria-labelledby="outcomes-title">
+      <div class="tagline">Rapid Real-World Adaptation</div>
+      <section id="outcomes" class="section section-outcomes card-surface section-card" aria-labelledby="outcomes-title">
         <div class="section-head" data-reveal>
-          <h2 id="outcomes-title">Rapid Real-World Adaptation</h2>
+          <h2 id="outcomes-title" class="visually-hidden">Rapid Real-World Adaptation</h2>
           <p>
             Simulation Distillation (SimDist) rapidly overcomes the sim-to-real dynamics gap through adaptation in the real world,
             resulting in substantial gains in task execution on both precise manipulation and quadrupedal locomotion tasks.
@@ -148,7 +206,6 @@
           <article class="outcome-card" data-reveal>
             <div class="outcome-head">
               <h3>Peg Insertion</h3>
-              <!-- <p class="outcome-amount">60 trials</p> -->
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
@@ -175,7 +232,6 @@
           <article class="outcome-card" data-reveal>
             <div class="outcome-head">
               <h3>Table Leg</h3>
-              <!-- <p class="outcome-amount">80 trials</p> -->
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
@@ -202,7 +258,6 @@
           <article class="outcome-card" data-reveal>
             <div class="outcome-head">
               <h3>Slippery Slope</h3>
-              <!-- <p class="outcome-amount">36 minutes</p> -->
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
@@ -229,7 +284,6 @@
           <article class="outcome-card" data-reveal>
             <div class="outcome-head">
               <h3>Foam</h3>
-              <!-- <p class="outcome-amount">32 minutes</p> -->
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
@@ -255,9 +309,10 @@
         </div>
       </section>
 
-      <section id="overview" class="section section-overview">
+      <div class="tagline">Why World Models?</div>
+      <section id="overview" class="section section-overview card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2>Why World Models?</h2>
+          <h2 class="visually-hidden">Why World Models?</h2>
           <p>
             End-to-end RL finetuning in the real world often forgets useful priors from simulation.
             SimDist keeps global task structure fixed and updates only what changes most across domains: dynamics.
@@ -272,7 +327,7 @@
               </video>
               <p>
                 Sim-to-real policies fail under dynamics mismatch.
-                Standard RL finetuning entangles representation, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain. 
+                Standard RL finetuning entangles representation, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain.
               </p>
             </article>
             <article class="narrative-card" data-reveal>
@@ -300,9 +355,10 @@
         </div>
       </section>
 
-      <section id="method" class="section section-method">
+      <div class="tagline">Introducing Simulation Distillation</div>
+      <section id="method" class="section section-method card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2>Introducing Simulation Distillation</h2>
+          <h2 class="visually-hidden">Introducing Simulation Distillation</h2>
           <p>
             Simulation Distillation (SimDist) is a scalable framework that distills structural priors from a simulator
             into a latent world model and enables rapid real-world adaptation via online planning and supervised dynamics finetuning.
@@ -434,9 +490,10 @@
         </div>
       </section>
 
-      <section id="results" class="section section-results">
+      <div class="tagline">Real-World Results</div>
+      <section id="results" class="section section-results card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2>Real-World Results</h2>
+          <h2 class="visually-hidden">Real-World Results</h2>
           <p>
             Success rate for two manipulation tasks, computed over 20 trials, and average forward progress for two quadruped locomotion tasks,
             averaged across all 15 trials (3 speeds, 5 trials each), as a function of real-world finetuning data. For manipulation, we consider
@@ -503,9 +560,10 @@
         </div>
       </div>
 
-      <section id="values" class="section section-values">
+      <div class="tagline">Successful Return Model Transfer</div>
+      <section id="values" class="section section-values card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2>Successful Return Model Transfer</h2>
+          <h2 class="visually-hidden">Successful Return Model Transfer</h2>
           <p>
             The planner used by SimDist can only improve behavior if it can reliably distinguish
             trajectories with high and low returns. This requires both accurate dynamics prediction and
@@ -566,9 +624,10 @@
         </div>
       </section>
 
-      <section id="slip" class="section section-slip">
+      <div class="tagline">Improving Dynamics Prediction with Finetuning</div>
+      <section id="slip" class="section section-slip card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2>Improving Dynamics Prediction with Finetuning</h2>
+          <h2 class="visually-hidden">Improving Dynamics Prediction with Finetuning</h2>
           <p>
             Next, we examine the effect finetuning has on dynamics prediction accuracy.
             Adapting the dynamics model is essential for effective planning, as both the
@@ -614,9 +673,10 @@
         </div>
       </section>
 
-      <section id="planning" class="section section-planning" aria-labelledby="planning-title">
+      <div class="tagline">Planning Under Adapted Dynamics</div>
+      <section id="planning" class="section section-planning card-surface section-card" aria-labelledby="planning-title">
         <div class="section-head" data-reveal>
-          <h2 id="planning-title">Planning Under Adapted Dynamics</h2>
+          <h2 id="planning-title" class="visually-hidden">Planning Under Adapted Dynamics</h2>
           <p>
             Because we finetune only the dynamics, adaptation is fast:
             improved predictions immediately reshape planning behavior, driving the performance gains seen in our <a href="#results">results</a>.
@@ -649,67 +709,64 @@
         </div>
       </section>
 
-    </main>
-
-    <footer id="paper" class="site-footer">
-      <div class="footer-links">
-        <a href="https://arxiv.org/abs/2603.15759" target="_blank" rel="noreferrer">
-          <svg
-            class="link-icon link-icon--arxiv"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 135.611 163"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M456.756,249.1l-42.324,49.375c-1.885,2.01-3.054,5.535-2,8.066a6.9,6.9,0,0,0,6.443,4.27c1.6,0,2.911-.56,4.631-2.289l52.364-54.278a8.927,8.927,0,0,0,.061-12.584Z"
-              transform="translate(-391.029 -166.577)"
-              fill="currentColor"
-            ></path>
-            <path
-              d="M455.876,248.071l39.168-49.545c2.186-2.914,3.219-4.44,2.186-6.921a7.536,7.536,0,0,0-6.566-4.633h0a5.9,5.9,0,0,0-4.408,1.624l-50.072,53.061c-3.816,3.816-3.808,8.753.023,12.584l70.031,73.438a5.738,5.738,0,0,0,4.6,1.748c2.833,0,4.67-1.667,5.9-4.131,1.054-2.531-.112-5.038-2.056-7.664l-58.8-69.561"
-              transform="translate(-391.029 -166.577)"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-            <path
-              d="M475.931,241.657l-68.388-71.966s-2.511-3.048-5.165-3.112a6.75,6.75,0,0,0-6.357,4.084c-1.033,2.481-.291,4.223,1.977,7.47L456.756,249.1Z"
-              transform="translate(-391.029 -166.577)"
-              fill="currentColor"
-            ></path>
-          </svg>
-          <span>Read full paper</span>
-        </a>
-        <a href="https://github.com/CLeARoboticsLab/simdist" target="_blank" rel="noreferrer">
-          <svg
-            class="link-icon link-icon--fill"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.57c-2.6.57-3.15-1.1-3.15-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.92.06 1.4.95 1.4.95.83 1.4 2.17 1 2.7.77.08-.6.32-1 .58-1.22-2.08-.24-4.27-1.04-4.27-4.64 0-1.03.37-1.88.97-2.54-.09-.24-.42-1.2.1-2.5 0 0 .8-.26 2.62.97A9.2 9.2 0 0 1 12 7.82a9.2 9.2 0 0 1 2.38.32c1.82-1.23 2.62-.97 2.62-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.5.97 2.54 0 3.61-2.2 4.4-4.3 4.63.34.3.64.86.64 1.73v2.56c0 .24.17.55.65.45A9.5 9.5 0 0 0 12 2.5Z"
-            ></path>
-          </svg>
-          <span>Open code repository</span>
-        </a>
-      </div>
-      <p class="footer-copy">
-        Citation:
-      </p>
-      <pre class="citation-block">
-@article{2026simdist,
+      <footer id="paper" class="site-footer footer">
+        <div class="footer-links">
+          <a href="https://arxiv.org/abs/2603.15759" target="_blank" rel="noreferrer">
+            <svg
+              class="link-icon link-icon--arxiv"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 135.611 163"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M456.756,249.1l-42.324,49.375c-1.885,2.01-3.054,5.535-2,8.066a6.9,6.9,0,0,0,6.443,4.27c1.6,0,2.911-.56,4.631-2.289l52.364-54.278a8.927,8.927,0,0,0,.061-12.584Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M455.876,248.071l39.168-49.545c2.186-2.914,3.219-4.44,2.186-6.921a7.536,7.536,0,0,0-6.566-4.633h0a5.9,5.9,0,0,0-4.408,1.624l-50.072,53.061c-3.816,3.816-3.808,8.753.023,12.584l70.031,73.438a5.738,5.738,0,0,0,4.6,1.748c2.833,0,4.67-1.667,5.9-4.131,1.054-2.531-.112-5.038-2.056-7.664l-58.8-69.561"
+                transform="translate(-391.029 -166.577)"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M475.931,241.657l-68.388-71.966s-2.511-3.048-5.165-3.112a6.75,6.75,0,0,0-6.357,4.084c-1.033,2.481-.291,4.223,1.977,7.47L456.756,249.1Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span>Read full paper</span>
+          </a>
+          <a href="https://github.com/CLeARoboticsLab/simdist" target="_blank" rel="noreferrer">
+            <svg
+              class="link-icon link-icon--fill"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.57c-2.6.57-3.15-1.1-3.15-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.92.06 1.4.95 1.4.95.83 1.4 2.17 1 2.7.77.08-.6.32-1 .58-1.22-2.08-.24-4.27-1.04-4.27-4.64 0-1.03.37-1.88.97-2.54-.09-.24-.42-1.2.1-2.5 0 0 .8-.26 2.62.97A9.2 9.2 0 0 1 12 7.82a9.2 9.2 0 0 1 2.38.32c1.82-1.23 2.62-.97 2.62-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.5.97 2.54 0 3.61-2.2 4.4-4.3 4.63.34.3.64.86.64 1.73v2.56c0 .24.17.55.65.45A9.5 9.5 0 0 0 12 2.5Z"
+              ></path>
+            </svg>
+            <span>Open code repository</span>
+          </a>
+        </div>
+        <div class="bibtex-code">
+          <p class="bibtex-title">Citation:</p>
+          <pre class="citation-block"><code>@article{2026simdist,
   title={Simulation Distillation: Pretraining World Models in Simulation for Rapid Real-World Adaptation},
   author={Levy, Jacob and Westenbroek, Tyler and Huang, Kevin and Palafox, Fernando and Yin, Patrick and Omidshafiei, Shayegan and Kim, Dong-Ki and Gupta, Abhishek and Fridovich-Keil, David},
   journal={arXiv preprint arXiv:2603.15759},
   year={2026},
   url={https://arxiv.org/abs/2603.15759}
-}
-      </pre>
-    </footer>
+}</code></pre>
+        </div>
+      </footer>
+    </main>
 
     <script src="js/main.js"></script>
   </body>
