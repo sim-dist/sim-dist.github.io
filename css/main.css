@@ -615,7 +615,7 @@ main {
 .narrative-grid {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
 }
 
@@ -643,11 +643,12 @@ main {
 
 .narrative-card video,
 .narrative-card img {
-  width: 100%;
+  width: min(84%, 350px);
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 12px;
   background: transparent;
+  justify-self: center;
 }
 
 .narrative-card img {
@@ -656,6 +657,12 @@ main {
 
 .narrative-card img.narrative-image-plain {
   border: 0;
+  object-fit: contain;
+  background: #fff;
+  box-sizing: border-box;
+  padding-inline: 0.5rem;
+  box-shadow: none;
+  filter: none;
 }
 
 .narrative-card p {

@@ -325,19 +325,21 @@
                 <source src="assets/video/rl_finetuning.mp4" type="video/mp4" />
               </video>
               <p>
-                Sim-to-real policies fail under dynamics mismatch.
-                Standard RL finetuning entangles representation, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain.
+                Sim-to-real RL policies fail under dynamics mismatch.
+                Standard end-to-end policy finetuning algorithms entangle learning representations, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain.
               </p>
             </article>
             <article class="narrative-card" data-reveal>
-              <h3>World Models Factorize Problem Structure</h3>
+              <h3>World Models Factorize Task Structure</h3>
               <img
                 class="narrative-image-plain"
-                src="assets/figures/world_model.png"
+                src="assets/figures/world_model.svg"
                 alt="World model architecture showing encoder, latent dynamics, and value components"
               />
               <p>
-                World models decompose task structure in a modular format we can exploit for efficient real-world adaptation.
+                We argue that world models are the right vehicle for transferring experience from simulation to reality.
+                World models automatically <strong>factorize task structure</strong> in a form we can exploit for efficient real-world adaptation.
+                <!-- World models can decompose task structure in a modular format we can exploit for efficient real-world adaptation. -->
               </p>
             </article>
             <article class="narrative-card" data-reveal>
@@ -346,8 +348,19 @@
                 <source src="assets/video/domain_rand.mp4" type="video/mp4" />
               </video>
               <p>
-                Domain randomization and privileged state supervision yield robust representation and reward/value models in simulation,
-                allowing real-world finetuning to focus solely on dynamics adaptation.
+                Domain randomization and privileged state supervision yield robust encoders and reward/value models in simulation.
+              </p>
+            </article>
+            <article class="narrative-card" data-reveal>
+              <h3>Preserve Transferable Structure</h3>
+              <img
+                class="narrative-image-plain"
+                src="assets/figures/task_structure.svg"
+                alt="Transferrable world model components."
+              />
+              <p>
+                State encoders, rewards, and values capture global structure, such as which objects matter, their semantic roles, and distances to goal configurations.
+                <strong>Our key insight</strong> is that this global structure is largely invariant across simulation and reality, whereas local dynamics are not.
               </p>
             </article>
           </div>
