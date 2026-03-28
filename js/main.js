@@ -395,6 +395,19 @@
       updateProgressFill(activeIndex);
     };
 
+    const getScrollTargetForSection = (section) => {
+      if (!section) {
+        return null;
+      }
+
+      const heading = section.previousElementSibling;
+      if (heading && heading.classList.contains("tagline")) {
+        return heading;
+      }
+
+      return section;
+    };
+
     let updateRaf = 0;
 
     const syncActiveSection = () => {
@@ -437,14 +450,15 @@
         }
 
         const targetSection = sectionById.get(id);
-        if (!targetSection) {
+        const scrollTarget = getScrollTargetForSection(targetSection);
+        if (!scrollTarget) {
           return;
         }
 
         event.preventDefault();
 
         const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
-        const targetTop = window.scrollY + targetSection.getBoundingClientRect().top;
+        const targetTop = window.scrollY + scrollTarget.getBoundingClientRect().top;
         const nextY = Math.max(0, targetTop - headerBottom - 10);
 
         window.scrollTo({
