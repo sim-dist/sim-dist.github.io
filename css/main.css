@@ -564,11 +564,10 @@ main {
 .outcome-arrow-svg {
   width: 44px;
   height: 24px;
-  filter: drop-shadow(0 2px 8px rgba(11, 154, 182, 0.28));
 }
 
 .outcome-arrow-svg path {
-  stroke: var(--accent-2);
+  stroke: var(--honey-bronze);
 }
 
 .section-head {
