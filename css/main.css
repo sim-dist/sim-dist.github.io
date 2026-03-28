@@ -978,12 +978,20 @@ main {
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .method-exchange-svg {
   display: block;
   width: 100%;
   height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .method-node-kicker {
@@ -1041,14 +1049,17 @@ main {
 
 .method-node--3 .method-node-media,
 .method-node--4b .method-node-media {
-  background: #ffffff;
+  background: transparent;
   border: 0;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: none;
   /* Fill the stretched card row, then center SVG content within it. */
   aspect-ratio: auto;
   height: 100%;
+  overflow: visible;
 }
 
 .method-node--3 .method-node-media img,
@@ -1058,6 +1069,10 @@ main {
   object-fit: contain;
   object-position: center center;
   padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .method-node--1 .method-node-media video,
