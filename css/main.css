@@ -820,10 +820,10 @@ main {
 
 .method-grid {
   display: grid;
-  grid-template-columns: minmax(1.7rem, 2rem) repeat(57, minmax(0, 1fr));
-  gap: clamp(0.55rem, 0.7vw, 0.75rem);
+  grid-template-columns: minmax(1.3rem, 1.55rem) repeat(57, minmax(0, 1fr));
+  gap: clamp(0.35rem, 0.55vw, 0.62rem);
   width: 100%;
-  min-width: 1100px;
+  min-width: 0;
 }
 
 @keyframes method-scroll-right {
@@ -873,11 +873,11 @@ main {
   --row-rgb: 246, 178, 107;
   border: 2px solid rgba(var(--row-rgb), 0.92);
   background: #fff;
-  border-radius: 14px;
-  padding: 0.72rem;
+  border-radius: 12px;
+  padding: clamp(0.48rem, 0.8vw, 0.66rem);
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 0.45rem;
+  gap: clamp(0.3rem, 0.5vw, 0.42rem);
   text-align: left;
   cursor: pointer;
   font-family: inherit;
@@ -910,19 +910,19 @@ main {
 }
 
 .method-row-label {
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem 0;
+  padding: 0.16rem 0;
 }
 
 .method-row-label span {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   text-transform: none;
-  letter-spacing: 0.06em;
-  font-size: 0.98rem;
+  letter-spacing: 0.05em;
+  font-size: clamp(0.8rem, 0.7vw, 0.92rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -991,15 +991,15 @@ main {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  min-width: 2.3rem;
+  min-width: 2rem;
   border-radius: 999px;
   border: 1px solid rgba(var(--row-rgb), 0.58);
   background: rgba(var(--row-rgb), 0.2);
   color: #2d3a47;
-  font-size: 0.76rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  padding: 0.2rem 0.5rem;
-  letter-spacing: 0.04em;
+  padding: 0.16rem 0.42rem;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -1007,9 +1007,9 @@ main {
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.98rem;
-  line-height: 1.25;
+  gap: 0.34rem;
+  font-size: clamp(0.8rem, 0.78vw, 0.93rem);
+  line-height: 1.2;
 }
 
 .method-node-media {
@@ -1970,6 +1970,10 @@ a:focus-visible {
 
   .method-panel {
     position: static;
+  }
+
+  .method-grid {
+    min-width: 980px;
   }
 
 }
