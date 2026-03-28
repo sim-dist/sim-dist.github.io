@@ -1359,7 +1359,7 @@ video:focus-visible {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 0.5rem;
+  row-gap: 0.85rem;
   align-items: start;
 }
 
@@ -1371,11 +1371,11 @@ video:focus-visible {
   justify-content: center;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.8rem 0.95rem;
-  background: var(--card-strong);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .results-legend-hint {
@@ -1388,10 +1388,10 @@ video:focus-visible {
 }
 
 .results-panel {
-  background: var(--card-strong);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .results-legend {
@@ -1457,7 +1457,7 @@ video:focus-visible {
 }
 
 .results-panel {
-  padding: 0.95rem;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
@@ -2354,14 +2354,12 @@ body {
   margin-top: 6px;
 }
 
-.results-legend-bar,
-.results-panel,
-.chart-card,
 .values-chart-card,
 .values-videos figure,
 .slip-card,
 .planning-card,
 .method-panel,
+.chart-card,
 .method-node,
 .narrative-card,
 .outcome-card {
@@ -2369,10 +2367,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.section-method .method-panel,
-.section-method .method-node,
-.section-results .results-legend-bar,
-.section-results .results-panel,
 .section-results .chart-card {
   background: var(--bg-surface);
 }
