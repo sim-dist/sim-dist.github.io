@@ -2439,6 +2439,10 @@ body {
   text-align: left;
 }
 
+.footer {
+  margin-top: 36px;
+}
+
 .footer-links {
   display: flex;
   justify-content: center;
