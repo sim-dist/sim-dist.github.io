@@ -137,6 +137,15 @@
     "pi_0.5 (Real + Sim Demos)",
     "Quadruped Success",
   ];
+  const DEFERRED_VIDEO_ROOT_MARGIN = "450px 0px";
+
+  const introVideoPriorityState = {
+    ready: false,
+    resolve: () => {},
+  };
+  introVideoPriorityState.promise = new Promise((resolve) => {
+    introVideoPriorityState.resolve = resolve;
+  });
 
   const resultsState = {
     data: null,
@@ -159,7 +168,6 @@
     resizeObserver: null,
     resizeRaf: 0,
     videoScrubState: new WeakMap(),
-    objectUrls: [],
   };
 
   const consistencyState = {
@@ -186,6 +194,8 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    initIntroVideoPriority();
+    initDeferredVideos();
     initResponsiveInteractionCopy();
     initRevealAnimations();
     initSectionSpy();
@@ -197,6 +207,181 @@
     initConsistencyLossChart();
     initPlanningTabs();
   });
+
+  function resolveIntroVideoPriority() {
+    if (introVideoPriorityState.ready) {
+      return;
+    }
+
+    introVideoPriorityState.ready = true;
+    introVideoPriorityState.resolve();
+  }
+
+  function initIntroVideoPriority() {
+    const introVideo = document.querySelector('video[data-priority-video="intro"]');
+    if (!introVideo) {
+      resolveIntroVideoPriority();
+      return;
+    }
+
+    introVideo.setAttribute("preload", "auto");
+
+    if (introVideo.readyState >= 2) {
+      resolveIntroVideoPriority();
+      return;
+    }
+
+    let settled = false;
+    let timeoutId = 0;
+
+    const finalize = () => {
+      if (settled) {
+        return;
+      }
+
+      settled = true;
+      introVideo.removeEventListener("loadeddata", finalize);
+      introVideo.removeEventListener("canplay", finalize);
+      introVideo.removeEventListener("error", finalize);
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+      resolveIntroVideoPriority();
+    };
+
+    introVideo.addEventListener("loadeddata", finalize, { once: true });
+    introVideo.addEventListener("canplay", finalize, { once: true });
+    introVideo.addEventListener("error", finalize, { once: true });
+    timeoutId = window.setTimeout(finalize, 3000);
+
+    try {
+      introVideo.load();
+    } catch (error) {
+      finalize();
+    }
+  }
+
+  function hydrateDeferredVideo(video) {
+    if (!video || video.dataset.deferredHydrated === "true") {
+      return false;
+    }
+
+    let hydrated = false;
+
+    for (const source of video.querySelectorAll("source[data-src]")) {
+      const src = source.dataset.src;
+      if (!src) {
+        continue;
+      }
+
+      source.setAttribute("src", src);
+      hydrated = true;
+    }
+
+    const directSrc = video.dataset.src;
+    if (directSrc && video.getAttribute("src") !== directSrc) {
+      video.setAttribute("src", directSrc);
+      hydrated = true;
+    }
+
+    if (hydrated) {
+      video.dataset.deferredHydrated = "true";
+    }
+
+    return hydrated;
+  }
+
+  function activateDeferredVideo(video) {
+    if (!video || video.dataset.deferredLoaded === "true") {
+      return;
+    }
+
+    const hydrated = hydrateDeferredVideo(video);
+    if (!hydrated && !video.currentSrc && !video.getAttribute("src")) {
+      return;
+    }
+
+    video.dataset.deferredLoaded = "true";
+    video.setAttribute("preload", video.dataset.deferredPreload || "metadata");
+
+    try {
+      video.load();
+    } catch (error) {
+      return;
+    }
+  }
+
+  function initDeferredVideos() {
+    const deferredVideos = Array.from(
+      new Set(
+        Array.from(document.querySelectorAll("video")).filter((video) => {
+          return Boolean(video.querySelector("source[data-src]") || video.dataset.src);
+        })
+      )
+    );
+
+    if (!deferredVideos.length) {
+      return;
+    }
+
+    const primeDeferredGroup = (groupName) => {
+      if (groupName === "values") {
+        primeValuesVideos();
+      }
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      const primedGroups = new Set();
+
+      for (const video of deferredVideos) {
+        const groupName = video.dataset.deferredGroup;
+        if (groupName) {
+          if (!primedGroups.has(groupName)) {
+            primedGroups.add(groupName);
+            primeDeferredGroup(groupName);
+          }
+          continue;
+        }
+
+        activateDeferredVideo(video);
+      }
+
+      return;
+    }
+
+    const primedGroups = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          const video = entry.target;
+          observer.unobserve(video);
+
+          const groupName = video.dataset.deferredGroup;
+          if (groupName) {
+            if (!primedGroups.has(groupName)) {
+              primedGroups.add(groupName);
+              primeDeferredGroup(groupName);
+            }
+            continue;
+          }
+
+          activateDeferredVideo(video);
+        }
+      },
+      {
+        rootMargin: DEFERRED_VIDEO_ROOT_MARGIN,
+        threshold: 0.01,
+      }
+    );
+
+    for (const video of deferredVideos) {
+      observer.observe(video);
+    }
+  }
 
   function initPlanningTabs() {
     const tabBar = document.getElementById("planning-tab-bar");
@@ -229,6 +414,7 @@
           panel.setAttribute("aria-hidden", "false");
           const activeVideo = panel.querySelector("video");
           if (activeVideo) {
+            activateDeferredVideo(activeVideo);
             const playAttempt = activeVideo.play();
             if (playAttempt && typeof playAttempt.catch === "function") {
               playAttempt.catch(() => {});
@@ -1673,7 +1859,6 @@
       buildValuesChart();
       bindValuesLockToggle();
       observeValuesChartResize();
-      primeValuesVideos();
     } catch (error) {
       const status = document.getElementById("values-status");
       if (status) {
@@ -1784,15 +1969,11 @@
         video.addEventListener("canplay", syncCurrentFrame);
       }
 
-      if (video.readyState === 0) {
-        try {
-          video.load();
-        } catch (error) {
-          continue;
-        }
+      activateDeferredVideo(video);
+      if (!video.currentSrc && !video.getAttribute("src")) {
+        continue;
       }
 
-      hydrateValuesVideo(video).then(syncCurrentFrame);
       warmupValuesVideo(video, syncCurrentFrame);
     }
 
@@ -1825,34 +2006,6 @@
     }
 
     video.addEventListener("canplay", tryWarmup, { once: true });
-  }
-
-  async function hydrateValuesVideo(video) {
-    if (!video || video.dataset.valuesHydrateTried === "true") {
-      return;
-    }
-
-    video.dataset.valuesHydrateTried = "true";
-    const source = video.querySelector("source");
-    const src = source ? source.getAttribute("src") : video.getAttribute("src");
-    if (!src) {
-      return;
-    }
-
-    try {
-      const response = await fetch(src, { cache: "no-store" });
-      if (!response.ok) {
-        return;
-      }
-
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      valuesState.objectUrls.push(objectUrl);
-      video.setAttribute("src", objectUrl);
-      video.load();
-    } catch (error) {
-      return;
-    }
   }
 
   function buildValuesChart() {
@@ -2704,17 +2857,11 @@
       return;
     }
 
+    activateDeferredVideo(video);
     video.muted = true;
     const playPromise = video.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {});
     }
   }
-
-  window.addEventListener("beforeunload", () => {
-    for (const url of valuesState.objectUrls) {
-      URL.revokeObjectURL(url);
-    }
-    valuesState.objectUrls = [];
-  });
 })();

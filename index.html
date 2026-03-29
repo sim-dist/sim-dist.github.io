@@ -17,6 +17,13 @@
       name="description"
       content="SimDist: Pretraining world models in simulation for rapid real-world adaptation via planning and dynamics-only finetuning."
     />
+    <link
+      rel="preload"
+      href="assets/video/simdist_intro_540p.mp4"
+      as="video"
+      type="video/mp4"
+      fetchpriority="high"
+    />
     <link rel="stylesheet" href="css/omnireset-theme.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -93,7 +100,8 @@
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="auto"
+            data-priority-video="intro"
           >
             <source src="assets/video/simdist_intro_540p.mp4" type="video/mp4" />
           </video>
@@ -208,8 +216,8 @@
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/peg_fail.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/peg_fail.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Zero-shot: 25% success</figcaption>
               </figure>
@@ -220,8 +228,8 @@
                 </svg>
               </div>
               <figure class="outcome-video outcome-video-after">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/peg_win.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/peg_win.mp4" type="video/mp4" />
                 </video>
                 <figcaption>After 60 trials: 85% success</figcaption>
               </figure>
@@ -234,8 +242,8 @@
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/leg_fail.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/leg_fail.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Zero-shot: 10% success</figcaption>
               </figure>
@@ -246,8 +254,8 @@
                 </svg>
               </div>
               <figure class="outcome-video outcome-video-after">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/leg_win.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/leg_win.mp4" type="video/mp4" />
                 </video>
                 <figcaption>After 80 trials: 85% success</figcaption>
               </figure>
@@ -260,8 +268,8 @@
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/ptfe_0.5_fail.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/ptfe_0.5_fail.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Zero-shot: 0% success</figcaption>
               </figure>
@@ -272,8 +280,8 @@
                 </svg>
               </div>
               <figure class="outcome-video outcome-video-after">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/ptfe_0.5_win.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/ptfe_0.5_win.mp4" type="video/mp4" />
                 </video>
                 <figcaption>After 36 minutes: 93% success</figcaption>
               </figure>
@@ -286,8 +294,8 @@
             </div>
             <div class="outcome-videos">
               <figure class="outcome-video outcome-video-before">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/foam_0.7_fail.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/foam_0.7_fail.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Zero-shot: 40% success</figcaption>
               </figure>
@@ -298,8 +306,8 @@
                 </svg>
               </div>
               <figure class="outcome-video outcome-video-after">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/foam_0.7_win.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/foam_0.7_win.mp4" type="video/mp4" />
                 </video>
                 <figcaption>After 32 minutes: 100% success</figcaption>
               </figure>
@@ -321,8 +329,8 @@
           <div class="narrative-grid">
             <article class="narrative-card" data-reveal>
               <h3>End-to-end RL Finetuning is Hard</h3>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="assets/video/rl_finetuning.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none">
+                <source data-src="assets/video/rl_finetuning.mp4" type="video/mp4" />
               </video>
               <p>
                 Sim-to-real RL policies fail under dynamics mismatch.
@@ -344,8 +352,8 @@
             </article>
             <article class="narrative-card" data-reveal>
               <h3>Leveraging Simulation for Transferable Priors</h3>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="assets/video/domain_rand.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none">
+                <source data-src="assets/video/domain_rand.mp4" type="video/mp4" />
               </video>
               <p>
                 Domain randomization and privileged state supervision yield robust encoders and reward/value models in simulation.
@@ -398,8 +406,8 @@
                   >
                     <h3><span class="method-node-kicker">1</span>Expert Policy Training</h3>
                     <div class="method-node-media">
-                      <video autoplay muted loop playsinline preload="metadata">
-                        <source src="assets/video/rl_qped.mp4" type="video/mp4" />
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/rl_qped.mp4" type="video/mp4" />
                       </video>
                     </div>
                   </button>
@@ -412,8 +420,8 @@
                   >
                     <h3><span class="method-node-kicker">2</span>Data Generation</h3>
                     <div class="method-node-media">
-                      <video autoplay muted loop playsinline preload="metadata">
-                        <source src="assets/video/data_gen.mp4" type="video/mp4" />
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/data_gen.mp4" type="video/mp4" />
                       </video>
                     </div>
                   </button>
@@ -445,8 +453,8 @@
                   >
                     <h3><span class="method-node-kicker">4a</span>Real-World Deployment</h3>
                     <div class="method-node-media">
-                      <video autoplay muted loop playsinline preload="metadata">
-                        <source src="assets/video/ptfe_plan.mp4" type="video/mp4" />
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/ptfe_plan.mp4" type="video/mp4" />
                       </video>
                     </div>
                   </button>
@@ -616,9 +624,11 @@
                 id="values-video-success"
                 muted
                 playsinline
-                preload="auto"
+                preload="none"
+                data-deferred-group="values"
+                data-deferred-preload="auto"
               >
-                <source src="assets/video/peg_win_value.mp4" type="video/mp4" />
+                <source data-src="assets/video/peg_win_value.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure>
@@ -627,9 +637,11 @@
                 id="values-video-fail"
                 muted
                 playsinline
-                preload="auto"
+                preload="none"
+                data-deferred-group="values"
+                data-deferred-preload="auto"
               >
-                <source src="assets/video/peg_fail_value.mp4" type="video/mp4" />
+                <source data-src="assets/video/peg_fail_value.mp4" type="video/mp4" />
               </video>
             </figure>
           </div>
@@ -669,8 +681,8 @@
             <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
           </figure>
           <figure class="slip-card slip-card--media" data-reveal>
-            <video autoplay muted loop playsinline preload="metadata" controls>
-              <source src="assets/video/foot_slip.mp4" type="video/mp4" />
+            <video autoplay muted loop playsinline preload="none" controls>
+              <source data-src="assets/video/foot_slip.mp4" type="video/mp4" />
             </video>
             <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
           </figure>
@@ -697,8 +709,8 @@
 
         <div class="planning-shell">
           <figure class="planning-card planning-card--native-aspect" data-reveal>
-            <video autoplay muted loop playsinline preload="metadata" controls>
-              <source src="assets/video/planning_steps.mp4" type="video/mp4" />
+            <video autoplay muted loop playsinline preload="none" controls>
+              <source data-src="assets/video/planning_steps.mp4" type="video/mp4" />
             </video>
             <figcaption>At each timestep, the planner queries the adapted world model iteratively to close in on the optimal trajectory.</figcaption>
           </figure>
@@ -729,8 +741,8 @@
 
             <div class="eval-tab-panel active" id="planning-panel-ptfe" role="tabpanel">
               <figure class="planning-card">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/ptfe_plan_with_legend.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/ptfe_plan_with_legend.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Slippery Slope: trajectory samples generated with the finetuned model reflect the
                   real-world contact dynamics and lead the planner to account for foot slip.</figcaption>
@@ -739,8 +751,8 @@
 
             <div class="eval-tab-panel" id="planning-panel-foam" role="tabpanel" aria-hidden="true">
               <figure class="planning-card">
-                <video autoplay muted loop playsinline preload="metadata" controls>
-                  <source src="assets/video/foam_plan_with_legend.mp4" type="video/mp4" />
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/foam_plan_with_legend.mp4" type="video/mp4" />
                 </video>
                 <figcaption>Foam: the finetuned model produces plans that account for real world dynamics mismatch,
                   while the pretrained model generates qualitatively different trajectories</figcaption>
