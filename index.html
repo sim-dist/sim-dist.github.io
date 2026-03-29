@@ -696,27 +696,56 @@
         </div>
 
         <div class="planning-shell">
-          <div class="planning-grid">
-            <figure class="planning-card planning-card--native-aspect" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata" controls>
-                <source src="assets/video/planning_steps.mp4" type="video/mp4" />
-              </video>
-              <figcaption>At each timestep, the planner queries the adapted world model iteratively to close in on the optimal trajectory.</figcaption>
-            </figure>
-            <figure class="planning-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata" controls>
-                <source src="assets/video/ptfe_plan_with_legend.mp4" type="video/mp4" />
-              </video>
-              <figcaption>Slippery Slope: trajectory samples generated with the finetuned model reflect the
-                real-world contact dynamics and lead the planner to select plans that account for foot slip.</figcaption>
-            </figure>
-            <figure class="planning-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata" controls>
-                <source src="assets/video/foam_plan_with_legend.mp4" type="video/mp4" />
-              </video>
-              <figcaption>Foam: the finetuned model produces plans that account for real world dynamics mismatch,
-                while the pretrained model generates qualitatively different trajectories</figcaption>
-            </figure>
+          <figure class="planning-card planning-card--native-aspect" data-reveal>
+            <video autoplay muted loop playsinline preload="metadata" controls>
+              <source src="assets/video/planning_steps.mp4" type="video/mp4" />
+            </video>
+            <figcaption>At each timestep, the planner queries the adapted world model iteratively to close in on the optimal trajectory.</figcaption>
+          </figure>
+
+          <div class="planning-tabs" data-reveal>
+            <div class="eval-tab-bar planning-tab-bar" id="planning-tab-bar" role="tablist" aria-label="Planning example selector">
+              <button
+                class="eval-tab active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="planning-panel-ptfe"
+                data-planning-tab="ptfe"
+              >
+                Slippery Slope
+              </button>
+              <button
+                class="eval-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="planning-panel-foam"
+                data-planning-tab="foam"
+              >
+                Foam
+              </button>
+            </div>
+
+            <div class="eval-tab-panel active" id="planning-panel-ptfe" role="tabpanel">
+              <figure class="planning-card">
+                <video autoplay muted loop playsinline preload="metadata" controls>
+                  <source src="assets/video/ptfe_plan_with_legend.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Slippery Slope: trajectory samples generated with the finetuned model reflect the
+                  real-world contact dynamics and lead the planner to account for foot slip.</figcaption>
+              </figure>
+            </div>
+
+            <div class="eval-tab-panel" id="planning-panel-foam" role="tabpanel" aria-hidden="true">
+              <figure class="planning-card">
+                <video autoplay muted loop playsinline preload="metadata" controls>
+                  <source src="assets/video/foam_plan_with_legend.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Foam: the finetuned model produces plans that account for real world dynamics mismatch,
+                  while the pretrained model generates qualitatively different trajectories</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>

@@ -195,7 +195,49 @@
     initResultsDashboard();
     initValuesTimeline();
     initConsistencyLossChart();
+    initPlanningTabs();
   });
+
+  function initPlanningTabs() {
+    const tabBar = document.getElementById("planning-tab-bar");
+    if (!tabBar) {
+      return;
+    }
+
+    const tabs = tabBar.querySelectorAll(".eval-tab[data-planning-tab]");
+    const panels = document.querySelectorAll('.eval-tab-panel[id^="planning-panel-"]');
+
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => {
+        for (const button of tabs) {
+          button.classList.remove("active");
+          button.setAttribute("aria-selected", "false");
+        }
+
+        for (const panel of panels) {
+          panel.classList.remove("active");
+          panel.setAttribute("aria-hidden", "true");
+          panel.querySelectorAll("video").forEach((video) => video.pause());
+        }
+
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+
+        const panel = document.getElementById(`planning-panel-${tab.dataset.planningTab}`);
+        if (panel) {
+          panel.classList.add("active");
+          panel.setAttribute("aria-hidden", "false");
+          const activeVideo = panel.querySelector("video");
+          if (activeVideo) {
+            const playAttempt = activeVideo.play();
+            if (playAttempt && typeof playAttempt.catch === "function") {
+              playAttempt.catch(() => {});
+            }
+          }
+        }
+      });
+    }
+  }
 
   function initRevealAnimations() {
     const nodes = document.querySelectorAll("[data-reveal]");
