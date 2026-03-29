@@ -1660,14 +1660,14 @@ video:focus-visible {
 
 .values-chart-card,
 .values-videos figure {
-  background: var(--card-strong);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .values-chart-card {
-  padding: 0.85rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -1729,13 +1729,14 @@ video:focus-visible {
 
 .values-videos figure {
   margin: 0;
-  padding: 0.75rem;
+  padding: 0;
 }
 
 .values-videos figcaption {
   margin-bottom: 0.45rem;
   font-size: 0.88rem;
   color: var(--ink-1);
+  font-weight: 700;
 }
 
 .values-note {
@@ -2354,8 +2355,6 @@ body {
   margin-top: 6px;
 }
 
-.values-chart-card,
-.values-videos figure,
 .slip-card,
 .planning-card,
 .method-panel,
