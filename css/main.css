@@ -1758,6 +1758,7 @@ video:focus-visible {
 }
 
 .slip-shell {
+  --slip-media-height: 240px;
   max-width: 1020px;
   margin: 0 auto;
   display: grid;
@@ -1782,13 +1783,18 @@ video:focus-visible {
   min-width: 0;
 }
 
+.slip-card--media {
+  background: transparent;
+}
+
 .slip-card-image {
   width: 100%;
-  height: 240px;
+  height: var(--slip-media-height);
   display: block;
-  border-radius: 10px;
+  border: none;
   object-fit: contain;
-  background: #fff;
+  background: transparent;
+  box-shadow: none;
 }
 
 .slip-chart-toolbar {
@@ -1854,7 +1860,7 @@ video:focus-visible {
 
 #slip-consistency-chart {
   width: 100%;
-  height: 240px;
+  height: calc(var(--slip-media-height) - 2.1rem);
   display: block;
   border-radius: 10px;
   border: 1px solid rgba(17, 30, 47, 0.16);
@@ -1862,9 +1868,9 @@ video:focus-visible {
 }
 
 .slip-card video {
-  height: 240px;
+  height: var(--slip-media-height);
   object-fit: contain;
-  background: #fff;
+  background: transparent;
 }
 
 .slip-card-note {

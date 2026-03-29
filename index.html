@@ -66,7 +66,7 @@
         <div class="progress-item" data-section="slip">
           <a href="#slip" data-nav="slip">
             <span class="progress-dot"></span>
-            <span class="progress-label">Dynamics</span>
+            <span class="progress-label">Dynamics Adaptation</span>
           </a>
         </div>
         <div class="progress-item" data-section="planning">
@@ -370,7 +370,7 @@
       <div class="tagline">The Simulation Distillation Framework <span class="interactive-badge">Interactive</span></div>
       <section id="method" class="section section-method card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2 class="visually-hidden">Introducing Simulation Distillation</h2>
+          <h2 class="visually-hidden">The Simulation Distillation Framework</h2>
           <p>
             Simulation Distillation (SimDist) is a scalable framework that distills structural priors from a simulator
             into a latent world model and enables rapid real-world adaptation via online planning and supervised dynamics finetuning.
@@ -636,10 +636,10 @@
         </div>
       </section>
 
-      <div class="tagline">Improving Dynamics Prediction with Finetuning</div>
+      <div class="tagline">Adapting Dynamics Prediction</div>
       <section id="slip" class="section section-slip card-surface section-card">
         <div class="section-head" data-reveal>
-          <h2 class="visually-hidden">Improving Dynamics Prediction with Finetuning</h2>
+          <h2 class="visually-hidden">Adapting Dynamics Prediction</h2>
           <p>
             Next, we examine the effect finetuning has on dynamics prediction accuracy.
             Adapting the dynamics model is essential for effective planning, as both the
@@ -668,16 +668,16 @@
             ></svg>
             <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
           </figure>
-          <figure class="slip-card" data-reveal>
+          <figure class="slip-card slip-card--media" data-reveal>
             <video autoplay muted loop playsinline preload="metadata" controls>
               <source src="assets/video/foot_slip.mp4" type="video/mp4" />
             </video>
             <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
           </figure>
-          <figure class="slip-card" data-reveal>
+          <figure class="slip-card slip-card--media" data-reveal>
             <img
               class="slip-card-image"
-              src="assets/figures/fig7c_foot-preds.png"
+              src="assets/figures/foot_preds_rev3.png"
               alt="Foot prediction comparison visualization during slip event"
             />
             <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
