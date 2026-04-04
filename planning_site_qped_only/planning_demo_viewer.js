@@ -20,6 +20,9 @@ const manifestPathEl = document.getElementById('manifest-path');
 const timeDisplayEl = document.getElementById('time-display');
 const topicListEl = document.getElementById('topic-list');
 const topicsCardEl = document.querySelector('.topics-card');
+const topicsToggleBtn = document.getElementById('topics-toggle-btn');
+const topicsFadeTopEl = document.querySelector('.topics-fade-top');
+const topicsFadeBottomEl = document.querySelector('.topics-fade-bottom');
 const currentTopicCountEl = document.getElementById('current-topic-count');
 const videoOverlayEl = document.getElementById('video-overlay');
 const syncVideoFrameEl = document.getElementById('sync-video-frame');
@@ -209,10 +212,50 @@ function syncTopicsCardLayoutMode() {
     return;
   }
   if (isMobileLayout()) {
-    topicsCardEl.removeAttribute('open');
+    topicsCardEl.classList.remove('mobile-open');
+    if (topicsToggleBtn) {
+      topicsToggleBtn.setAttribute('aria-expanded', 'false');
+    }
   } else {
-    topicsCardEl.setAttribute('open', '');
+    topicsCardEl.classList.remove('mobile-open');
+    if (topicsToggleBtn) {
+      topicsToggleBtn.setAttribute('aria-expanded', 'true');
+    }
   }
+  updateTopicsScrollFades();
+}
+
+function updateTopicsScrollFades() {
+  if (!topicListEl || !topicsFadeTopEl || !topicsFadeBottomEl) {
+    return;
+  }
+  if (!isMobileLayout() || !topicsCardEl?.classList.contains('mobile-open')) {
+    topicsFadeTopEl.classList.remove('visible');
+    topicsFadeBottomEl.classList.remove('visible');
+    return;
+  }
+  const maxScrollTop = Math.max(0, topicListEl.scrollHeight - topicListEl.clientHeight);
+  const scrollTop = topicListEl.scrollTop;
+  const showTop = scrollTop > 1;
+  const showBottom = scrollTop < maxScrollTop - 1;
+  topicsFadeTopEl.classList.toggle('visible', showTop);
+  topicsFadeBottomEl.classList.toggle('visible', showBottom);
+}
+
+if (topicsToggleBtn) {
+  topicsToggleBtn.addEventListener('click', () => {
+    if (!isMobileLayout() || !topicsCardEl) {
+      return;
+    }
+    const nextOpen = !topicsCardEl.classList.contains('mobile-open');
+    topicsCardEl.classList.toggle('mobile-open', nextOpen);
+    topicsToggleBtn.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+    requestAnimationFrame(updateTopicsScrollFades);
+  });
+}
+
+if (topicListEl) {
+  topicListEl.addEventListener('scroll', updateTopicsScrollFades, { passive: true });
 }
 
 function resolveUrl(url, baseUrl = state.manifestBaseUrl) {
@@ -1587,8 +1630,15 @@ function resetCamera() {
     applyPresetCameraPose();
   }
   if (topicsCardEl && isMobileLayout()) {
-    topicsCardEl.removeAttribute('open');
+    topicsCardEl.classList.remove('mobile-open');
+    if (topicsToggleBtn) {
+      topicsToggleBtn.setAttribute('aria-expanded', 'false');
+    }
   }
+  if (topicListEl) {
+    topicListEl.scrollTop = 0;
+  }
+  updateTopicsScrollFades();
 }
 
 function setInitialRobotCamera(trackSpec, payload) {

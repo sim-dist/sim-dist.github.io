@@ -338,22 +338,15 @@
         flex-direction: column;
       }
 
-      .topics-card summary {
+      .topics-toggle {
         display: none;
-      }
-
-      .topics-card summary::-webkit-details-marker {
-        display: none;
+        width: 100%;
       }
 
       .topics-card .topics-panel-body {
         min-height: 0;
         display: flex;
         flex-direction: column;
-      }
-
-      .topics-card:not([open]) > .topics-panel-body {
-        display: flex;
       }
 
       .instructions-card {
@@ -590,11 +583,23 @@
       }
 
       @media (max-width: 760px) {
+        :root {
+          --mobile-right-width: 220px;
+          --mobile-right-inset: 14px;
+          --mobile-right-top: calc(26px + min(60vw, 400px) * 0.5625);
+          --mobile-bottom-clearance: 132px;
+          --mobile-topics-toggle-height: 48px;
+        }
+
         .left-column {
-          width: 190px;
-          right: 14px;
-          top: calc(26px + min(60vw, 400px) * 0.5625);
-          bottom: 132px;
+          width: var(--mobile-right-width);
+          right: var(--mobile-right-inset);
+          top: var(--mobile-right-top);
+          bottom: var(--mobile-bottom-clearance);
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          overflow: visible;
         }
 
         .instructions-card {
@@ -605,12 +610,16 @@
           padding: 0;
           min-height: auto;
           display: block;
+          flex: 0 0 auto;
+          width: var(--mobile-right-width);
+          max-height: none;
           overflow: visible;
+          position: relative;
         }
 
-        .topics-card summary {
+        .topics-toggle {
           display: block;
-          list-style: none;
+          width: 100%;
           cursor: pointer;
           padding: 10px 14px;
           color: var(--text);
@@ -618,9 +627,13 @@
           font-weight: 600;
           text-align: center;
           user-select: none;
+          background: transparent;
+          border: 0;
+          box-shadow: none;
+          border-radius: inherit;
         }
 
-        .topics-card summary::after {
+        .topics-toggle::after {
           content: "▾";
           margin-left: 8px;
           color: var(--accent);
@@ -629,18 +642,106 @@
           vertical-align: middle;
         }
 
-        .topics-card[open] summary::after {
+        .topics-card.mobile-open .topics-toggle::after {
           content: "▴";
         }
 
         .topics-card .topics-panel-body {
-          padding: 0 8px 8px;
-          max-height: min(260px, calc(100dvh - 300px));
-          overflow: auto;
+          display: none;
         }
 
-        .topics-card[open] {
+        .topics-card.mobile-open {
+          display: block;
+          min-height: auto;
+          height: auto;
+          max-height: none;
+          overflow: visible;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body {
+          display: block !important;
+          position: absolute;
+          left: 0;
+          top: calc(100% + 8px);
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 8px 8px;
+          min-height: 0;
+          max-height: calc(
+            100dvh - var(--mobile-right-top) - var(--mobile-topics-toggle-height) - var(--mobile-bottom-clearance) - 8px
+          );
           overflow: hidden;
+          background: var(--panel);
+          border: 1px solid var(--line);
+          border-radius: 14px;
+          box-shadow: var(--shadow);
+          backdrop-filter: blur(16px);
+          pointer-events: auto;
+          z-index: 24;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topics-fade {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 24px;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 120ms ease;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topics-fade.visible {
+          opacity: 1;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topics-fade-top {
+          top: 0;
+          background: linear-gradient(
+            180deg,
+            rgba(11, 20, 29, 0.94),
+            rgba(11, 20, 29, 0)
+          );
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topics-fade-bottom {
+          bottom: 0;
+          background: linear-gradient(
+            180deg,
+            rgba(11, 20, 29, 0),
+            rgba(11, 20, 29, 0.94)
+          );
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topic-list {
+          position: relative;
+          height: 100%;
+          max-height: inherit;
+          margin-right: -8px;
+          padding-right: 12px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: auto;
+          scrollbar-color: rgba(212, 148, 10, 0.92) rgba(255, 255, 255, 0.08);
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topic-list::-webkit-scrollbar {
+          width: 12px;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topic-list::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 999px;
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topic-list::-webkit-scrollbar-thumb {
+          background: rgba(212, 148, 10, 0.92);
+          border-radius: 999px;
+          border: 2px solid rgba(11, 20, 29, 0.62);
+        }
+
+        .topics-card.mobile-open > .topics-panel-body .topic-list::-webkit-scrollbar-thumb:hover {
+          background: rgba(226, 165, 28, 0.98);
         }
 
         .reset-control {
@@ -752,12 +853,14 @@
           <canvas id="sync-video-frame" aria-label="Synchronized real robot video frame"></canvas>
         </div>
         <aside class="left-column">
-          <details class="panel topics-card" open>
-            <summary>Display Options</summary>
+          <div class="panel topics-card">
+            <button id="topics-toggle-btn" class="topics-toggle" type="button" aria-expanded="false">Display Options</button>
             <div class="topics-panel-body">
+              <div class="topics-fade topics-fade-top"></div>
               <div id="topic-list" class="topic-list"></div>
+              <div class="topics-fade topics-fade-bottom"></div>
             </div>
-          </details>
+          </div>
 
           <div id="status" class="panel instructions-card status">Loading...</div>
           <button id="reset-btn" class="reset-control" type="button">Reset</button>
