@@ -59,12 +59,55 @@ const SCENARIO_DEFAULT_HIDDEN_TOPICS = {
   manipulation_peg_insertion: new Set(['/tdmpc_elites_viz/elite_1']),
 };
 
-const INITIAL_CAMERA_POSITION = new THREE.Vector3(2.796, -0.635, 0.341);
-const INITIAL_CAMERA_ROTATION = new THREE.Euler(1.078, 0.679, 0.325, 'XYZ');
-const INITIAL_CAMERA_DISTANCE = 0.829;
-const MOBILE_INITIAL_CAMERA_POSITION = new THREE.Vector3(2.859, -1.021, 0.502);
-const MOBILE_INITIAL_CAMERA_ROTATION = new THREE.Euler(1.078, 0.679, 0.325, 'XYZ');
-const MOBILE_INITIAL_CAMERA_DISTANCE = 1.266;
+const SCENARIO_GROUND_CONFIG = {
+  manipulation_peg_insertion: {
+    showPlane: true,
+    size: 2.8,
+    z: -0.002,
+    thickness: 0.004,
+    planeColor: 0xababa4,
+    planeOpacity: 1.0,
+    gridColorCenter: 0x575880,
+    gridColor: 0x575880,
+    gridDivisions: 8,
+    gridOpacity: 0.20,
+  },
+};
+
+const DEFAULT_CAMERA_POSE = {
+  desktop: {
+    position: new THREE.Vector3(2.796, -0.635, 0.341),
+    rotation: new THREE.Euler(1.078, 0.679, 0.325, 'XYZ'),
+    distance: 0.829,
+  },
+  mobile: {
+    position: new THREE.Vector3(2.859, -1.021, 0.502),
+    rotation: new THREE.Euler(1.078, 0.679, 0.325, 'XYZ'),
+    distance: 1.266,
+  },
+};
+
+const CAMERA_POSE_BY_SCENARIO = {
+  quadruped_slippery_slope: DEFAULT_CAMERA_POSE,
+  manipulation_peg_insertion: {
+    desktop: {
+      position: new THREE.Vector3(1.177, 0.867, 0.495),
+      rotation: new THREE.Euler(-1.006, 0.902, 2.680, 'XYZ'),
+      distance: 1.385,
+    },
+    mobile: {
+      position: new THREE.Vector3(1.200, 0.620, 0.390),
+      rotation: new THREE.Euler(-1.006, 0.902, 2.680, 'XYZ'),
+      distance: 1.075,
+    },
+  },
+};
+
+const DEFAULT_PLAYBACK_RATE = 0.5;
+const PLAYBACK_RATE_BY_SCENARIO = {
+  quadruped_slippery_slope: 0.5,
+  manipulation_peg_insertion: 1.0,
+};
 
 const DEFAULT_MANIFEST_URL = new URLSearchParams(location.search).get('manifest') || 'manifest.json';
 
@@ -112,8 +155,8 @@ const state = {
 };
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#c9c9c2');
-scene.fog = new THREE.Fog('#c9c9c2', 5, 18);
+scene.background = new THREE.Color('#d9d9d2');
+scene.fog = new THREE.Fog('#d9d9d2', 5, 18);
 scene.up.set(0, 0, 1);
 
 const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 2000);
@@ -137,10 +180,21 @@ function isMobileLayout() {
   return window.matchMedia('(max-width: 760px)').matches;
 }
 
+function getScenarioCameraPose(scenarioId, mobileLayout = isMobileLayout()) {
+  const scenarioPose = CAMERA_POSE_BY_SCENARIO[scenarioId] || DEFAULT_CAMERA_POSE;
+  return mobileLayout ? scenarioPose.mobile || scenarioPose.desktop : scenarioPose.desktop;
+}
+
+function getScenarioPlaybackRate(scenarioId) {
+  return PLAYBACK_RATE_BY_SCENARIO[scenarioId] || DEFAULT_PLAYBACK_RATE;
+}
+
 function applyPresetCameraPose(robotPosition = null) {
-  const initialPosition = isMobileLayout() ? MOBILE_INITIAL_CAMERA_POSITION : INITIAL_CAMERA_POSITION;
-  const initialRotation = isMobileLayout() ? MOBILE_INITIAL_CAMERA_ROTATION : INITIAL_CAMERA_ROTATION;
-  const initialDistance = isMobileLayout() ? MOBILE_INITIAL_CAMERA_DISTANCE : INITIAL_CAMERA_DISTANCE;
+  const scenarioId = state.activeScenario?.slug || state.activeScenario?.id || null;
+  const cameraPose = getScenarioCameraPose(scenarioId);
+  const initialPosition = cameraPose.position;
+  const initialRotation = cameraPose.rotation;
+  const initialDistance = cameraPose.distance;
   const rotationMatrix = new THREE.Matrix4().makeRotationFromEuler(initialRotation);
   const forward = new THREE.Vector3(0, 0, -1).applyMatrix4(rotationMatrix).normalize();
   const target = initialPosition.clone().addScaledVector(forward, initialDistance);
@@ -180,8 +234,8 @@ controls.addEventListener('change', () => {
   syncCameraFollowStateFromControls();
 });
 
-const ambient = new THREE.HemisphereLight(0xffffff, 0xb9b6ae, 2.4);
-const sun = new THREE.DirectionalLight(0xffffff, 1.65);
+const ambient = new THREE.HemisphereLight(0xffffff, 0xb9b6ae, 1.0);
+const sun = new THREE.DirectionalLight(0xffffff, 2.0);
 sun.position.set(5, -3, 9);
 scene.add(ambient, sun);
 
@@ -1527,24 +1581,55 @@ function computeRobotPackageRoots(robotSpec, baseUrl) {
   return result;
 }
 
-function adjustRobotMaterialColor(color) {
+const DEFAULT_ROBOT_MATERIAL_TUNING = {
+  saturationScale: 1.12,
+  saturationOffset: 0.04,
+  contrast: 1.0,
+  brightness: 0.3,
+};
+
+const ROBOT_MATERIAL_TUNING_BY_SCENARIO = {
+  quadruped_slippery_slope: {
+    ...DEFAULT_ROBOT_MATERIAL_TUNING,
+  },
+  manipulation_peg_insertion: {
+    ...DEFAULT_ROBOT_MATERIAL_TUNING,
+    // Update these values for the manipulation robot without affecting quadruped.
+    saturationScale: 1.12,
+    saturationOffset: 0.04,
+    contrast: 1.0,
+    brightness: 0.47,
+  },
+};
+
+function getRobotMaterialTuning(scenarioId) {
+  if (!scenarioId) {
+    return DEFAULT_ROBOT_MATERIAL_TUNING;
+  }
+  return ROBOT_MATERIAL_TUNING_BY_SCENARIO[scenarioId] || DEFAULT_ROBOT_MATERIAL_TUNING;
+}
+
+function adjustRobotMaterialColor(color, tuning = DEFAULT_ROBOT_MATERIAL_TUNING) {
   if (!color) return;
   const hsl = { h: 0, s: 0, l: 0 };
-  const SATURATION_SCALE = 1.12;
-  const SATURATION_OFFSET = 0.04;
-  const CONTRAST = 1.0;
-  const BRIGHTNESS = 0.18;
+  const {
+    saturationScale = DEFAULT_ROBOT_MATERIAL_TUNING.saturationScale,
+    saturationOffset = DEFAULT_ROBOT_MATERIAL_TUNING.saturationOffset,
+    contrast = DEFAULT_ROBOT_MATERIAL_TUNING.contrast,
+    brightness = DEFAULT_ROBOT_MATERIAL_TUNING.brightness,
+  } = tuning;
 
   color.getHSL(hsl);
-  hsl.s = THREE.MathUtils.clamp(hsl.s * SATURATION_SCALE + SATURATION_OFFSET, 0, 1);
-  hsl.l = THREE.MathUtils.clamp((hsl.l - 0.5) * CONTRAST + BRIGHTNESS, 0, 1);
+  hsl.s = THREE.MathUtils.clamp(hsl.s * saturationScale + saturationOffset, 0, 1);
+  hsl.l = THREE.MathUtils.clamp((hsl.l - 0.5) * contrast + brightness, 0, 1);
   color.setHSL(hsl.h, hsl.s, hsl.l);
 }
 
-function styleRobotMeshContent(root) {
+function styleRobotMeshContent(root, scenarioId = null) {
   if (!root || typeof root.traverse !== 'function') {
     return root;
   }
+  const tuning = getRobotMaterialTuning(scenarioId);
   root.traverse((node) => {
     if (!node.isMesh) {
       return;
@@ -1567,7 +1652,7 @@ function styleRobotMeshContent(root) {
         material.metalness = 0.01;
       }
       if ('color' in material && material.color) {
-        adjustRobotMaterialColor(material.color);
+        adjustRobotMaterialColor(material.color, tuning);
       }
       if ('emissive' in material && material.emissive) {
         material.emissive.set(0x000000);
@@ -1581,7 +1666,57 @@ function styleRobotMeshContent(root) {
   return root;
 }
 
-async function loadRobotModel(robotSpec, baseUrl) {
+function createScenarioGround(scenarioId) {
+  const config = SCENARIO_GROUND_CONFIG[scenarioId];
+  if (!config) {
+    return null;
+  }
+
+  const group = new THREE.Group();
+  if (config.showPlane !== false) {
+    const thickness = config.thickness ?? 0.004;
+    const floor = new THREE.Mesh(
+      new THREE.BoxGeometry(config.size, config.size, thickness),
+      new THREE.MeshStandardMaterial({
+        color: config.planeColor ?? 0xd2d0cb,
+        roughness: 0.98,
+        metalness: 0.0,
+        transparent: (config.planeOpacity ?? 1.0) < 1,
+        opacity: config.planeOpacity ?? 1.0,
+      }),
+    );
+    floor.position.z = config.z - thickness * 0.5;
+    floor.receiveShadow = false;
+    floor.renderOrder = -2;
+    group.add(floor);
+  }
+
+  const grid = new THREE.GridHelper(
+    config.size,
+    config.gridDivisions,
+    config.gridColorCenter,
+    config.gridColor,
+  );
+  grid.rotation.x = Math.PI / 2;
+  grid.position.z = config.z + 0.0015;
+  grid.renderOrder = -1;
+  if (Array.isArray(grid.material)) {
+    grid.material.forEach((material) => {
+      material.transparent = true;
+      material.opacity = config.gridOpacity;
+      material.depthWrite = false;
+    });
+  } else {
+    grid.material.transparent = true;
+    grid.material.opacity = config.gridOpacity;
+    grid.material.depthWrite = false;
+  }
+  group.add(grid);
+
+  return group;
+}
+
+async function loadRobotModel(robotSpec, baseUrl, scenarioId = null) {
   const rawDescription =
     typeof robotSpec === 'string'
       ? robotSpec
@@ -1654,7 +1789,7 @@ async function loadRobotModel(robotSpec, baseUrl) {
       fetchText(path)
         .then((daeText) => {
           const result = colladaLoader.parse(daeText, path);
-          done(styleRobotMeshContent(result.scene || result));
+          done(styleRobotMeshContent(result.scene || result, scenarioId));
         })
         .catch((error) => {
           console.warn('Failed to load DAE mesh', path, error);
@@ -1666,7 +1801,7 @@ async function loadRobotModel(robotSpec, baseUrl) {
     if (lower.endsWith('.glb') || lower.endsWith('.gltf')) {
       gltfLoader.load(
         path,
-        (gltf) => done(styleRobotMeshContent(gltf.scene || gltf.scenes?.[0] || new THREE.Group())),
+        (gltf) => done(styleRobotMeshContent(gltf.scene || gltf.scenes?.[0] || new THREE.Group(), scenarioId)),
         undefined,
         (error) => {
           console.warn('Failed to load GLTF mesh', path, error);
@@ -1706,7 +1841,7 @@ async function loadRobotModel(robotSpec, baseUrl) {
   };
 
   robot = urdfLoader.parse(text);
-  styleRobotMeshContent(robot);
+  styleRobotMeshContent(robot, scenarioId);
   if (!sawAssetRequest && pendingResolve) {
     pendingResolve(robot);
     pendingResolve = null;
@@ -1861,6 +1996,9 @@ function setPlaybackRate(rate) {
     return;
   }
   state.playbackRate = numericRate;
+  if (state.activeScenario) {
+    state.activeScenario.playbackRate = numericRate;
+  }
   if (playbackSpeedEl && Number(playbackSpeedEl.value) !== numericRate) {
     playbackSpeedEl.value = String(numericRate);
   }
@@ -2021,15 +2159,21 @@ async function preloadScenario(scenarioSpec) {
     videoSpriteReady: false,
     currentVideoFrameIndex: -1,
     currentTime: 0,
+    playbackRate: getScenarioPlaybackRate(scenarioSpec.slug || scenarioSpec.id),
     sceneBox: new THREE.Box3(),
     rootGroup: new THREE.Group(),
   };
   scenario.rootGroup.visible = false;
   contentRoot.add(scenario.rootGroup);
 
+  const scenarioGround = createScenarioGround(scenario.slug || scenario.id);
+  if (scenarioGround) {
+    scenario.rootGroup.add(scenarioGround);
+  }
+
   if (manifest.robotDescription) {
     setStatus(`Loading ${scenario.title} robot model...`);
-    const robot = await loadRobotModel(robotSpec, manifestBaseUrl);
+    const robot = await loadRobotModel(robotSpec, manifestBaseUrl, scenario.slug || scenario.id);
     scenario.robotRoot = robot;
     scenario.rootGroup.add(robot);
     if (scenario.robotPoseTrack) {
@@ -2127,6 +2271,7 @@ function activateScenario(scenarioId) {
   state.videoOverlay = scenario.videoOverlay;
   state.videoSpriteImage = scenario.videoSpriteImage;
   state.videoSpriteReady = scenario.videoSpriteReady;
+  state.playbackRate = scenario.playbackRate ?? getScenarioPlaybackRate(scenario.slug || scenario.id);
   scenario.currentVideoFrameIndex = -1;
   state.currentVideoFrameIndex = -1;
   state.sceneBox.copy(scenario.sceneBox);
@@ -2135,6 +2280,9 @@ function activateScenario(scenarioId) {
   syncScenarioUI(scenario);
   updateScenarioUrl(scenario);
   resetTopicVisibility();
+  if (playbackSpeedEl && Number(playbackSpeedEl.value) !== state.playbackRate) {
+    playbackSpeedEl.value = String(state.playbackRate);
+  }
   updateSceneForTime(0);
   if (!setInitialRobotCamera(state.manifest?.robotPose, scenario.robotPosePayload)) {
     updateSceneBounds(true, scenario);
