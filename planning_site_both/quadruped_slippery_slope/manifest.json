@@ -1,0 +1,6908 @@
+{
+  "version": 1,
+  "title": "Quadruped - Slippery Slope",
+  "subtitle": "with_added_foot_positions_less_elites_0.mcap",
+  "durationSeconds": 5.34300494194,
+  "metadata": {
+    "sourceBag": "with_added_foot_positions_less_elites_0.mcap",
+    "playbackFps": 30.0
+  },
+  "videoOverlay": {
+    "path": "ptfe_plan.mp4",
+    "width": 1920,
+    "height": 1080,
+    "frameCount": 129,
+    "fps": 24.0,
+    "durationSec": 5.375,
+    "mode": "sprite",
+    "frameWidth": 720,
+    "frameHeight": 405,
+    "columns": 8,
+    "rows": 17,
+    "spritePath": "ptfe_plan_sprite.jpg",
+    "jpegQscale": 3
+  },
+  "robot": {
+    "description": "assets/robot.urdf",
+    "packages": {},
+    "rootLink": "odom",
+    "jointNames": [
+      "RF_hip_joint",
+      "RF_upper_leg_joint",
+      "RF_lower_leg_joint",
+      "LF_hip_joint",
+      "LF_upper_leg_joint",
+      "LF_lower_leg_joint",
+      "RR_hip_joint",
+      "RR_upper_leg_joint",
+      "RR_lower_leg_joint",
+      "LR_hip_joint",
+      "LR_upper_leg_joint",
+      "LR_lower_leg_joint"
+    ]
+  },
+  "robotDescription": "assets/robot.urdf",
+  "robotPose": {
+    "id": "robot-pose",
+    "kind": "robot",
+    "path": "data/tracks.bin",
+    "dtype": "float32",
+    "shape": [
+      267,
+      20
+    ],
+    "strideFloats": 20,
+    "timeOffsetFloats": 0,
+    "poseOffsetFloats": 1,
+    "quaternionOrder": "xyzw"
+  },
+  "robotJoints": {
+    "id": "robot-joints",
+    "path": "data/tracks.bin",
+    "dtype": "float32",
+    "shape": [
+      267,
+      20
+    ],
+    "strideFloats": 20,
+    "timeOffsetFloats": 0,
+    "jointOffsetFloats": 8,
+    "jointNames": [
+      "RF_hip_joint",
+      "RF_upper_leg_joint",
+      "RF_lower_leg_joint",
+      "LF_hip_joint",
+      "LF_upper_leg_joint",
+      "LF_lower_leg_joint",
+      "RR_hip_joint",
+      "RR_upper_leg_joint",
+      "RR_lower_leg_joint",
+      "LR_hip_joint",
+      "LR_upper_leg_joint",
+      "LR_lower_leg_joint"
+    ]
+  },
+  "topics": [
+    {
+      "id": "/tdmpc_best_viz",
+      "label": "/tdmpc_best_viz",
+      "kind": "lineSegments",
+      "payload": {
+        "path": "data/overlays.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        1.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "width": 0.007,
+      "visible": true,
+      "frames": [
+        {
+          "time": 0.008911917275000292,
+          "vertexOffset": 0,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.028161155275000738,
+          "vertexOffset": 192,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.049184755275000214,
+          "vertexOffset": 384,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.06898784627500021,
+          "vertexOffset": 576,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.0886386632750007,
+          "vertexOffset": 768,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.10947605727499976,
+          "vertexOffset": 960,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.12939319427499996,
+          "vertexOffset": 1152,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.14901157627500083,
+          "vertexOffset": 1344,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.1646562902749995,
+          "vertexOffset": 1536,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.18836066227500048,
+          "vertexOffset": 1728,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.20597436027500038,
+          "vertexOffset": 1920,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.22516139427500015,
+          "vertexOffset": 2112,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.24935529327500028,
+          "vertexOffset": 2304,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.268244916275,
+          "vertexOffset": 2496,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.28891193427500106,
+          "vertexOffset": 2688,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.30878390827500013,
+          "vertexOffset": 2880,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.32460032427499996,
+          "vertexOffset": 3072,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.3450173912750003,
+          "vertexOffset": 3264,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.3648668492749998,
+          "vertexOffset": 3456,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.38903936327499977,
+          "vertexOffset": 3648,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4050609612749998,
+          "vertexOffset": 3840,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4286489722750009,
+          "vertexOffset": 4032,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4488310352750009,
+          "vertexOffset": 4224,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4650861372749997,
+          "vertexOffset": 4416,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4853349902749997,
+          "vertexOffset": 4608,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.509516288275,
+          "vertexOffset": 4800,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5250206012750009,
+          "vertexOffset": 4992,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5499320142750008,
+          "vertexOffset": 5184,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.569124558275,
+          "vertexOffset": 5376,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5893593202750012,
+          "vertexOffset": 5568,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6059798212749996,
+          "vertexOffset": 5760,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6306772442750006,
+          "vertexOffset": 5952,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6463886602750009,
+          "vertexOffset": 6144,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6651804682750004,
+          "vertexOffset": 6336,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6851707302750007,
+          "vertexOffset": 6528,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7056264662749996,
+          "vertexOffset": 6720,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.724654176275001,
+          "vertexOffset": 6912,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7451940202750009,
+          "vertexOffset": 7104,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7653889922749997,
+          "vertexOffset": 7296,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7860362122750004,
+          "vertexOffset": 7488,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8050643472749996,
+          "vertexOffset": 7680,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8256880572750003,
+          "vertexOffset": 7872,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8451890412750007,
+          "vertexOffset": 8064,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8663873392750006,
+          "vertexOffset": 8256,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8855736252750006,
+          "vertexOffset": 8448,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9059987262749996,
+          "vertexOffset": 8640,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9252059222749995,
+          "vertexOffset": 8832,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9464890022750012,
+          "vertexOffset": 9024,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.965320917275001,
+          "vertexOffset": 9216,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9860971612749996,
+          "vertexOffset": 9408,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0079362922749997,
+          "vertexOffset": 9600,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.025140700275001,
+          "vertexOffset": 9792,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0480986422750007,
+          "vertexOffset": 9984,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0696169362750005,
+          "vertexOffset": 10176,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0849187502749995,
+          "vertexOffset": 10368,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.1052874952750003,
+          "vertexOffset": 10560,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.126131382275,
+          "vertexOffset": 10752,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.1461284702750003,
+          "vertexOffset": 10944,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.166134580275001,
+          "vertexOffset": 11136,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.185883269275001,
+          "vertexOffset": 11328,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2063685162750009,
+          "vertexOffset": 11520,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.226422806275,
+          "vertexOffset": 11712,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2459022012750012,
+          "vertexOffset": 11904,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2652905152749998,
+          "vertexOffset": 12096,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2859929452749999,
+          "vertexOffset": 12288,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.306311294275,
+          "vertexOffset": 12480,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3268107362750001,
+          "vertexOffset": 12672,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.345450323275001,
+          "vertexOffset": 12864,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3660136992750012,
+          "vertexOffset": 13056,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3859981642749997,
+          "vertexOffset": 13248,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4067808102750003,
+          "vertexOffset": 13440,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4261467472750002,
+          "vertexOffset": 13632,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.445467983275,
+          "vertexOffset": 13824,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4670214572750009,
+          "vertexOffset": 14016,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.486539320275,
+          "vertexOffset": 14208,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5067224082749995,
+          "vertexOffset": 14400,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5265898442749997,
+          "vertexOffset": 14592,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.546668622275,
+          "vertexOffset": 14784,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.567573549275,
+          "vertexOffset": 14976,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5864485352750002,
+          "vertexOffset": 15168,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6080407092750004,
+          "vertexOffset": 15360,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6265846012750007,
+          "vertexOffset": 15552,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6478893872750007,
+          "vertexOffset": 15744,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6662571812750002,
+          "vertexOffset": 15936,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.686972028275001,
+          "vertexOffset": 16128,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7068260282749996,
+          "vertexOffset": 16320,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.726940941275,
+          "vertexOffset": 16512,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7471623392750004,
+          "vertexOffset": 16704,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7680924792749995,
+          "vertexOffset": 16896,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7869636582750008,
+          "vertexOffset": 17088,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8066729422750019,
+          "vertexOffset": 17280,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8262893262750008,
+          "vertexOffset": 17472,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.846593432275002,
+          "vertexOffset": 17664,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.866545549275001,
+          "vertexOffset": 17856,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8879621482749993,
+          "vertexOffset": 18048,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9070960962749997,
+          "vertexOffset": 18240,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9269586462749988,
+          "vertexOffset": 18432,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9469801572750018,
+          "vertexOffset": 18624,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9667159172750015,
+          "vertexOffset": 18816,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9868744422750009,
+          "vertexOffset": 19008,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0069434302749993,
+          "vertexOffset": 19200,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.026703572275002,
+          "vertexOffset": 19392,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.046541192274999,
+          "vertexOffset": 19584,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0673078032750016,
+          "vertexOffset": 19776,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0869477442749993,
+          "vertexOffset": 19968,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1067549582749994,
+          "vertexOffset": 20160,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1264918402749995,
+          "vertexOffset": 20352,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.146585829274999,
+          "vertexOffset": 20544,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1667523132749995,
+          "vertexOffset": 20736,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1876567362750006,
+          "vertexOffset": 20928,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2081101552749995,
+          "vertexOffset": 21120,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.226632161275001,
+          "vertexOffset": 21312,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.247227007274999,
+          "vertexOffset": 21504,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2671940872749996,
+          "vertexOffset": 21696,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2869576652749988,
+          "vertexOffset": 21888,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3069915402750016,
+          "vertexOffset": 22080,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3269462002750014,
+          "vertexOffset": 22272,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3466745992749996,
+          "vertexOffset": 22464,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.366797111275,
+          "vertexOffset": 22656,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3872242292750006,
+          "vertexOffset": 22848,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4089197852750015,
+          "vertexOffset": 23040,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4270656652750002,
+          "vertexOffset": 23232,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4472380922749988,
+          "vertexOffset": 23424,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4675811802749994,
+          "vertexOffset": 23616,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4876763202750016,
+          "vertexOffset": 23808,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5073542312750003,
+          "vertexOffset": 24000,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.527184885275,
+          "vertexOffset": 24192,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5485321122749998,
+          "vertexOffset": 24384,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5672868792750005,
+          "vertexOffset": 24576,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5871130722750006,
+          "vertexOffset": 24768,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6077459612749987,
+          "vertexOffset": 24960,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6273831292750014,
+          "vertexOffset": 25152,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6469103662749998,
+          "vertexOffset": 25344,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.667136188275,
+          "vertexOffset": 25536,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6878947082750013,
+          "vertexOffset": 25728,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.708113405275002,
+          "vertexOffset": 25920,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.7270940512750013,
+          "vertexOffset": 26112,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.747080410275002,
+          "vertexOffset": 26304,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.767672608275001,
+          "vertexOffset": 26496,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.7874708182749988,
+          "vertexOffset": 26688,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8073428582750015,
+          "vertexOffset": 26880,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8287166152750007,
+          "vertexOffset": 27072,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.848244187275002,
+          "vertexOffset": 27264,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8695774562750014,
+          "vertexOffset": 27456,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8879715372750017,
+          "vertexOffset": 27648,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.908483802274999,
+          "vertexOffset": 27840,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.928179886275002,
+          "vertexOffset": 28032,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.948550069274999,
+          "vertexOffset": 28224,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.967095582275002,
+          "vertexOffset": 28416,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.987688538275,
+          "vertexOffset": 28608,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.007614188275001,
+          "vertexOffset": 28800,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.0280704302749992,
+          "vertexOffset": 28992,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.0478786802749998,
+          "vertexOffset": 29184,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.067948615275002,
+          "vertexOffset": 29376,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.088458628275001,
+          "vertexOffset": 29568,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1071769122749995,
+          "vertexOffset": 29760,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1282239872750015,
+          "vertexOffset": 29952,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.148408146275001,
+          "vertexOffset": 30144,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1684690732750003,
+          "vertexOffset": 30336,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1871445912749987,
+          "vertexOffset": 30528,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.208040204274999,
+          "vertexOffset": 30720,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.228217124275,
+          "vertexOffset": 30912,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.248101999274999,
+          "vertexOffset": 31104,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.2679614852750003,
+          "vertexOffset": 31296,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.297544347275002,
+          "vertexOffset": 31488,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.308314014275,
+          "vertexOffset": 31680,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3285590872750017,
+          "vertexOffset": 31872,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3484186902749986,
+          "vertexOffset": 32064,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.368422300275002,
+          "vertexOffset": 32256,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3884307342749995,
+          "vertexOffset": 32448,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4086028892750004,
+          "vertexOffset": 32640,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.428997190275,
+          "vertexOffset": 32832,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4487560392749987,
+          "vertexOffset": 33024,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.468385888275,
+          "vertexOffset": 33216,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4879450122750004,
+          "vertexOffset": 33408,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5083024672749996,
+          "vertexOffset": 33600,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5286259812750007,
+          "vertexOffset": 33792,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.548994973274999,
+          "vertexOffset": 33984,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5687482022750014,
+          "vertexOffset": 34176,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.588671457275,
+          "vertexOffset": 34368,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6092667842749986,
+          "vertexOffset": 34560,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6284329422749995,
+          "vertexOffset": 34752,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.648385379275,
+          "vertexOffset": 34944,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6685808752749995,
+          "vertexOffset": 35136,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6885081222750014,
+          "vertexOffset": 35328,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.708663001275001,
+          "vertexOffset": 35520,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.728316353275,
+          "vertexOffset": 35712,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.748381666275,
+          "vertexOffset": 35904,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.768375445275,
+          "vertexOffset": 36096,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.7884481442749998,
+          "vertexOffset": 36288,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.809070869274999,
+          "vertexOffset": 36480,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.828613983275,
+          "vertexOffset": 36672,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.848114074275001,
+          "vertexOffset": 36864,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.8687361072749997,
+          "vertexOffset": 37056,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.888722440275002,
+          "vertexOffset": 37248,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.908439118275,
+          "vertexOffset": 37440,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.9288664522750008,
+          "vertexOffset": 37632,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.9482748202750013,
+          "vertexOffset": 37824,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.968309913275002,
+          "vertexOffset": 38016,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.988925952275002,
+          "vertexOffset": 38208,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.008544443275001,
+          "vertexOffset": 38400,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.028760903275002,
+          "vertexOffset": 38592,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.048909668275,
+          "vertexOffset": 38784,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.068725813275,
+          "vertexOffset": 38976,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.085206796275001,
+          "vertexOffset": 39168,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.1085943542750005,
+          "vertexOffset": 39360,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.129357066275,
+          "vertexOffset": 39552,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.149333275275,
+          "vertexOffset": 39744,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.165201698275,
+          "vertexOffset": 39936,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.1850690712750005,
+          "vertexOffset": 40128,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.205210198274999,
+          "vertexOffset": 40320,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.229171099275002,
+          "vertexOffset": 40512,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.248659014275001,
+          "vertexOffset": 40704,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.265108807275,
+          "vertexOffset": 40896,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.285039103274999,
+          "vertexOffset": 41088,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.305029631275,
+          "vertexOffset": 41280,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.3309107182750015,
+          "vertexOffset": 41472,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.345002008275001,
+          "vertexOffset": 41664,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.365264540275001,
+          "vertexOffset": 41856,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.388970202274999,
+          "vertexOffset": 42048,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.409292355275001,
+          "vertexOffset": 42240,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.425412492274999,
+          "vertexOffset": 42432,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.450963455275,
+          "vertexOffset": 42624,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.465347233274999,
+          "vertexOffset": 42816,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.485468330274999,
+          "vertexOffset": 43008,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.505548690275001,
+          "vertexOffset": 43200,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.529120346274999,
+          "vertexOffset": 43392,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.545844744275,
+          "vertexOffset": 43584,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.565702151275,
+          "vertexOffset": 43776,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.585259500274999,
+          "vertexOffset": 43968,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.606054293274999,
+          "vertexOffset": 44160,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.626382656275,
+          "vertexOffset": 44352,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.645349325275001,
+          "vertexOffset": 44544,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.665288797275002,
+          "vertexOffset": 44736,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.685018359275,
+          "vertexOffset": 44928,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.705578443275,
+          "vertexOffset": 45120,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.724664186275001,
+          "vertexOffset": 45312,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.745237426274999,
+          "vertexOffset": 45504,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.765805092275,
+          "vertexOffset": 45696,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.785788540275002,
+          "vertexOffset": 45888,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.805030482274999,
+          "vertexOffset": 46080,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.825358329275,
+          "vertexOffset": 46272,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.845141648275002,
+          "vertexOffset": 46464,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.866304192275001,
+          "vertexOffset": 46656,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.886751342275,
+          "vertexOffset": 46848,
+          "vertexCount": 184
+        },
+        {
+          "time": 4.906008088275,
+          "vertexOffset": 47032,
+          "vertexCount": 176
+        },
+        {
+          "time": 4.9260174942749995,
+          "vertexOffset": 47208,
+          "vertexCount": 168
+        },
+        {
+          "time": 4.945531127275002,
+          "vertexOffset": 47376,
+          "vertexCount": 160
+        },
+        {
+          "time": 4.965142219275,
+          "vertexOffset": 47536,
+          "vertexCount": 152
+        },
+        {
+          "time": 4.985831250275,
+          "vertexOffset": 47688,
+          "vertexCount": 144
+        },
+        {
+          "time": 5.006575645275001,
+          "vertexOffset": 47832,
+          "vertexCount": 136
+        },
+        {
+          "time": 5.025389084275,
+          "vertexOffset": 47968,
+          "vertexCount": 128
+        },
+        {
+          "time": 5.045472091275,
+          "vertexOffset": 48096,
+          "vertexCount": 120
+        },
+        {
+          "time": 5.065400819275,
+          "vertexOffset": 48216,
+          "vertexCount": 112
+        },
+        {
+          "time": 5.086193878274999,
+          "vertexOffset": 48328,
+          "vertexCount": 104
+        },
+        {
+          "time": 5.109096976275,
+          "vertexOffset": 48432,
+          "vertexCount": 96
+        },
+        {
+          "time": 5.126904099275,
+          "vertexOffset": 48528,
+          "vertexCount": 88
+        },
+        {
+          "time": 5.145245539275001,
+          "vertexOffset": 48616,
+          "vertexCount": 80
+        },
+        {
+          "time": 5.165671725274999,
+          "vertexOffset": 48696,
+          "vertexCount": 72
+        },
+        {
+          "time": 5.1869346882750005,
+          "vertexOffset": 48768,
+          "vertexCount": 64
+        },
+        {
+          "time": 5.207391245275,
+          "vertexOffset": 48832,
+          "vertexCount": 56
+        },
+        {
+          "time": 5.226404525274999,
+          "vertexOffset": 48888,
+          "vertexCount": 48
+        },
+        {
+          "time": 5.245957094275001,
+          "vertexOffset": 48936,
+          "vertexCount": 40
+        },
+        {
+          "time": 5.269492898274999,
+          "vertexOffset": 48976,
+          "vertexCount": 32
+        },
+        {
+          "time": 5.287331224274999,
+          "vertexOffset": 49008,
+          "vertexCount": 24
+        }
+      ]
+    },
+    {
+      "id": "/tdmpc_best_no_ft_viz",
+      "label": "/tdmpc_best_no_ft_viz",
+      "kind": "lineSegments",
+      "payload": {
+        "path": "data/overlays.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.24705882,
+        0.3764706,
+        0.84313726,
+        0.85882354
+      ],
+      "opacity": 0.85882354,
+      "width": 0.007,
+      "visible": false,
+      "frames": [
+        {
+          "time": 0.008911917275000292,
+          "vertexOffset": 49032,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.028161155275000738,
+          "vertexOffset": 49224,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.049184755275000214,
+          "vertexOffset": 49416,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.06898784627500021,
+          "vertexOffset": 49608,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.0886386632750007,
+          "vertexOffset": 49800,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.10947605727499976,
+          "vertexOffset": 49992,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.12939319427499996,
+          "vertexOffset": 50184,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.14901157627500083,
+          "vertexOffset": 50376,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.1646562902749995,
+          "vertexOffset": 50568,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.18836066227500048,
+          "vertexOffset": 50760,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.20597436027500038,
+          "vertexOffset": 50952,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.22516139427500015,
+          "vertexOffset": 51144,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.24935529327500028,
+          "vertexOffset": 51336,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.268244916275,
+          "vertexOffset": 51528,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.28891193427500106,
+          "vertexOffset": 51720,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.30878390827500013,
+          "vertexOffset": 51912,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.32460032427499996,
+          "vertexOffset": 52104,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.3450173912750003,
+          "vertexOffset": 52296,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.3648668492749998,
+          "vertexOffset": 52488,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.38903936327499977,
+          "vertexOffset": 52680,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4050609612749998,
+          "vertexOffset": 52872,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4286489722750009,
+          "vertexOffset": 53064,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4488310352750009,
+          "vertexOffset": 53256,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4650861372749997,
+          "vertexOffset": 53448,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.4853349902749997,
+          "vertexOffset": 53640,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.509516288275,
+          "vertexOffset": 53832,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5250206012750009,
+          "vertexOffset": 54024,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5499320142750008,
+          "vertexOffset": 54216,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.569124558275,
+          "vertexOffset": 54408,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.5893593202750012,
+          "vertexOffset": 54600,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6059798212749996,
+          "vertexOffset": 54792,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6306772442750006,
+          "vertexOffset": 54984,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6463886602750009,
+          "vertexOffset": 55176,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6651804682750004,
+          "vertexOffset": 55368,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.6851707302750007,
+          "vertexOffset": 55560,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7056264662749996,
+          "vertexOffset": 55752,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.724654176275001,
+          "vertexOffset": 55944,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7451940202750009,
+          "vertexOffset": 56136,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7653889922749997,
+          "vertexOffset": 56328,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.7860362122750004,
+          "vertexOffset": 56520,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8050643472749996,
+          "vertexOffset": 56712,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8256880572750003,
+          "vertexOffset": 56904,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8451890412750007,
+          "vertexOffset": 57096,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8663873392750006,
+          "vertexOffset": 57288,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.8855736252750006,
+          "vertexOffset": 57480,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9059987262749996,
+          "vertexOffset": 57672,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9252059222749995,
+          "vertexOffset": 57864,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9464890022750012,
+          "vertexOffset": 58056,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.965320917275001,
+          "vertexOffset": 58248,
+          "vertexCount": 192
+        },
+        {
+          "time": 0.9860971612749996,
+          "vertexOffset": 58440,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0079362922749997,
+          "vertexOffset": 58632,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.025140700275001,
+          "vertexOffset": 58824,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0480986422750007,
+          "vertexOffset": 59016,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0696169362750005,
+          "vertexOffset": 59208,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.0849187502749995,
+          "vertexOffset": 59400,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.1052874952750003,
+          "vertexOffset": 59592,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.126131382275,
+          "vertexOffset": 59784,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.1461284702750003,
+          "vertexOffset": 59976,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.166134580275001,
+          "vertexOffset": 60168,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.185883269275001,
+          "vertexOffset": 60360,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2063685162750009,
+          "vertexOffset": 60552,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.226422806275,
+          "vertexOffset": 60744,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2459022012750012,
+          "vertexOffset": 60936,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2652905152749998,
+          "vertexOffset": 61128,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.2859929452749999,
+          "vertexOffset": 61320,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.306311294275,
+          "vertexOffset": 61512,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3268107362750001,
+          "vertexOffset": 61704,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.345450323275001,
+          "vertexOffset": 61896,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3660136992750012,
+          "vertexOffset": 62088,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.3859981642749997,
+          "vertexOffset": 62280,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4067808102750003,
+          "vertexOffset": 62472,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4261467472750002,
+          "vertexOffset": 62664,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.445467983275,
+          "vertexOffset": 62856,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.4670214572750009,
+          "vertexOffset": 63048,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.486539320275,
+          "vertexOffset": 63240,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5067224082749995,
+          "vertexOffset": 63432,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5265898442749997,
+          "vertexOffset": 63624,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.546668622275,
+          "vertexOffset": 63816,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.567573549275,
+          "vertexOffset": 64008,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.5864485352750002,
+          "vertexOffset": 64200,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6080407092750004,
+          "vertexOffset": 64392,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6265846012750007,
+          "vertexOffset": 64584,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6478893872750007,
+          "vertexOffset": 64776,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.6662571812750002,
+          "vertexOffset": 64968,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.686972028275001,
+          "vertexOffset": 65160,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7068260282749996,
+          "vertexOffset": 65352,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.726940941275,
+          "vertexOffset": 65544,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7471623392750004,
+          "vertexOffset": 65736,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7680924792749995,
+          "vertexOffset": 65928,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.7869636582750008,
+          "vertexOffset": 66120,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8066729422750019,
+          "vertexOffset": 66312,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8262893262750008,
+          "vertexOffset": 66504,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.846593432275002,
+          "vertexOffset": 66696,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.866545549275001,
+          "vertexOffset": 66888,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.8879621482749993,
+          "vertexOffset": 67080,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9070960962749997,
+          "vertexOffset": 67272,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9269586462749988,
+          "vertexOffset": 67464,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9469801572750018,
+          "vertexOffset": 67656,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9667159172750015,
+          "vertexOffset": 67848,
+          "vertexCount": 192
+        },
+        {
+          "time": 1.9868744422750009,
+          "vertexOffset": 68040,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0069434302749993,
+          "vertexOffset": 68232,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.026703572275002,
+          "vertexOffset": 68424,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.046541192274999,
+          "vertexOffset": 68616,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0673078032750016,
+          "vertexOffset": 68808,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.0869477442749993,
+          "vertexOffset": 69000,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1067549582749994,
+          "vertexOffset": 69192,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1264918402749995,
+          "vertexOffset": 69384,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.146585829274999,
+          "vertexOffset": 69576,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1667523132749995,
+          "vertexOffset": 69768,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.1876567362750006,
+          "vertexOffset": 69960,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2081101552749995,
+          "vertexOffset": 70152,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.226632161275001,
+          "vertexOffset": 70344,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.247227007274999,
+          "vertexOffset": 70536,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2671940872749996,
+          "vertexOffset": 70728,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.2869576652749988,
+          "vertexOffset": 70920,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3069915402750016,
+          "vertexOffset": 71112,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3269462002750014,
+          "vertexOffset": 71304,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3466745992749996,
+          "vertexOffset": 71496,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.366797111275,
+          "vertexOffset": 71688,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.3872242292750006,
+          "vertexOffset": 71880,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4089197852750015,
+          "vertexOffset": 72072,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4270656652750002,
+          "vertexOffset": 72264,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4472380922749988,
+          "vertexOffset": 72456,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4675811802749994,
+          "vertexOffset": 72648,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.4876763202750016,
+          "vertexOffset": 72840,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5073542312750003,
+          "vertexOffset": 73032,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.527184885275,
+          "vertexOffset": 73224,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5485321122749998,
+          "vertexOffset": 73416,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5672868792750005,
+          "vertexOffset": 73608,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.5871130722750006,
+          "vertexOffset": 73800,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6077459612749987,
+          "vertexOffset": 73992,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6273831292750014,
+          "vertexOffset": 74184,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6469103662749998,
+          "vertexOffset": 74376,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.667136188275,
+          "vertexOffset": 74568,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.6878947082750013,
+          "vertexOffset": 74760,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.708113405275002,
+          "vertexOffset": 74952,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.7270940512750013,
+          "vertexOffset": 75144,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.747080410275002,
+          "vertexOffset": 75336,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.767672608275001,
+          "vertexOffset": 75528,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.7874708182749988,
+          "vertexOffset": 75720,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8073428582750015,
+          "vertexOffset": 75912,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8287166152750007,
+          "vertexOffset": 76104,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.848244187275002,
+          "vertexOffset": 76296,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8695774562750014,
+          "vertexOffset": 76488,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.8879715372750017,
+          "vertexOffset": 76680,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.908483802274999,
+          "vertexOffset": 76872,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.928179886275002,
+          "vertexOffset": 77064,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.948550069274999,
+          "vertexOffset": 77256,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.967095582275002,
+          "vertexOffset": 77448,
+          "vertexCount": 192
+        },
+        {
+          "time": 2.987688538275,
+          "vertexOffset": 77640,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.007614188275001,
+          "vertexOffset": 77832,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.0280704302749992,
+          "vertexOffset": 78024,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.0478786802749998,
+          "vertexOffset": 78216,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.067948615275002,
+          "vertexOffset": 78408,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.088458628275001,
+          "vertexOffset": 78600,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1071769122749995,
+          "vertexOffset": 78792,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1282239872750015,
+          "vertexOffset": 78984,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.148408146275001,
+          "vertexOffset": 79176,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1684690732750003,
+          "vertexOffset": 79368,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.1871445912749987,
+          "vertexOffset": 79560,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.208040204274999,
+          "vertexOffset": 79752,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.228217124275,
+          "vertexOffset": 79944,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.248101999274999,
+          "vertexOffset": 80136,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.2679614852750003,
+          "vertexOffset": 80328,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.297544347275002,
+          "vertexOffset": 80520,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.308314014275,
+          "vertexOffset": 80712,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3285590872750017,
+          "vertexOffset": 80904,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3484186902749986,
+          "vertexOffset": 81096,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.368422300275002,
+          "vertexOffset": 81288,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.3884307342749995,
+          "vertexOffset": 81480,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4086028892750004,
+          "vertexOffset": 81672,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.428997190275,
+          "vertexOffset": 81864,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4487560392749987,
+          "vertexOffset": 82056,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.468385888275,
+          "vertexOffset": 82248,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.4879450122750004,
+          "vertexOffset": 82440,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5083024672749996,
+          "vertexOffset": 82632,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5286259812750007,
+          "vertexOffset": 82824,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.548994973274999,
+          "vertexOffset": 83016,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.5687482022750014,
+          "vertexOffset": 83208,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.588671457275,
+          "vertexOffset": 83400,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6092667842749986,
+          "vertexOffset": 83592,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6284329422749995,
+          "vertexOffset": 83784,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.648385379275,
+          "vertexOffset": 83976,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6685808752749995,
+          "vertexOffset": 84168,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.6885081222750014,
+          "vertexOffset": 84360,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.708663001275001,
+          "vertexOffset": 84552,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.728316353275,
+          "vertexOffset": 84744,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.748381666275,
+          "vertexOffset": 84936,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.768375445275,
+          "vertexOffset": 85128,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.7884481442749998,
+          "vertexOffset": 85320,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.809070869274999,
+          "vertexOffset": 85512,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.828613983275,
+          "vertexOffset": 85704,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.848114074275001,
+          "vertexOffset": 85896,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.8687361072749997,
+          "vertexOffset": 86088,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.888722440275002,
+          "vertexOffset": 86280,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.908439118275,
+          "vertexOffset": 86472,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.9288664522750008,
+          "vertexOffset": 86664,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.9482748202750013,
+          "vertexOffset": 86856,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.968309913275002,
+          "vertexOffset": 87048,
+          "vertexCount": 192
+        },
+        {
+          "time": 3.988925952275002,
+          "vertexOffset": 87240,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.008544443275001,
+          "vertexOffset": 87432,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.028760903275002,
+          "vertexOffset": 87624,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.048909668275,
+          "vertexOffset": 87816,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.068725813275,
+          "vertexOffset": 88008,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.085206796275001,
+          "vertexOffset": 88200,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.1085943542750005,
+          "vertexOffset": 88392,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.129357066275,
+          "vertexOffset": 88584,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.149333275275,
+          "vertexOffset": 88776,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.165201698275,
+          "vertexOffset": 88968,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.1850690712750005,
+          "vertexOffset": 89160,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.205210198274999,
+          "vertexOffset": 89352,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.229171099275002,
+          "vertexOffset": 89544,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.248659014275001,
+          "vertexOffset": 89736,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.265108807275,
+          "vertexOffset": 89928,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.285039103274999,
+          "vertexOffset": 90120,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.305029631275,
+          "vertexOffset": 90312,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.3309107182750015,
+          "vertexOffset": 90504,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.345002008275001,
+          "vertexOffset": 90696,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.365264540275001,
+          "vertexOffset": 90888,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.388970202274999,
+          "vertexOffset": 91080,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.409292355275001,
+          "vertexOffset": 91272,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.425412492274999,
+          "vertexOffset": 91464,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.450963455275,
+          "vertexOffset": 91656,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.465347233274999,
+          "vertexOffset": 91848,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.485468330274999,
+          "vertexOffset": 92040,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.505548690275001,
+          "vertexOffset": 92232,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.529120346274999,
+          "vertexOffset": 92424,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.545844744275,
+          "vertexOffset": 92616,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.565702151275,
+          "vertexOffset": 92808,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.585259500274999,
+          "vertexOffset": 93000,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.606054293274999,
+          "vertexOffset": 93192,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.626382656275,
+          "vertexOffset": 93384,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.645349325275001,
+          "vertexOffset": 93576,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.665288797275002,
+          "vertexOffset": 93768,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.685018359275,
+          "vertexOffset": 93960,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.705578443275,
+          "vertexOffset": 94152,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.724664186275001,
+          "vertexOffset": 94344,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.745237426274999,
+          "vertexOffset": 94536,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.765805092275,
+          "vertexOffset": 94728,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.785788540275002,
+          "vertexOffset": 94920,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.805030482274999,
+          "vertexOffset": 95112,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.825358329275,
+          "vertexOffset": 95304,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.845141648275002,
+          "vertexOffset": 95496,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.866304192275001,
+          "vertexOffset": 95688,
+          "vertexCount": 192
+        },
+        {
+          "time": 4.886751342275,
+          "vertexOffset": 95880,
+          "vertexCount": 184
+        },
+        {
+          "time": 4.906008088275,
+          "vertexOffset": 96064,
+          "vertexCount": 176
+        },
+        {
+          "time": 4.9260174942749995,
+          "vertexOffset": 96240,
+          "vertexCount": 168
+        },
+        {
+          "time": 4.945531127275002,
+          "vertexOffset": 96408,
+          "vertexCount": 160
+        },
+        {
+          "time": 4.965142219275,
+          "vertexOffset": 96568,
+          "vertexCount": 152
+        },
+        {
+          "time": 4.985831250275,
+          "vertexOffset": 96720,
+          "vertexCount": 144
+        },
+        {
+          "time": 5.006575645275001,
+          "vertexOffset": 96864,
+          "vertexCount": 136
+        },
+        {
+          "time": 5.025389084275,
+          "vertexOffset": 97000,
+          "vertexCount": 128
+        },
+        {
+          "time": 5.045472091275,
+          "vertexOffset": 97128,
+          "vertexCount": 120
+        },
+        {
+          "time": 5.065400819275,
+          "vertexOffset": 97248,
+          "vertexCount": 112
+        },
+        {
+          "time": 5.086193878274999,
+          "vertexOffset": 97360,
+          "vertexCount": 104
+        },
+        {
+          "time": 5.109096976275,
+          "vertexOffset": 97464,
+          "vertexCount": 96
+        },
+        {
+          "time": 5.126904099275,
+          "vertexOffset": 97560,
+          "vertexCount": 88
+        },
+        {
+          "time": 5.145245539275001,
+          "vertexOffset": 97648,
+          "vertexCount": 80
+        },
+        {
+          "time": 5.165671725274999,
+          "vertexOffset": 97728,
+          "vertexCount": 72
+        },
+        {
+          "time": 5.1869346882750005,
+          "vertexOffset": 97800,
+          "vertexCount": 64
+        },
+        {
+          "time": 5.207391245275,
+          "vertexOffset": 97864,
+          "vertexCount": 56
+        },
+        {
+          "time": 5.226404525274999,
+          "vertexOffset": 97920,
+          "vertexCount": 48
+        },
+        {
+          "time": 5.245957094275001,
+          "vertexOffset": 97968,
+          "vertexCount": 40
+        },
+        {
+          "time": 5.269492898274999,
+          "vertexOffset": 98008,
+          "vertexCount": 32
+        },
+        {
+          "time": 5.287331224274999,
+          "vertexOffset": 98040,
+          "vertexCount": 24
+        }
+      ]
+    },
+    {
+      "id": "/tdmpc_elites_viz/elite_2",
+      "label": "/tdmpc_elites_viz/elite_2",
+      "kind": "lineSegments",
+      "payload": {
+        "path": "data/overlays.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "width": 0.002,
+      "visible": false,
+      "frames": [
+        {
+          "time": 0.008911917275000292,
+          "vertexOffset": 98064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.028161155275000738,
+          "vertexOffset": 102672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.049184755275000214,
+          "vertexOffset": 107280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.06898784627500021,
+          "vertexOffset": 111888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.0886386632750007,
+          "vertexOffset": 116496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.10947605727499976,
+          "vertexOffset": 121104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.12939319427499996,
+          "vertexOffset": 125712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.14901157627500083,
+          "vertexOffset": 130320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.1646562902749995,
+          "vertexOffset": 134928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.18836066227500048,
+          "vertexOffset": 139536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.20597436027500038,
+          "vertexOffset": 144144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.22516139427500015,
+          "vertexOffset": 148752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.24935529327500028,
+          "vertexOffset": 153360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.268244916275,
+          "vertexOffset": 157968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.28891193427500106,
+          "vertexOffset": 162576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.30878390827500013,
+          "vertexOffset": 167184,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.32460032427499996,
+          "vertexOffset": 171792,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3450173912750003,
+          "vertexOffset": 176400,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3648668492749998,
+          "vertexOffset": 181008,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.38903936327499977,
+          "vertexOffset": 185616,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4050609612749998,
+          "vertexOffset": 190224,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4286489722750009,
+          "vertexOffset": 194832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4488310352750009,
+          "vertexOffset": 199440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4650861372749997,
+          "vertexOffset": 204048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4853349902749997,
+          "vertexOffset": 208656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.509516288275,
+          "vertexOffset": 213264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5250206012750009,
+          "vertexOffset": 217872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5499320142750008,
+          "vertexOffset": 222480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.569124558275,
+          "vertexOffset": 227088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5893593202750012,
+          "vertexOffset": 231696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6059798212749996,
+          "vertexOffset": 236304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6306772442750006,
+          "vertexOffset": 240912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6463886602750009,
+          "vertexOffset": 245520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6651804682750004,
+          "vertexOffset": 250128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6851707302750007,
+          "vertexOffset": 254736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7056264662749996,
+          "vertexOffset": 259344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.724654176275001,
+          "vertexOffset": 263952,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7451940202750009,
+          "vertexOffset": 268560,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7653889922749997,
+          "vertexOffset": 273168,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7860362122750004,
+          "vertexOffset": 277776,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8050643472749996,
+          "vertexOffset": 282384,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8256880572750003,
+          "vertexOffset": 286992,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8451890412750007,
+          "vertexOffset": 291600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8663873392750006,
+          "vertexOffset": 296208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8855736252750006,
+          "vertexOffset": 300816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9059987262749996,
+          "vertexOffset": 305424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9252059222749995,
+          "vertexOffset": 310032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9464890022750012,
+          "vertexOffset": 314640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.965320917275001,
+          "vertexOffset": 319248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9860971612749996,
+          "vertexOffset": 323856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0079362922749997,
+          "vertexOffset": 328464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.025140700275001,
+          "vertexOffset": 333072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0480986422750007,
+          "vertexOffset": 337680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0696169362750005,
+          "vertexOffset": 342288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0849187502749995,
+          "vertexOffset": 346896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1052874952750003,
+          "vertexOffset": 351504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.126131382275,
+          "vertexOffset": 356112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1461284702750003,
+          "vertexOffset": 360720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.166134580275001,
+          "vertexOffset": 365328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.185883269275001,
+          "vertexOffset": 369936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2063685162750009,
+          "vertexOffset": 374544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.226422806275,
+          "vertexOffset": 379152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2459022012750012,
+          "vertexOffset": 383760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2652905152749998,
+          "vertexOffset": 388368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2859929452749999,
+          "vertexOffset": 392976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.306311294275,
+          "vertexOffset": 397584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3268107362750001,
+          "vertexOffset": 402192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.345450323275001,
+          "vertexOffset": 406800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3660136992750012,
+          "vertexOffset": 411408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3859981642749997,
+          "vertexOffset": 416016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4067808102750003,
+          "vertexOffset": 420624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4261467472750002,
+          "vertexOffset": 425232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.445467983275,
+          "vertexOffset": 429840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4670214572750009,
+          "vertexOffset": 434448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.486539320275,
+          "vertexOffset": 439056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5067224082749995,
+          "vertexOffset": 443664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5265898442749997,
+          "vertexOffset": 448272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.546668622275,
+          "vertexOffset": 452880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.567573549275,
+          "vertexOffset": 457488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5864485352750002,
+          "vertexOffset": 462096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6080407092750004,
+          "vertexOffset": 466704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6265846012750007,
+          "vertexOffset": 471312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6478893872750007,
+          "vertexOffset": 475920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6662571812750002,
+          "vertexOffset": 480528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.686972028275001,
+          "vertexOffset": 485136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7068260282749996,
+          "vertexOffset": 489744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.726940941275,
+          "vertexOffset": 494352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7471623392750004,
+          "vertexOffset": 498960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7680924792749995,
+          "vertexOffset": 503568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7869636582750008,
+          "vertexOffset": 508176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8066729422750019,
+          "vertexOffset": 512784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8262893262750008,
+          "vertexOffset": 517392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.846593432275002,
+          "vertexOffset": 522000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.866545549275001,
+          "vertexOffset": 526608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8879621482749993,
+          "vertexOffset": 531216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9070960962749997,
+          "vertexOffset": 535824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9269586462749988,
+          "vertexOffset": 540432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9469801572750018,
+          "vertexOffset": 545040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9667159172750015,
+          "vertexOffset": 549648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9868744422750009,
+          "vertexOffset": 554256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0069434302749993,
+          "vertexOffset": 558864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.026703572275002,
+          "vertexOffset": 563472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.046541192274999,
+          "vertexOffset": 568080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0673078032750016,
+          "vertexOffset": 572688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0869477442749993,
+          "vertexOffset": 577296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1067549582749994,
+          "vertexOffset": 581904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1264918402749995,
+          "vertexOffset": 586512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.146585829274999,
+          "vertexOffset": 591120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1667523132749995,
+          "vertexOffset": 595728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1876567362750006,
+          "vertexOffset": 600336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2081101552749995,
+          "vertexOffset": 604944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.226632161275001,
+          "vertexOffset": 609552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.247227007274999,
+          "vertexOffset": 614160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2671940872749996,
+          "vertexOffset": 618768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2869576652749988,
+          "vertexOffset": 623376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3069915402750016,
+          "vertexOffset": 627984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3269462002750014,
+          "vertexOffset": 632592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3466745992749996,
+          "vertexOffset": 637200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.366797111275,
+          "vertexOffset": 641808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3872242292750006,
+          "vertexOffset": 646416,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4089197852750015,
+          "vertexOffset": 651024,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4270656652750002,
+          "vertexOffset": 655632,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4472380922749988,
+          "vertexOffset": 660240,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4675811802749994,
+          "vertexOffset": 664848,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4876763202750016,
+          "vertexOffset": 669456,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5073542312750003,
+          "vertexOffset": 674064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.527184885275,
+          "vertexOffset": 678672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5485321122749998,
+          "vertexOffset": 683280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5672868792750005,
+          "vertexOffset": 687888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5871130722750006,
+          "vertexOffset": 692496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6077459612749987,
+          "vertexOffset": 697104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6273831292750014,
+          "vertexOffset": 701712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6469103662749998,
+          "vertexOffset": 706320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.667136188275,
+          "vertexOffset": 710928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6878947082750013,
+          "vertexOffset": 715536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.708113405275002,
+          "vertexOffset": 720144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7270940512750013,
+          "vertexOffset": 724752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.747080410275002,
+          "vertexOffset": 729360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.767672608275001,
+          "vertexOffset": 733968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7874708182749988,
+          "vertexOffset": 738576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8073428582750015,
+          "vertexOffset": 743184,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8287166152750007,
+          "vertexOffset": 747792,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.848244187275002,
+          "vertexOffset": 752400,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8695774562750014,
+          "vertexOffset": 757008,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8879715372750017,
+          "vertexOffset": 761616,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.908483802274999,
+          "vertexOffset": 766224,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.928179886275002,
+          "vertexOffset": 770832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.948550069274999,
+          "vertexOffset": 775440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.967095582275002,
+          "vertexOffset": 780048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.987688538275,
+          "vertexOffset": 784656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.007614188275001,
+          "vertexOffset": 789264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0280704302749992,
+          "vertexOffset": 793872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0478786802749998,
+          "vertexOffset": 798480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.067948615275002,
+          "vertexOffset": 803088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.088458628275001,
+          "vertexOffset": 807696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1071769122749995,
+          "vertexOffset": 812304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1282239872750015,
+          "vertexOffset": 816912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.148408146275001,
+          "vertexOffset": 821520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1684690732750003,
+          "vertexOffset": 826128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1871445912749987,
+          "vertexOffset": 830736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.208040204274999,
+          "vertexOffset": 835344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.228217124275,
+          "vertexOffset": 839952,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.248101999274999,
+          "vertexOffset": 844560,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.2679614852750003,
+          "vertexOffset": 849168,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.297544347275002,
+          "vertexOffset": 853776,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.308314014275,
+          "vertexOffset": 858384,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3285590872750017,
+          "vertexOffset": 862992,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3484186902749986,
+          "vertexOffset": 867600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.368422300275002,
+          "vertexOffset": 872208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3884307342749995,
+          "vertexOffset": 876816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4086028892750004,
+          "vertexOffset": 881424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.428997190275,
+          "vertexOffset": 886032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4487560392749987,
+          "vertexOffset": 890640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.468385888275,
+          "vertexOffset": 895248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4879450122750004,
+          "vertexOffset": 899856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5083024672749996,
+          "vertexOffset": 904464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5286259812750007,
+          "vertexOffset": 909072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.548994973274999,
+          "vertexOffset": 913680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5687482022750014,
+          "vertexOffset": 918288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.588671457275,
+          "vertexOffset": 922896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6092667842749986,
+          "vertexOffset": 927504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6284329422749995,
+          "vertexOffset": 932112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.648385379275,
+          "vertexOffset": 936720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6685808752749995,
+          "vertexOffset": 941328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6885081222750014,
+          "vertexOffset": 945936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.708663001275001,
+          "vertexOffset": 950544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.728316353275,
+          "vertexOffset": 955152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.748381666275,
+          "vertexOffset": 959760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.768375445275,
+          "vertexOffset": 964368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.7884481442749998,
+          "vertexOffset": 968976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.809070869274999,
+          "vertexOffset": 973584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.828613983275,
+          "vertexOffset": 978192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.848114074275001,
+          "vertexOffset": 982800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.8687361072749997,
+          "vertexOffset": 987408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.888722440275002,
+          "vertexOffset": 992016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.908439118275,
+          "vertexOffset": 996624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9288664522750008,
+          "vertexOffset": 1001232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9482748202750013,
+          "vertexOffset": 1005840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.968309913275002,
+          "vertexOffset": 1010448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.988925952275002,
+          "vertexOffset": 1015056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.008544443275001,
+          "vertexOffset": 1019664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.028760903275002,
+          "vertexOffset": 1024272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.048909668275,
+          "vertexOffset": 1028880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.068725813275,
+          "vertexOffset": 1033488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.085206796275001,
+          "vertexOffset": 1038096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1085943542750005,
+          "vertexOffset": 1042704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.129357066275,
+          "vertexOffset": 1047312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.149333275275,
+          "vertexOffset": 1051920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.165201698275,
+          "vertexOffset": 1056528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1850690712750005,
+          "vertexOffset": 1061136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.205210198274999,
+          "vertexOffset": 1065744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.229171099275002,
+          "vertexOffset": 1070352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.248659014275001,
+          "vertexOffset": 1074960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.265108807275,
+          "vertexOffset": 1079568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.285039103274999,
+          "vertexOffset": 1084176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.305029631275,
+          "vertexOffset": 1088784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.3309107182750015,
+          "vertexOffset": 1093392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.345002008275001,
+          "vertexOffset": 1098000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.365264540275001,
+          "vertexOffset": 1102608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.388970202274999,
+          "vertexOffset": 1107216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.409292355275001,
+          "vertexOffset": 1111824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.425412492274999,
+          "vertexOffset": 1116432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.450963455275,
+          "vertexOffset": 1121040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.465347233274999,
+          "vertexOffset": 1125648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.485468330274999,
+          "vertexOffset": 1130256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.505548690275001,
+          "vertexOffset": 1134864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.529120346274999,
+          "vertexOffset": 1139472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.545844744275,
+          "vertexOffset": 1144080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.565702151275,
+          "vertexOffset": 1148688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.585259500274999,
+          "vertexOffset": 1153296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.606054293274999,
+          "vertexOffset": 1157904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.626382656275,
+          "vertexOffset": 1162512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.645349325275001,
+          "vertexOffset": 1167120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.665288797275002,
+          "vertexOffset": 1171728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.685018359275,
+          "vertexOffset": 1176336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.705578443275,
+          "vertexOffset": 1180944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.724664186275001,
+          "vertexOffset": 1185552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.745237426274999,
+          "vertexOffset": 1190160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.765805092275,
+          "vertexOffset": 1194768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.785788540275002,
+          "vertexOffset": 1199376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.805030482274999,
+          "vertexOffset": 1203984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.825358329275,
+          "vertexOffset": 1208592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.845141648275002,
+          "vertexOffset": 1213200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.866304192275001,
+          "vertexOffset": 1217808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.886751342275,
+          "vertexOffset": 1222416,
+          "vertexCount": 4416
+        },
+        {
+          "time": 4.906008088275,
+          "vertexOffset": 1226832,
+          "vertexCount": 4224
+        },
+        {
+          "time": 4.9260174942749995,
+          "vertexOffset": 1231056,
+          "vertexCount": 4032
+        },
+        {
+          "time": 4.945531127275002,
+          "vertexOffset": 1235088,
+          "vertexCount": 3840
+        },
+        {
+          "time": 4.965142219275,
+          "vertexOffset": 1238928,
+          "vertexCount": 3648
+        },
+        {
+          "time": 4.985831250275,
+          "vertexOffset": 1242576,
+          "vertexCount": 3456
+        },
+        {
+          "time": 5.006575645275001,
+          "vertexOffset": 1246032,
+          "vertexCount": 3264
+        },
+        {
+          "time": 5.025389084275,
+          "vertexOffset": 1249296,
+          "vertexCount": 3072
+        },
+        {
+          "time": 5.045472091275,
+          "vertexOffset": 1252368,
+          "vertexCount": 2880
+        },
+        {
+          "time": 5.065400819275,
+          "vertexOffset": 1255248,
+          "vertexCount": 2688
+        },
+        {
+          "time": 5.086193878274999,
+          "vertexOffset": 1257936,
+          "vertexCount": 2496
+        },
+        {
+          "time": 5.109096976275,
+          "vertexOffset": 1260432,
+          "vertexCount": 2304
+        },
+        {
+          "time": 5.126904099275,
+          "vertexOffset": 1262736,
+          "vertexCount": 2112
+        },
+        {
+          "time": 5.145245539275001,
+          "vertexOffset": 1264848,
+          "vertexCount": 1920
+        },
+        {
+          "time": 5.165671725274999,
+          "vertexOffset": 1266768,
+          "vertexCount": 1728
+        },
+        {
+          "time": 5.1869346882750005,
+          "vertexOffset": 1268496,
+          "vertexCount": 1536
+        },
+        {
+          "time": 5.207391245275,
+          "vertexOffset": 1270032,
+          "vertexCount": 1344
+        },
+        {
+          "time": 5.226404525274999,
+          "vertexOffset": 1271376,
+          "vertexCount": 1152
+        },
+        {
+          "time": 5.245957094275001,
+          "vertexOffset": 1272528,
+          "vertexCount": 960
+        },
+        {
+          "time": 5.269492898274999,
+          "vertexOffset": 1273488,
+          "vertexCount": 768
+        },
+        {
+          "time": 5.287331224274999,
+          "vertexOffset": 1274256,
+          "vertexCount": 576
+        }
+      ]
+    },
+    {
+      "id": "/tdmpc_elites_viz/elite_5",
+      "label": "/tdmpc_elites_viz/elite_5",
+      "kind": "lineSegments",
+      "payload": {
+        "path": "data/overlays.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "width": 0.002,
+      "visible": true,
+      "frames": [
+        {
+          "time": 0.008911917275000292,
+          "vertexOffset": 1274832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.028161155275000738,
+          "vertexOffset": 1279440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.049184755275000214,
+          "vertexOffset": 1284048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.06898784627500021,
+          "vertexOffset": 1288656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.0886386632750007,
+          "vertexOffset": 1293264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.10947605727499976,
+          "vertexOffset": 1297872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.12939319427499996,
+          "vertexOffset": 1302480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.14901157627500083,
+          "vertexOffset": 1307088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.1646562902749995,
+          "vertexOffset": 1311696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.18836066227500048,
+          "vertexOffset": 1316304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.20597436027500038,
+          "vertexOffset": 1320912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.22516139427500015,
+          "vertexOffset": 1325520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.24935529327500028,
+          "vertexOffset": 1330128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.268244916275,
+          "vertexOffset": 1334736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.28891193427500106,
+          "vertexOffset": 1339344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.30878390827500013,
+          "vertexOffset": 1343952,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.32460032427499996,
+          "vertexOffset": 1348560,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3450173912750003,
+          "vertexOffset": 1353168,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3648668492749998,
+          "vertexOffset": 1357776,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.38903936327499977,
+          "vertexOffset": 1362384,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4050609612749998,
+          "vertexOffset": 1366992,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4286489722750009,
+          "vertexOffset": 1371600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4488310352750009,
+          "vertexOffset": 1376208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4650861372749997,
+          "vertexOffset": 1380816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4853349902749997,
+          "vertexOffset": 1385424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.509516288275,
+          "vertexOffset": 1390032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5250206012750009,
+          "vertexOffset": 1394640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5499320142750008,
+          "vertexOffset": 1399248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.569124558275,
+          "vertexOffset": 1403856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5893593202750012,
+          "vertexOffset": 1408464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6059798212749996,
+          "vertexOffset": 1413072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6306772442750006,
+          "vertexOffset": 1417680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6463886602750009,
+          "vertexOffset": 1422288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6651804682750004,
+          "vertexOffset": 1426896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6851707302750007,
+          "vertexOffset": 1431504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7056264662749996,
+          "vertexOffset": 1436112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.724654176275001,
+          "vertexOffset": 1440720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7451940202750009,
+          "vertexOffset": 1445328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7653889922749997,
+          "vertexOffset": 1449936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7860362122750004,
+          "vertexOffset": 1454544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8050643472749996,
+          "vertexOffset": 1459152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8256880572750003,
+          "vertexOffset": 1463760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8451890412750007,
+          "vertexOffset": 1468368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8663873392750006,
+          "vertexOffset": 1472976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8855736252750006,
+          "vertexOffset": 1477584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9059987262749996,
+          "vertexOffset": 1482192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9252059222749995,
+          "vertexOffset": 1486800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9464890022750012,
+          "vertexOffset": 1491408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.965320917275001,
+          "vertexOffset": 1496016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9860971612749996,
+          "vertexOffset": 1500624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0079362922749997,
+          "vertexOffset": 1505232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.025140700275001,
+          "vertexOffset": 1509840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0480986422750007,
+          "vertexOffset": 1514448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0696169362750005,
+          "vertexOffset": 1519056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0849187502749995,
+          "vertexOffset": 1523664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1052874952750003,
+          "vertexOffset": 1528272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.126131382275,
+          "vertexOffset": 1532880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1461284702750003,
+          "vertexOffset": 1537488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.166134580275001,
+          "vertexOffset": 1542096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.185883269275001,
+          "vertexOffset": 1546704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2063685162750009,
+          "vertexOffset": 1551312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.226422806275,
+          "vertexOffset": 1555920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2459022012750012,
+          "vertexOffset": 1560528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2652905152749998,
+          "vertexOffset": 1565136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2859929452749999,
+          "vertexOffset": 1569744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.306311294275,
+          "vertexOffset": 1574352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3268107362750001,
+          "vertexOffset": 1578960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.345450323275001,
+          "vertexOffset": 1583568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3660136992750012,
+          "vertexOffset": 1588176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3859981642749997,
+          "vertexOffset": 1592784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4067808102750003,
+          "vertexOffset": 1597392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4261467472750002,
+          "vertexOffset": 1602000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.445467983275,
+          "vertexOffset": 1606608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4670214572750009,
+          "vertexOffset": 1611216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.486539320275,
+          "vertexOffset": 1615824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5067224082749995,
+          "vertexOffset": 1620432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5265898442749997,
+          "vertexOffset": 1625040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.546668622275,
+          "vertexOffset": 1629648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.567573549275,
+          "vertexOffset": 1634256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5864485352750002,
+          "vertexOffset": 1638864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6080407092750004,
+          "vertexOffset": 1643472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6265846012750007,
+          "vertexOffset": 1648080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6478893872750007,
+          "vertexOffset": 1652688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6662571812750002,
+          "vertexOffset": 1657296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.686972028275001,
+          "vertexOffset": 1661904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7068260282749996,
+          "vertexOffset": 1666512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.726940941275,
+          "vertexOffset": 1671120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7471623392750004,
+          "vertexOffset": 1675728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7680924792749995,
+          "vertexOffset": 1680336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7869636582750008,
+          "vertexOffset": 1684944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8066729422750019,
+          "vertexOffset": 1689552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8262893262750008,
+          "vertexOffset": 1694160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.846593432275002,
+          "vertexOffset": 1698768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.866545549275001,
+          "vertexOffset": 1703376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8879621482749993,
+          "vertexOffset": 1707984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9070960962749997,
+          "vertexOffset": 1712592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9269586462749988,
+          "vertexOffset": 1717200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9469801572750018,
+          "vertexOffset": 1721808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9667159172750015,
+          "vertexOffset": 1726416,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9868744422750009,
+          "vertexOffset": 1731024,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0069434302749993,
+          "vertexOffset": 1735632,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.026703572275002,
+          "vertexOffset": 1740240,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.046541192274999,
+          "vertexOffset": 1744848,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0673078032750016,
+          "vertexOffset": 1749456,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0869477442749993,
+          "vertexOffset": 1754064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1067549582749994,
+          "vertexOffset": 1758672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1264918402749995,
+          "vertexOffset": 1763280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.146585829274999,
+          "vertexOffset": 1767888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1667523132749995,
+          "vertexOffset": 1772496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1876567362750006,
+          "vertexOffset": 1777104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2081101552749995,
+          "vertexOffset": 1781712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.226632161275001,
+          "vertexOffset": 1786320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.247227007274999,
+          "vertexOffset": 1790928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2671940872749996,
+          "vertexOffset": 1795536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2869576652749988,
+          "vertexOffset": 1800144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3069915402750016,
+          "vertexOffset": 1804752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3269462002750014,
+          "vertexOffset": 1809360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3466745992749996,
+          "vertexOffset": 1813968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.366797111275,
+          "vertexOffset": 1818576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3872242292750006,
+          "vertexOffset": 1823184,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4089197852750015,
+          "vertexOffset": 1827792,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4270656652750002,
+          "vertexOffset": 1832400,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4472380922749988,
+          "vertexOffset": 1837008,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4675811802749994,
+          "vertexOffset": 1841616,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4876763202750016,
+          "vertexOffset": 1846224,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5073542312750003,
+          "vertexOffset": 1850832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.527184885275,
+          "vertexOffset": 1855440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5485321122749998,
+          "vertexOffset": 1860048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5672868792750005,
+          "vertexOffset": 1864656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5871130722750006,
+          "vertexOffset": 1869264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6077459612749987,
+          "vertexOffset": 1873872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6273831292750014,
+          "vertexOffset": 1878480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6469103662749998,
+          "vertexOffset": 1883088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.667136188275,
+          "vertexOffset": 1887696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6878947082750013,
+          "vertexOffset": 1892304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.708113405275002,
+          "vertexOffset": 1896912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7270940512750013,
+          "vertexOffset": 1901520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.747080410275002,
+          "vertexOffset": 1906128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.767672608275001,
+          "vertexOffset": 1910736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7874708182749988,
+          "vertexOffset": 1915344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8073428582750015,
+          "vertexOffset": 1919952,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8287166152750007,
+          "vertexOffset": 1924560,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.848244187275002,
+          "vertexOffset": 1929168,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8695774562750014,
+          "vertexOffset": 1933776,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8879715372750017,
+          "vertexOffset": 1938384,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.908483802274999,
+          "vertexOffset": 1942992,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.928179886275002,
+          "vertexOffset": 1947600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.948550069274999,
+          "vertexOffset": 1952208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.967095582275002,
+          "vertexOffset": 1956816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.987688538275,
+          "vertexOffset": 1961424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.007614188275001,
+          "vertexOffset": 1966032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0280704302749992,
+          "vertexOffset": 1970640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0478786802749998,
+          "vertexOffset": 1975248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.067948615275002,
+          "vertexOffset": 1979856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.088458628275001,
+          "vertexOffset": 1984464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1071769122749995,
+          "vertexOffset": 1989072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1282239872750015,
+          "vertexOffset": 1993680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.148408146275001,
+          "vertexOffset": 1998288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1684690732750003,
+          "vertexOffset": 2002896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1871445912749987,
+          "vertexOffset": 2007504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.208040204274999,
+          "vertexOffset": 2012112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.228217124275,
+          "vertexOffset": 2016720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.248101999274999,
+          "vertexOffset": 2021328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.2679614852750003,
+          "vertexOffset": 2025936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.297544347275002,
+          "vertexOffset": 2030544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.308314014275,
+          "vertexOffset": 2035152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3285590872750017,
+          "vertexOffset": 2039760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3484186902749986,
+          "vertexOffset": 2044368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.368422300275002,
+          "vertexOffset": 2048976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3884307342749995,
+          "vertexOffset": 2053584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4086028892750004,
+          "vertexOffset": 2058192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.428997190275,
+          "vertexOffset": 2062800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4487560392749987,
+          "vertexOffset": 2067408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.468385888275,
+          "vertexOffset": 2072016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4879450122750004,
+          "vertexOffset": 2076624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5083024672749996,
+          "vertexOffset": 2081232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5286259812750007,
+          "vertexOffset": 2085840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.548994973274999,
+          "vertexOffset": 2090448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5687482022750014,
+          "vertexOffset": 2095056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.588671457275,
+          "vertexOffset": 2099664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6092667842749986,
+          "vertexOffset": 2104272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6284329422749995,
+          "vertexOffset": 2108880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.648385379275,
+          "vertexOffset": 2113488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6685808752749995,
+          "vertexOffset": 2118096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6885081222750014,
+          "vertexOffset": 2122704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.708663001275001,
+          "vertexOffset": 2127312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.728316353275,
+          "vertexOffset": 2131920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.748381666275,
+          "vertexOffset": 2136528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.768375445275,
+          "vertexOffset": 2141136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.7884481442749998,
+          "vertexOffset": 2145744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.809070869274999,
+          "vertexOffset": 2150352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.828613983275,
+          "vertexOffset": 2154960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.848114074275001,
+          "vertexOffset": 2159568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.8687361072749997,
+          "vertexOffset": 2164176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.888722440275002,
+          "vertexOffset": 2168784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.908439118275,
+          "vertexOffset": 2173392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9288664522750008,
+          "vertexOffset": 2178000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9482748202750013,
+          "vertexOffset": 2182608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.968309913275002,
+          "vertexOffset": 2187216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.988925952275002,
+          "vertexOffset": 2191824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.008544443275001,
+          "vertexOffset": 2196432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.028760903275002,
+          "vertexOffset": 2201040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.048909668275,
+          "vertexOffset": 2205648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.068725813275,
+          "vertexOffset": 2210256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.085206796275001,
+          "vertexOffset": 2214864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1085943542750005,
+          "vertexOffset": 2219472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.129357066275,
+          "vertexOffset": 2224080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.149333275275,
+          "vertexOffset": 2228688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.165201698275,
+          "vertexOffset": 2233296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1850690712750005,
+          "vertexOffset": 2237904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.205210198274999,
+          "vertexOffset": 2242512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.229171099275002,
+          "vertexOffset": 2247120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.248659014275001,
+          "vertexOffset": 2251728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.265108807275,
+          "vertexOffset": 2256336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.285039103274999,
+          "vertexOffset": 2260944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.305029631275,
+          "vertexOffset": 2265552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.3309107182750015,
+          "vertexOffset": 2270160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.345002008275001,
+          "vertexOffset": 2274768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.365264540275001,
+          "vertexOffset": 2279376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.388970202274999,
+          "vertexOffset": 2283984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.409292355275001,
+          "vertexOffset": 2288592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.425412492274999,
+          "vertexOffset": 2293200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.450963455275,
+          "vertexOffset": 2297808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.465347233274999,
+          "vertexOffset": 2302416,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.485468330274999,
+          "vertexOffset": 2307024,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.505548690275001,
+          "vertexOffset": 2311632,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.529120346274999,
+          "vertexOffset": 2316240,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.545844744275,
+          "vertexOffset": 2320848,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.565702151275,
+          "vertexOffset": 2325456,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.585259500274999,
+          "vertexOffset": 2330064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.606054293274999,
+          "vertexOffset": 2334672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.626382656275,
+          "vertexOffset": 2339280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.645349325275001,
+          "vertexOffset": 2343888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.665288797275002,
+          "vertexOffset": 2348496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.685018359275,
+          "vertexOffset": 2353104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.705578443275,
+          "vertexOffset": 2357712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.724664186275001,
+          "vertexOffset": 2362320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.745237426274999,
+          "vertexOffset": 2366928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.765805092275,
+          "vertexOffset": 2371536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.785788540275002,
+          "vertexOffset": 2376144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.805030482274999,
+          "vertexOffset": 2380752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.825358329275,
+          "vertexOffset": 2385360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.845141648275002,
+          "vertexOffset": 2389968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.866304192275001,
+          "vertexOffset": 2394576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.886751342275,
+          "vertexOffset": 2399184,
+          "vertexCount": 4416
+        },
+        {
+          "time": 4.906008088275,
+          "vertexOffset": 2403600,
+          "vertexCount": 4224
+        },
+        {
+          "time": 4.9260174942749995,
+          "vertexOffset": 2407824,
+          "vertexCount": 4032
+        },
+        {
+          "time": 4.945531127275002,
+          "vertexOffset": 2411856,
+          "vertexCount": 3840
+        },
+        {
+          "time": 4.965142219275,
+          "vertexOffset": 2415696,
+          "vertexCount": 3648
+        },
+        {
+          "time": 4.985831250275,
+          "vertexOffset": 2419344,
+          "vertexCount": 3456
+        },
+        {
+          "time": 5.006575645275001,
+          "vertexOffset": 2422800,
+          "vertexCount": 3264
+        },
+        {
+          "time": 5.025389084275,
+          "vertexOffset": 2426064,
+          "vertexCount": 3072
+        },
+        {
+          "time": 5.045472091275,
+          "vertexOffset": 2429136,
+          "vertexCount": 2880
+        },
+        {
+          "time": 5.065400819275,
+          "vertexOffset": 2432016,
+          "vertexCount": 2688
+        },
+        {
+          "time": 5.086193878274999,
+          "vertexOffset": 2434704,
+          "vertexCount": 2496
+        },
+        {
+          "time": 5.109096976275,
+          "vertexOffset": 2437200,
+          "vertexCount": 2304
+        },
+        {
+          "time": 5.126904099275,
+          "vertexOffset": 2439504,
+          "vertexCount": 2112
+        },
+        {
+          "time": 5.145245539275001,
+          "vertexOffset": 2441616,
+          "vertexCount": 1920
+        },
+        {
+          "time": 5.165671725274999,
+          "vertexOffset": 2443536,
+          "vertexCount": 1728
+        },
+        {
+          "time": 5.1869346882750005,
+          "vertexOffset": 2445264,
+          "vertexCount": 1536
+        },
+        {
+          "time": 5.207391245275,
+          "vertexOffset": 2446800,
+          "vertexCount": 1344
+        },
+        {
+          "time": 5.226404525274999,
+          "vertexOffset": 2448144,
+          "vertexCount": 1152
+        },
+        {
+          "time": 5.245957094275001,
+          "vertexOffset": 2449296,
+          "vertexCount": 960
+        },
+        {
+          "time": 5.269492898274999,
+          "vertexOffset": 2450256,
+          "vertexCount": 768
+        },
+        {
+          "time": 5.287331224274999,
+          "vertexOffset": 2451024,
+          "vertexCount": 576
+        }
+      ]
+    },
+    {
+      "id": "/tdmpc_elites_viz/elite_7",
+      "label": "/tdmpc_elites_viz/elite_7",
+      "kind": "lineSegments",
+      "payload": {
+        "path": "data/overlays.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "width": 0.002,
+      "visible": false,
+      "frames": [
+        {
+          "time": 0.008911917275000292,
+          "vertexOffset": 2451600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.028161155275000738,
+          "vertexOffset": 2456208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.049184755275000214,
+          "vertexOffset": 2460816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.06898784627500021,
+          "vertexOffset": 2465424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.0886386632750007,
+          "vertexOffset": 2470032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.10947605727499976,
+          "vertexOffset": 2474640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.12939319427499996,
+          "vertexOffset": 2479248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.14901157627500083,
+          "vertexOffset": 2483856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.1646562902749995,
+          "vertexOffset": 2488464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.18836066227500048,
+          "vertexOffset": 2493072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.20597436027500038,
+          "vertexOffset": 2497680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.22516139427500015,
+          "vertexOffset": 2502288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.24935529327500028,
+          "vertexOffset": 2506896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.268244916275,
+          "vertexOffset": 2511504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.28891193427500106,
+          "vertexOffset": 2516112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.30878390827500013,
+          "vertexOffset": 2520720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.32460032427499996,
+          "vertexOffset": 2525328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3450173912750003,
+          "vertexOffset": 2529936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.3648668492749998,
+          "vertexOffset": 2534544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.38903936327499977,
+          "vertexOffset": 2539152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4050609612749998,
+          "vertexOffset": 2543760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4286489722750009,
+          "vertexOffset": 2548368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4488310352750009,
+          "vertexOffset": 2552976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4650861372749997,
+          "vertexOffset": 2557584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.4853349902749997,
+          "vertexOffset": 2562192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.509516288275,
+          "vertexOffset": 2566800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5250206012750009,
+          "vertexOffset": 2571408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5499320142750008,
+          "vertexOffset": 2576016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.569124558275,
+          "vertexOffset": 2580624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.5893593202750012,
+          "vertexOffset": 2585232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6059798212749996,
+          "vertexOffset": 2589840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6306772442750006,
+          "vertexOffset": 2594448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6463886602750009,
+          "vertexOffset": 2599056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6651804682750004,
+          "vertexOffset": 2603664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.6851707302750007,
+          "vertexOffset": 2608272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7056264662749996,
+          "vertexOffset": 2612880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.724654176275001,
+          "vertexOffset": 2617488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7451940202750009,
+          "vertexOffset": 2622096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7653889922749997,
+          "vertexOffset": 2626704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.7860362122750004,
+          "vertexOffset": 2631312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8050643472749996,
+          "vertexOffset": 2635920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8256880572750003,
+          "vertexOffset": 2640528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8451890412750007,
+          "vertexOffset": 2645136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8663873392750006,
+          "vertexOffset": 2649744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.8855736252750006,
+          "vertexOffset": 2654352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9059987262749996,
+          "vertexOffset": 2658960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9252059222749995,
+          "vertexOffset": 2663568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9464890022750012,
+          "vertexOffset": 2668176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.965320917275001,
+          "vertexOffset": 2672784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 0.9860971612749996,
+          "vertexOffset": 2677392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0079362922749997,
+          "vertexOffset": 2682000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.025140700275001,
+          "vertexOffset": 2686608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0480986422750007,
+          "vertexOffset": 2691216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0696169362750005,
+          "vertexOffset": 2695824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.0849187502749995,
+          "vertexOffset": 2700432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1052874952750003,
+          "vertexOffset": 2705040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.126131382275,
+          "vertexOffset": 2709648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.1461284702750003,
+          "vertexOffset": 2714256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.166134580275001,
+          "vertexOffset": 2718864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.185883269275001,
+          "vertexOffset": 2723472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2063685162750009,
+          "vertexOffset": 2728080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.226422806275,
+          "vertexOffset": 2732688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2459022012750012,
+          "vertexOffset": 2737296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2652905152749998,
+          "vertexOffset": 2741904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.2859929452749999,
+          "vertexOffset": 2746512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.306311294275,
+          "vertexOffset": 2751120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3268107362750001,
+          "vertexOffset": 2755728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.345450323275001,
+          "vertexOffset": 2760336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3660136992750012,
+          "vertexOffset": 2764944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.3859981642749997,
+          "vertexOffset": 2769552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4067808102750003,
+          "vertexOffset": 2774160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4261467472750002,
+          "vertexOffset": 2778768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.445467983275,
+          "vertexOffset": 2783376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.4670214572750009,
+          "vertexOffset": 2787984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.486539320275,
+          "vertexOffset": 2792592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5067224082749995,
+          "vertexOffset": 2797200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5265898442749997,
+          "vertexOffset": 2801808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.546668622275,
+          "vertexOffset": 2806416,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.567573549275,
+          "vertexOffset": 2811024,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.5864485352750002,
+          "vertexOffset": 2815632,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6080407092750004,
+          "vertexOffset": 2820240,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6265846012750007,
+          "vertexOffset": 2824848,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6478893872750007,
+          "vertexOffset": 2829456,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.6662571812750002,
+          "vertexOffset": 2834064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.686972028275001,
+          "vertexOffset": 2838672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7068260282749996,
+          "vertexOffset": 2843280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.726940941275,
+          "vertexOffset": 2847888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7471623392750004,
+          "vertexOffset": 2852496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7680924792749995,
+          "vertexOffset": 2857104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.7869636582750008,
+          "vertexOffset": 2861712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8066729422750019,
+          "vertexOffset": 2866320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8262893262750008,
+          "vertexOffset": 2870928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.846593432275002,
+          "vertexOffset": 2875536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.866545549275001,
+          "vertexOffset": 2880144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.8879621482749993,
+          "vertexOffset": 2884752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9070960962749997,
+          "vertexOffset": 2889360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9269586462749988,
+          "vertexOffset": 2893968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9469801572750018,
+          "vertexOffset": 2898576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9667159172750015,
+          "vertexOffset": 2903184,
+          "vertexCount": 4608
+        },
+        {
+          "time": 1.9868744422750009,
+          "vertexOffset": 2907792,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0069434302749993,
+          "vertexOffset": 2912400,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.026703572275002,
+          "vertexOffset": 2917008,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.046541192274999,
+          "vertexOffset": 2921616,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0673078032750016,
+          "vertexOffset": 2926224,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.0869477442749993,
+          "vertexOffset": 2930832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1067549582749994,
+          "vertexOffset": 2935440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1264918402749995,
+          "vertexOffset": 2940048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.146585829274999,
+          "vertexOffset": 2944656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1667523132749995,
+          "vertexOffset": 2949264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.1876567362750006,
+          "vertexOffset": 2953872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2081101552749995,
+          "vertexOffset": 2958480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.226632161275001,
+          "vertexOffset": 2963088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.247227007274999,
+          "vertexOffset": 2967696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2671940872749996,
+          "vertexOffset": 2972304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.2869576652749988,
+          "vertexOffset": 2976912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3069915402750016,
+          "vertexOffset": 2981520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3269462002750014,
+          "vertexOffset": 2986128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3466745992749996,
+          "vertexOffset": 2990736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.366797111275,
+          "vertexOffset": 2995344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.3872242292750006,
+          "vertexOffset": 2999952,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4089197852750015,
+          "vertexOffset": 3004560,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4270656652750002,
+          "vertexOffset": 3009168,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4472380922749988,
+          "vertexOffset": 3013776,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4675811802749994,
+          "vertexOffset": 3018384,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.4876763202750016,
+          "vertexOffset": 3022992,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5073542312750003,
+          "vertexOffset": 3027600,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.527184885275,
+          "vertexOffset": 3032208,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5485321122749998,
+          "vertexOffset": 3036816,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5672868792750005,
+          "vertexOffset": 3041424,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.5871130722750006,
+          "vertexOffset": 3046032,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6077459612749987,
+          "vertexOffset": 3050640,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6273831292750014,
+          "vertexOffset": 3055248,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6469103662749998,
+          "vertexOffset": 3059856,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.667136188275,
+          "vertexOffset": 3064464,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.6878947082750013,
+          "vertexOffset": 3069072,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.708113405275002,
+          "vertexOffset": 3073680,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7270940512750013,
+          "vertexOffset": 3078288,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.747080410275002,
+          "vertexOffset": 3082896,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.767672608275001,
+          "vertexOffset": 3087504,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.7874708182749988,
+          "vertexOffset": 3092112,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8073428582750015,
+          "vertexOffset": 3096720,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8287166152750007,
+          "vertexOffset": 3101328,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.848244187275002,
+          "vertexOffset": 3105936,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8695774562750014,
+          "vertexOffset": 3110544,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.8879715372750017,
+          "vertexOffset": 3115152,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.908483802274999,
+          "vertexOffset": 3119760,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.928179886275002,
+          "vertexOffset": 3124368,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.948550069274999,
+          "vertexOffset": 3128976,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.967095582275002,
+          "vertexOffset": 3133584,
+          "vertexCount": 4608
+        },
+        {
+          "time": 2.987688538275,
+          "vertexOffset": 3138192,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.007614188275001,
+          "vertexOffset": 3142800,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0280704302749992,
+          "vertexOffset": 3147408,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.0478786802749998,
+          "vertexOffset": 3152016,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.067948615275002,
+          "vertexOffset": 3156624,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.088458628275001,
+          "vertexOffset": 3161232,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1071769122749995,
+          "vertexOffset": 3165840,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1282239872750015,
+          "vertexOffset": 3170448,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.148408146275001,
+          "vertexOffset": 3175056,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1684690732750003,
+          "vertexOffset": 3179664,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.1871445912749987,
+          "vertexOffset": 3184272,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.208040204274999,
+          "vertexOffset": 3188880,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.228217124275,
+          "vertexOffset": 3193488,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.248101999274999,
+          "vertexOffset": 3198096,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.2679614852750003,
+          "vertexOffset": 3202704,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.297544347275002,
+          "vertexOffset": 3207312,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.308314014275,
+          "vertexOffset": 3211920,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3285590872750017,
+          "vertexOffset": 3216528,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3484186902749986,
+          "vertexOffset": 3221136,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.368422300275002,
+          "vertexOffset": 3225744,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.3884307342749995,
+          "vertexOffset": 3230352,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4086028892750004,
+          "vertexOffset": 3234960,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.428997190275,
+          "vertexOffset": 3239568,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4487560392749987,
+          "vertexOffset": 3244176,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.468385888275,
+          "vertexOffset": 3248784,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.4879450122750004,
+          "vertexOffset": 3253392,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5083024672749996,
+          "vertexOffset": 3258000,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5286259812750007,
+          "vertexOffset": 3262608,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.548994973274999,
+          "vertexOffset": 3267216,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.5687482022750014,
+          "vertexOffset": 3271824,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.588671457275,
+          "vertexOffset": 3276432,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6092667842749986,
+          "vertexOffset": 3281040,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6284329422749995,
+          "vertexOffset": 3285648,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.648385379275,
+          "vertexOffset": 3290256,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6685808752749995,
+          "vertexOffset": 3294864,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.6885081222750014,
+          "vertexOffset": 3299472,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.708663001275001,
+          "vertexOffset": 3304080,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.728316353275,
+          "vertexOffset": 3308688,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.748381666275,
+          "vertexOffset": 3313296,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.768375445275,
+          "vertexOffset": 3317904,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.7884481442749998,
+          "vertexOffset": 3322512,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.809070869274999,
+          "vertexOffset": 3327120,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.828613983275,
+          "vertexOffset": 3331728,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.848114074275001,
+          "vertexOffset": 3336336,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.8687361072749997,
+          "vertexOffset": 3340944,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.888722440275002,
+          "vertexOffset": 3345552,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.908439118275,
+          "vertexOffset": 3350160,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9288664522750008,
+          "vertexOffset": 3354768,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.9482748202750013,
+          "vertexOffset": 3359376,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.968309913275002,
+          "vertexOffset": 3363984,
+          "vertexCount": 4608
+        },
+        {
+          "time": 3.988925952275002,
+          "vertexOffset": 3368592,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.008544443275001,
+          "vertexOffset": 3373200,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.028760903275002,
+          "vertexOffset": 3377808,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.048909668275,
+          "vertexOffset": 3382416,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.068725813275,
+          "vertexOffset": 3387024,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.085206796275001,
+          "vertexOffset": 3391632,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1085943542750005,
+          "vertexOffset": 3396240,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.129357066275,
+          "vertexOffset": 3400848,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.149333275275,
+          "vertexOffset": 3405456,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.165201698275,
+          "vertexOffset": 3410064,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.1850690712750005,
+          "vertexOffset": 3414672,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.205210198274999,
+          "vertexOffset": 3419280,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.229171099275002,
+          "vertexOffset": 3423888,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.248659014275001,
+          "vertexOffset": 3428496,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.265108807275,
+          "vertexOffset": 3433104,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.285039103274999,
+          "vertexOffset": 3437712,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.305029631275,
+          "vertexOffset": 3442320,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.3309107182750015,
+          "vertexOffset": 3446928,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.345002008275001,
+          "vertexOffset": 3451536,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.365264540275001,
+          "vertexOffset": 3456144,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.388970202274999,
+          "vertexOffset": 3460752,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.409292355275001,
+          "vertexOffset": 3465360,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.425412492274999,
+          "vertexOffset": 3469968,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.450963455275,
+          "vertexOffset": 3474576,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.465347233274999,
+          "vertexOffset": 3479184,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.485468330274999,
+          "vertexOffset": 3483792,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.505548690275001,
+          "vertexOffset": 3488400,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.529120346274999,
+          "vertexOffset": 3493008,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.545844744275,
+          "vertexOffset": 3497616,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.565702151275,
+          "vertexOffset": 3502224,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.585259500274999,
+          "vertexOffset": 3506832,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.606054293274999,
+          "vertexOffset": 3511440,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.626382656275,
+          "vertexOffset": 3516048,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.645349325275001,
+          "vertexOffset": 3520656,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.665288797275002,
+          "vertexOffset": 3525264,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.685018359275,
+          "vertexOffset": 3529872,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.705578443275,
+          "vertexOffset": 3534480,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.724664186275001,
+          "vertexOffset": 3539088,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.745237426274999,
+          "vertexOffset": 3543696,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.765805092275,
+          "vertexOffset": 3548304,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.785788540275002,
+          "vertexOffset": 3552912,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.805030482274999,
+          "vertexOffset": 3557520,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.825358329275,
+          "vertexOffset": 3562128,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.845141648275002,
+          "vertexOffset": 3566736,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.866304192275001,
+          "vertexOffset": 3571344,
+          "vertexCount": 4608
+        },
+        {
+          "time": 4.886751342275,
+          "vertexOffset": 3575952,
+          "vertexCount": 4416
+        },
+        {
+          "time": 4.906008088275,
+          "vertexOffset": 3580368,
+          "vertexCount": 4224
+        },
+        {
+          "time": 4.9260174942749995,
+          "vertexOffset": 3584592,
+          "vertexCount": 4032
+        },
+        {
+          "time": 4.945531127275002,
+          "vertexOffset": 3588624,
+          "vertexCount": 3840
+        },
+        {
+          "time": 4.965142219275,
+          "vertexOffset": 3592464,
+          "vertexCount": 3648
+        },
+        {
+          "time": 4.985831250275,
+          "vertexOffset": 3596112,
+          "vertexCount": 3456
+        },
+        {
+          "time": 5.006575645275001,
+          "vertexOffset": 3599568,
+          "vertexCount": 3264
+        },
+        {
+          "time": 5.025389084275,
+          "vertexOffset": 3602832,
+          "vertexCount": 3072
+        },
+        {
+          "time": 5.045472091275,
+          "vertexOffset": 3605904,
+          "vertexCount": 2880
+        },
+        {
+          "time": 5.065400819275,
+          "vertexOffset": 3608784,
+          "vertexCount": 2688
+        },
+        {
+          "time": 5.086193878274999,
+          "vertexOffset": 3611472,
+          "vertexCount": 2496
+        },
+        {
+          "time": 5.109096976275,
+          "vertexOffset": 3613968,
+          "vertexCount": 2304
+        },
+        {
+          "time": 5.126904099275,
+          "vertexOffset": 3616272,
+          "vertexCount": 2112
+        },
+        {
+          "time": 5.145245539275001,
+          "vertexOffset": 3618384,
+          "vertexCount": 1920
+        },
+        {
+          "time": 5.165671725274999,
+          "vertexOffset": 3620304,
+          "vertexCount": 1728
+        },
+        {
+          "time": 5.1869346882750005,
+          "vertexOffset": 3622032,
+          "vertexCount": 1536
+        },
+        {
+          "time": 5.207391245275,
+          "vertexOffset": 3623568,
+          "vertexCount": 1344
+        },
+        {
+          "time": 5.226404525274999,
+          "vertexOffset": 3624912,
+          "vertexCount": 1152
+        },
+        {
+          "time": 5.245957094275001,
+          "vertexOffset": 3626064,
+          "vertexCount": 960
+        },
+        {
+          "time": 5.269492898274999,
+          "vertexOffset": 3627024,
+          "vertexCount": 768
+        },
+        {
+          "time": 5.287331224274999,
+          "vertexOffset": 3627792,
+          "vertexCount": 576
+        }
+      ]
+    },
+    {
+      "id": "/elevation_grid_filled_shifted",
+      "label": "/elevation_grid_filled_shifted",
+      "kind": "terrainMesh",
+      "payload": {
+        "path": "data/terrain.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "opacity": 0.96,
+      "visible": true,
+      "frames": [
+        {
+          "time": 0.012727342275001163,
+          "vertexOffset": 0,
+          "vertexCount": 1680
+        },
+        {
+          "time": 0.512915204275,
+          "vertexOffset": 1680,
+          "vertexCount": 1680
+        },
+        {
+          "time": 1.0648211712749998,
+          "vertexOffset": 3360,
+          "vertexCount": 1680
+        },
+        {
+          "time": 1.6120198902750005,
+          "vertexOffset": 5040,
+          "vertexCount": 1680
+        },
+        {
+          "time": 2.1623856842749998,
+          "vertexOffset": 6720,
+          "vertexCount": 1680
+        },
+        {
+          "time": 2.7110497972750007,
+          "vertexOffset": 8400,
+          "vertexCount": 1680
+        },
+        {
+          "time": 3.2112247272750007,
+          "vertexOffset": 10080,
+          "vertexCount": 1680
+        },
+        {
+          "time": 3.7120425952749994,
+          "vertexOffset": 11760,
+          "vertexCount": 1680
+        },
+        {
+          "time": 4.263827080275002,
+          "vertexOffset": 13440,
+          "vertexCount": 1680
+        },
+        {
+          "time": 4.808889854275,
+          "vertexOffset": 15120,
+          "vertexCount": 1680
+        },
+        {
+          "time": 5.310910149275001,
+          "vertexOffset": 16800,
+          "vertexCount": 1680
+        }
+      ]
+    },
+    {
+      "id": "/terrain_grid_map",
+      "label": "/terrain_grid_map",
+      "kind": "terrainMesh",
+      "payload": {
+        "path": "data/terrain.bin",
+        "dtype": "float32"
+      },
+      "color": [
+        0.42,
+        0.42,
+        0.42
+      ],
+      "opacity": 0.45,
+      "visible": true,
+      "frames": [
+        {
+          "time": 0.009349411275000108,
+          "vertexOffset": 18480,
+          "vertexCount": 14544
+        }
+      ]
+    }
+  ]
+}

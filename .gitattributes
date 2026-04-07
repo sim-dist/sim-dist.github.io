@@ -2,3 +2,6 @@
 planning_site_qped_only/**/*.glb filter=lfs diff=lfs merge=lfs -text
 planning_site_qped_only/**/*.bin filter=lfs diff=lfs merge=lfs -text
 planning_site_qped_only/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+planning_site_both/**/*.glb filter=lfs diff=lfs merge=lfs -text
+planning_site_both/**/*.bin filter=lfs diff=lfs merge=lfs -text
+planning_site_both/**/*.jpg filter=lfs diff=lfs merge=lfs -text
