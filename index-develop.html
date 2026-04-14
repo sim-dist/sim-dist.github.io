@@ -24,8 +24,8 @@
       type="video/mp4"
       fetchpriority="high"
     />
-    <link rel="stylesheet" href="css/omnireset-theme.css" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/omnireset-theme-dev.css" />
+    <link rel="stylesheet" href="css/main-dev.css" />
   </head>
   <body>
     <a class="skip-link" href="#outcomes">Skip to content</a>
@@ -38,6 +38,7 @@
           <a href="#top" data-nav="top">
             <span class="progress-dot"></span>
             <span class="progress-label">Intro</span>
+            <!-- TODO: add sections -->
           </a>
         </div>
       </div>
@@ -162,6 +163,9 @@
       <section id="planning" class="section section-planning card-surface section-card" aria-labelledby="planning-title">
         <div class="section-head" data-reveal>
           <!-- <h2 id="planning-title" class="visually-hidden">Planning Under Adapted Dynamics</h2> -->
+          <p>
+            TODO: Some text here?
+          </p>
           <!-- <p> -->
             <!-- Because we finetune only the dynamics, adaptation is fast: -->
             <!-- improved predictions immediately reshape planning behavior, driving the performance gains seen in our <a href="#results">results</a>. -->
@@ -177,6 +181,58 @@
           data-reveal
         ></iframe>
       </section>
+
+    <div class="tagline" id="pipeline">The Simulation Distillation Pipeline</div>
+    <div class="card-surface pipeline-section-box">
+      <p class="real-world-common-caption real-world-caption-top">
+        Simulation Distillation (SimDist) is a <b>scalable framework</b> that distills structural priors from a simulator
+        into a latent world model and enables <b>rapid real-world adaptation</b> via online planning and supervised dynamics finetuning.
+      </p>
+      <div class="pipeline-grid">
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 1 — Expert Policy Training</div>
+          <div class="real-world-video-frame">
+            <video data-src="assets/video/rl.mp4" autoplay muted loop playsinline preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p>Train an expert policy with an <b>established</b> sim-to-real pipeline.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 2 — Data Generation</div>
+          <div class="real-world-video-frame">
+            <video data-src="assets/video/perturb.mp4" autoplay muted loop playsinline preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p><b>Perturb</b> expert policy to generate diverse training data.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 3 — World Model Pretraining</div>
+          <div class="real-world-video-frame">
+            TODO: compress to wm vid
+            <video data-src="#" autoplay muted loop playsinline poster="figs/posters/sim_distillation_videos__policy_cameras_leg.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p>Distill a world model from <b>raw observations</b>.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 4 — Deployment and Adaptation</div>
+          <div class="real-world-video-frame">
+            TODO: manipulation improvement vid
+            <video data-src="#" autoplay muted loop playsinline preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p><b>Improve rapidly</b> in the real world through supervised learning.</p>
+        </div>
+      </div>
+    </div>
 
 
       <div id="paper" class="tagline">BibTeX</div>
