@@ -1372,6 +1372,11 @@ video:focus-visible {
   margin: 32px 0 24px 0;
 }
 
+.section-improvement .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
 .improvement-stack {
   display: grid;
   gap: 24px;
@@ -1386,6 +1391,15 @@ video:focus-visible {
   display: grid;
   justify-items: center;
   gap: 0.55rem;
+}
+
+.section-improvement #improvement-block-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  line-height: 1.15;
 }
 
 .improvement-video-title {
@@ -2463,7 +2477,7 @@ body {
 
 .main-content .section-card {
   padding: 32px;
-  margin: 0 0 12px;
+  margin: 0 0 24px;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border-top: 0;
