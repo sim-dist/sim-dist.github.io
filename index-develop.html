@@ -273,6 +273,228 @@
       </div>
     </section>
 
+    <div class="tagline" id="world-models">World Models</div>
+    <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
+      <div class="section-head" data-reveal>
+        <h2 id="world-models-title" class="visually-hidden">World Models</h2>
+        <h3 id="world-models-block-title">Adapting Dynamics Prediction</h3>
+        <p>
+          We examine the effect finetuning has on dynamics prediction accuracy.
+          Adapting the dynamics model is essential for effective planning, as both the
+          reward and value estimates are computed over predicted trajectories.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <div class="slip-shell">
+          <figure class="slip-card slip-card--plot" data-reveal>
+            <div class="slip-chart-toolbar">
+              <div class="slip-chart-legend" aria-label="Consistency loss legend">
+                <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--pretrained" aria-hidden="true"></span>
+                  Pretrained
+                </button>
+                <button type="button" class="slip-legend-item" data-series="finetuned" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--finetuned" aria-hidden="true"></span>
+                  Finetuned
+                </button>
+              </div>
+            </div>
+            <svg
+              id="slip-consistency-chart"
+              viewBox="0 0 900 420"
+              role="img"
+              aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
+            ></svg>
+            <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <video autoplay muted loop playsinline preload="none" controls>
+              <source data-src="assets/video/foot_slip.mp4" type="video/mp4" />
+            </video>
+            <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <img
+              class="slip-card-image"
+              src="assets/figures/foot_preds_rev3.png"
+              alt="Foot prediction comparison visualization during slip event"
+            />
+            <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
+      <div class="section-head" data-reveal>
+        <h2 id="world-models-title-rl" class="visually-hidden">World Models</h2>
+        <h3 id="world-models-block-title-rl">Reconstruction</h3>
+        <p>
+          Reconstruction commentary: TODO.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <figure class="improvement-item">
+          <figcaption class="improvement-video-title">Reconstruction</figcaption>
+          <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
+    <div class="tagline" id="task-structure">Freezing and Transferring Task Structure</div>
+    <section class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
+      <div class="section-head" data-reveal>
+        <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
+        <h3 id="task-structure-block-title">Value Prediction</h3>
+        <p>
+          The planner used by SimDist can only improve behavior if it can reliably distinguish
+          trajectories with high and low returns. This requires both accurate dynamics prediction and
+          successful transfer of reward and value models. We examine value transfer below,
+          which plots predicted values over time for successful and failed trajectories.
+        </p>
+        <p>
+          For the successful rollout, predicted value increases consistently over time, while remaining lower for the failed trajectory.
+          Thus the transfered encoder and value function can reliably discriminate between successful and failed trajectories.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <div class="values-shell">
+          <div class="values-chart-card" data-reveal>
+            <div class="values-toolbar">
+              <p id="values-status">Hover over the plot to view the associated video frame.</p>
+              <button type="button" id="values-lock" aria-pressed="false">
+                <svg class="values-lock-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M7.5 10V7.5a4.5 4.5 0 1 1 9 0V10M6.5 10h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span id="values-lock-label">Lock Frame</span>
+              </button>
+            </div>
+            <svg id="values-chart" viewBox="0 0 900 460" role="img" aria-label="Success and failure value trajectories"></svg>
+          </div>
+
+          <div class="values-videos" data-reveal>
+            <figure>
+              <figcaption>Success</figcaption>
+              <video
+                id="values-video-success"
+                muted
+                playsinline
+                preload="none"
+                data-deferred-group="values"
+                data-deferred-preload="auto"
+              >
+                <source data-src="assets/video/peg_win_value.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            <figure>
+              <figcaption>Failure</figcaption>
+              <video
+                id="values-video-fail"
+                muted
+                playsinline
+                preload="none"
+                data-deferred-group="values"
+                data-deferred-preload="auto"
+              >
+                <source data-src="assets/video/peg_fail_value.mp4" type="video/mp4" />
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
+      <div class="section-head" data-reveal>
+        <h2 id="task-structure-title-rl" class="visually-hidden">Freezing and Transferring Task Structure</h2>
+        <h3 id="task-structure-block-title-rl">Reconstruction</h3>
+        <p>
+          Reconstruction commentary: TODO.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <figure class="improvement-item">
+          <figcaption class="improvement-video-title">Reconstruction</figcaption>
+          <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
+      <div class="tagline">Real-World Results <span class="interactive-badge">Interactive</span></div>
+      <section id="results" class="section section-results card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">Real-World Results</h2>
+          <p>
+            Success rate for two manipulation tasks, computed over 20 trials, and average forward progress for two quadruped locomotion tasks,
+            averaged across all 15 trials (3 speeds, 5 trials each), as a function of real-world finetuning data. For manipulation, we consider
+            two difficulties: initial conditions drawn from a <em>Narrow</em> or <em>Wide</em> grid.
+          </p>
+          <p>
+            SimDist exhibits rapid and consistent improvement with limited data by finetuning only the latent dynamics model
+            while planning with frozen reward and value models. In contrast, direct policy finetuning with the baselines shows limited or no
+            improvement under the same data budgets.
+          </p>
+        </div>
+
+        <div class="results-shell">
+          <div class="results-legend-bar" data-reveal>
+            <p class="results-legend-hint">
+              Hover a legend item to highlight a curve.<br />
+              Click to toggle it on/off.
+            </p>
+            <div id="results-legend" class="results-legend" aria-label="Results legend"></div>
+          </div>
+
+          <div class="results-panel" data-reveal>
+            <p class="results-interaction-hint">
+              Hover a plot to preview its video. Click to expand.
+            </p>
+            <div id="results-grid" class="results-grid">
+              <div class="results-fallback">
+                <img
+                  src="assets/figures/fig4_results-with-robots.png"
+                  alt="Static fallback plot for real-world results"
+                />
+                <p>Interactive charts load here from <code>assets/data/results.json</code>.</p>
+              </div>
+            </div>
+            <div id="results-hover-preview" class="results-hover-preview" aria-hidden="true">
+              <p id="results-hover-preview-title" class="results-hover-preview-title"></p>
+              <video
+                id="results-hover-preview-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="results-video-modal" class="results-video-modal" hidden>
+        <div class="results-video-modal-card" role="dialog" aria-modal="true" aria-labelledby="results-modal-title">
+          <div class="results-video-modal-head">
+            <h3 id="results-modal-title"></h3>
+            <button type="button" id="results-modal-close" aria-label="Close expanded video">Close</button>
+          </div>
+          <video
+            id="results-modal-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+        </div>
+      </div>
+    
       <div id="paper" class="tagline">BibTeX</div>
       <footer class="site-footer">
         <div class="bibtex-code">

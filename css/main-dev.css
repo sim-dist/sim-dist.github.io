@@ -1303,6 +1303,22 @@ video:focus-visible {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
+.section-world-models {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.section-task-structure {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
 .section-planning {
   background:
     linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
@@ -1322,6 +1338,15 @@ video:focus-visible {
 .pipeline-section-box {
   margin: 32px 0 24px 0;
 }
+
+.world-models-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.task-structure-section-box {
+  margin: 32px 0 24px 0;
+}
+
 .pipeline-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1373,6 +1398,16 @@ video:focus-visible {
 }
 
 .section-improvement .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-world-models .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-task-structure .section-head {
   gap: 0.2rem;
   margin-bottom: 0.8rem;
 }
@@ -2492,6 +2527,8 @@ body {
 .main-content .section-method,
 .main-content .section-results,
 .main-content .section-improvement,
+.main-content .section-world-models,
+.main-content .section-task-structure,
 .main-content .section-values,
 .main-content .section-slip,
 .main-content .section-pipeline,
