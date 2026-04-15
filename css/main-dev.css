@@ -1295,6 +1295,14 @@ video:focus-visible {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
+.section-improvement {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
 .section-planning {
   background:
     linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
@@ -1358,6 +1366,49 @@ video:focus-visible {
   letter-spacing: 0.05em;
   margin-bottom: 8px;
   color: var(--honey-bronze);
+}
+
+.improvement-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.improvement-stack {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  min-width: 0;
+  justify-items: center;
+}
+
+.improvement-item {
+  width: 100%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.improvement-video-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  /* color: var(--ink-0); */
+  /* font-family: var(--font-sans); */
+  /* font-size: 15px; */
+  /* font-weight: 700; */
+  margin: 0;
+  width: min(620px, 100%);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.improvement-stack video {
+  aspect-ratio: 16 / 9;
+  width: min(620px, 100%);
+  object-fit: contain;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
 .planning-card {
@@ -2426,6 +2477,7 @@ body {
 .main-content .section-overview,
 .main-content .section-method,
 .main-content .section-results,
+.main-content .section-improvement,
 .main-content .section-values,
 .main-content .section-slip,
 .main-content .section-pipeline,
@@ -2580,5 +2632,9 @@ body {
 
   .pipeline-card video {
     height: auto;
+  }
+
+  .improvement-stack {
+    gap: 16px;
   }
 }
