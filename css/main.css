@@ -2084,6 +2084,7 @@ a:focus-visible {
   }
 
   .planning-demo-frame {
+    margin-top: 0.2rem;
     min-height: 540px;
   }
 
