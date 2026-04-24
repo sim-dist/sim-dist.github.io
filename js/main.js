@@ -168,6 +168,7 @@
     resizeObserver: null,
     resizeRaf: 0,
     videoScrubState: new WeakMap(),
+    videoBlobUrls: [],
   };
 
   const consistencyState = {
@@ -297,12 +298,13 @@
     }
 
     const hydrated = hydrateDeferredVideo(video);
-    if (!hydrated && !video.currentSrc && !video.getAttribute("src")) {
+    const hasSource = Boolean(video.currentSrc || video.getAttribute("src") || video.querySelector("source[src]"));
+    if (!hydrated && !hasSource) {
       return;
     }
 
     video.dataset.deferredLoaded = "true";
-    video.setAttribute("preload", video.dataset.deferredPreload || "metadata");
+    video.setAttribute("preload", video.dataset.deferredPreload || video.getAttribute("preload") || "metadata");
 
     try {
       video.load();
@@ -1859,6 +1861,7 @@
       buildValuesChart();
       bindValuesLockToggle();
       observeValuesChartResize();
+      primeValuesVideos();
     } catch (error) {
       const status = document.getElementById("values-status");
       if (status) {
@@ -1970,14 +1973,58 @@
       }
 
       activateDeferredVideo(video);
-      if (!video.currentSrc && !video.getAttribute("src")) {
+      if (!video.currentSrc && !video.getAttribute("src") && !video.querySelector("source[src]")) {
         continue;
       }
 
+      preloadValuesVideoBlob(video, syncCurrentFrame);
       warmupValuesVideo(video, syncCurrentFrame);
     }
 
     syncCurrentFrame();
+  }
+
+  function preloadValuesVideoBlob(video, onReady) {
+    if (!video || video.dataset.valuesBlobRequested === "true" || typeof fetch !== "function") {
+      return;
+    }
+
+    const source = video.currentSrc || video.getAttribute("src") || video.querySelector("source[src]")?.getAttribute("src");
+    if (!source || source.startsWith("blob:")) {
+      return;
+    }
+
+    video.dataset.valuesBlobRequested = "true";
+    fetch(source, { cache: "force-cache" })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("value video preload failed");
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        valuesState.videoBlobUrls.push(blobUrl);
+        video.src = blobUrl;
+        video.setAttribute("preload", "auto");
+        video.load();
+
+        const syncWhenReady = () => {
+          if (typeof onReady === "function") {
+            onReady();
+          }
+        };
+
+        if (video.readyState >= 1) {
+          syncWhenReady();
+        } else {
+          video.addEventListener("loadedmetadata", syncWhenReady, { once: true });
+          video.addEventListener("canplay", syncWhenReady, { once: true });
+        }
+      })
+      .catch(() => {
+        video.dataset.valuesBlobRequested = "false";
+      });
   }
 
   function warmupValuesVideo(video, onReady) {
@@ -2690,10 +2737,31 @@
   }
 
   function stepFromEvent(event, svg, xOrigin, plotWidth, minStep, maxStep) {
-    const rect = svg.getBoundingClientRect();
-    const viewWidth = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal.width : 0;
-    const localX = (event.clientX - rect.left) / (rect.width || 1);
-    const xSvg = localX * (viewWidth || rect.width || 1);
+    let xSvg = 0;
+    let hasSvgPoint = false;
+
+    if (typeof svg.createSVGPoint === "function") {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const matrix = svg.getScreenCTM();
+      if (matrix) {
+        try {
+          xSvg = point.matrixTransform(matrix.inverse()).x;
+          hasSvgPoint = Number.isFinite(xSvg);
+        } catch (error) {
+          hasSvgPoint = false;
+        }
+      }
+    }
+
+    if (!hasSvgPoint) {
+      const rect = svg.getBoundingClientRect();
+      const viewWidth = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal.width : 0;
+      const localX = (event.clientX - rect.left) / (rect.width || 1);
+      xSvg = localX * (viewWidth || rect.width || 1);
+    }
+
     const normalized = Math.max(0, Math.min(1, (xSvg - xOrigin) / (plotWidth || 1)));
     return minStep + normalized * (maxStep - minStep);
   }
@@ -2722,7 +2790,7 @@
     const boundedRatio = Math.max(0, Math.min(1, ratio));
     let scrub = valuesState.videoScrubState.get(video);
     if (!scrub) {
-      scrub = { ratio: boundedRatio, raf: 0 };
+      scrub = { ratio: boundedRatio, raf: 0, seekedRetry: false };
       valuesState.videoScrubState.set(video, scrub);
     }
 
@@ -2742,6 +2810,7 @@
       return;
     }
 
+    activateDeferredVideo(video);
     video.pause();
 
     const hasFiniteDuration = Number.isFinite(video.duration) && video.duration > 0;
@@ -2750,6 +2819,16 @@
     const effectiveDuration = hasFiniteDuration ? video.duration : seekableDuration;
 
     if (!Number.isFinite(effectiveDuration) || effectiveDuration <= 0) {
+      if (video.dataset.valuesMetadataRetry !== "true") {
+        video.dataset.valuesMetadataRetry = "true";
+        const retry = () => {
+          video.dataset.valuesMetadataRetry = "false";
+          syncVideoToRatio(video, ratio);
+        };
+        video.addEventListener("loadedmetadata", retry, { once: true });
+        video.addEventListener("durationchange", retry, { once: true });
+        video.addEventListener("canplay", retry, { once: true });
+      }
       if (video.dataset.valuesLoadRequested !== "true") {
         video.dataset.valuesLoadRequested = "true";
         try {
@@ -2772,12 +2851,22 @@
       return;
     }
 
+    const scrub = valuesState.videoScrubState.get(video);
+    if (video.seeking && scrub && !scrub.seekedRetry) {
+      scrub.seekedRetry = true;
+      video.addEventListener(
+        "seeked",
+        () => {
+          scrub.seekedRetry = false;
+          applyVideoScrub(video, scrub.ratio);
+        },
+        { once: true }
+      );
+      return;
+    }
+
     try {
-      if (typeof video.fastSeek === "function") {
-        video.fastSeek(target);
-      } else {
-        video.currentTime = target;
-      }
+      video.currentTime = target;
     } catch (error) {
       return;
     }

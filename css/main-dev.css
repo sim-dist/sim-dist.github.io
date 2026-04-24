@@ -1856,12 +1856,12 @@ video:focus-visible {
 }
 
 .values-shell {
-  max-width: 1220px;
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.25fr 0.95fr;
-  gap: 1rem;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 2.15fr) minmax(260px, 0.75fr);
+  gap: 0.9rem;
+  align-items: start;
 }
 
 .values-chart-card,
@@ -1920,7 +1920,7 @@ video:focus-visible {
 
 #values-chart {
   width: 100%;
-  height: 100%;
+  height: clamp(320px, 34vw, 460px);
   flex: 1 1 auto;
   min-height: 0;
   border-radius: 10px;
@@ -1930,7 +1930,7 @@ video:focus-visible {
 
 .values-videos {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.65rem;
 }
 
 .values-videos figure {
@@ -1939,10 +1939,16 @@ video:focus-visible {
 }
 
 .values-videos figcaption {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
   font-size: 0.88rem;
   color: var(--ink-1);
   font-weight: 700;
+}
+
+.values-videos video {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
 }
 
 .values-note {
@@ -2192,6 +2198,10 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .values-videos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .outcomes-shell {
     grid-template-columns: 1fr;
   }
@@ -2229,6 +2239,10 @@ a:focus-visible {
 }
 
 @media (max-width: 760px) {
+  .values-videos {
+    grid-template-columns: 1fr;
+  }
+
   .eval-tab-bar {
     flex-wrap: wrap;
     width: auto;

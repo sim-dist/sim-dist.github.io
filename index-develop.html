@@ -24,6 +24,8 @@
       type="video/mp4"
       fetchpriority="high"
     />
+    <link rel="preload" href="assets/video/peg_win_value.mp4" as="video" type="video/mp4" />
+    <link rel="preload" href="assets/video/peg_fail_value.mp4" as="video" type="video/mp4" />
     <link rel="stylesheet" href="css/omnireset-theme-dev.css" />
     <link rel="stylesheet" href="css/main-dev.css" />
   </head>
@@ -352,7 +354,7 @@
           which plots predicted values over time for successful and failed trajectories.
         </p>
         <p>
-          For the successful rollout, predicted value increases consistently over time, while remaining lower for the failed trajectory.
+          For the successful rollout, predicted value increases consistently over time, while for the failed rollout, it decreases abruptly when the peg is dropped.
           Thus the transfered encoder and value function can reliably discriminate between successful and failed trajectories.
         </p>
       </div>
@@ -385,11 +387,9 @@
                 id="values-video-success"
                 muted
                 playsinline
-                preload="none"
-                data-deferred-group="values"
-                data-deferred-preload="auto"
+                preload="auto"
               >
-                <source data-src="assets/video/peg_win_value.mp4" type="video/mp4" />
+                <source src="assets/video/peg_win_value.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure>
@@ -398,11 +398,9 @@
                 id="values-video-fail"
                 muted
                 playsinline
-                preload="none"
-                data-deferred-group="values"
-                data-deferred-preload="auto"
+                preload="auto"
               >
-                <source data-src="assets/video/peg_fail_value.mp4" type="video/mp4" />
+                <source src="assets/video/peg_fail_value.mp4" type="video/mp4" />
               </video>
             </figure>
           </div>
