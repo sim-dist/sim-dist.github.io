@@ -1789,10 +1789,29 @@ video:focus-visible {
   font-weight: 700;
 }
 
+.values-video-success figcaption {
+  color: #0f7f66;
+}
+
+.values-video-failure figcaption {
+  color: #c95a2a;
+}
+
 .values-videos video {
   aspect-ratio: 4 / 3;
   height: auto;
   object-fit: cover;
+  border: 4px solid var(--values-video-border, transparent);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.values-video-success video {
+  --values-video-border: #0f7f66;
+}
+
+.values-video-failure video {
+  --values-video-border: #c95a2a;
 }
 
 .values-note {

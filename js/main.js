@@ -2186,28 +2186,6 @@
       })
     );
 
-    svg.appendChild(
-      createSvgElement("text", {
-        x: margin.left + 6,
-        y: margin.top + 14,
-        fill: "#0f7f66",
-        "font-size": "12",
-        "font-family": "Inter, sans-serif",
-        textContent: "Success",
-      })
-    );
-
-    svg.appendChild(
-      createSvgElement("text", {
-        x: margin.left + 78,
-        y: margin.top + 14,
-        fill: "#c95a2a",
-        "font-size": "12",
-        "font-family": "Inter, sans-serif",
-        textContent: "Failure",
-      })
-    );
-
     const cursorLine = createSvgElement("line", {
       x1: scaleX(valuesState.minStep),
       y1: margin.top,
