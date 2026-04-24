@@ -4,6 +4,7 @@
   const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TOUCH_PRIMARY_POINTER = window.matchMedia("(hover: none) and (pointer: coarse)");
   const NARROW_METHOD_VIEWPORT = window.matchMedia("(max-width: 900px)");
+  const VALUES_DEFAULT_STEP = 46;
   const MOBILE_USER_AGENT =
     (navigator.userAgentData && navigator.userAgentData.mobile) ||
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -1856,7 +1857,7 @@
 
       valuesState.minStep = min;
       valuesState.maxStep = max;
-      valuesState.currentStep = min;
+      valuesState.currentStep = Math.max(min, Math.min(max, VALUES_DEFAULT_STEP));
 
       buildValuesChart();
       bindValuesLockToggle();
