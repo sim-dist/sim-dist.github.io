@@ -91,14 +91,14 @@ const CAMERA_POSE_BY_SCENARIO = {
   quadruped_slippery_slope: DEFAULT_CAMERA_POSE,
   manipulation_peg_insertion: {
     desktop: {
-      position: new THREE.Vector3(1.177, 0.867, 0.495),
-      rotation: new THREE.Euler(-1.006, 0.902, 2.680, 'XYZ'),
-      distance: 1.385,
+      position: new THREE.Vector3(1.414, -0.142, 0.521),
+      rotation: new THREE.Euler(0.942, 1.003, 0.551, 'XYZ'),
+      distance: 1.535,
     },
     mobile: {
-      position: new THREE.Vector3(1.200, 0.620, 0.390),
-      rotation: new THREE.Euler(-1.006, 0.902, 2.680, 'XYZ'),
-      distance: 1.075,
+      position: new THREE.Vector3(1.485, -0.372, 0.509),
+      rotation: new THREE.Euler(0.942, 1.003, 0.551, 'XYZ'),
+      distance: 1.496,
     },
   },
 };
