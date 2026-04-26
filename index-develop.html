@@ -172,7 +172,7 @@
         <!-- </div> -->
         <iframe
           class="planning-demo-frame"
-          src="planning_site_both/component.html?scenario=quadruped_slippery_slope"
+          src="planning_site_both/component.html"
           title="Interactive planning demo"
           loading="lazy"
           allowfullscreen
@@ -233,10 +233,10 @@
       </div>
     </section>
 
-    <div class="tagline" id="improvement">Rapid Real-World Improvement Compared to RL</div>
+    <div class="tagline" id="improvement">Rapid Real-World Improvement</div>
     <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
       <div class="section-head" data-reveal>
-        <h2 id="improvement-title" class="visually-hidden">Rapid Real-World Improvement Compared to RL</h2>
+        <h2 id="improvement-title" class="visually-hidden">Rapid Real-World Improvement</h2>
         <h3 id="improvement-block-title">Simulation Distillation</h3>
         <p>
           Simulation Distillation (SimDist) rapidly overcomes the sim-to-real dynamics gap through adaptation in the real world,
@@ -254,7 +254,7 @@
         </figure>
       </div>
     </section>
-    <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
+    <!-- <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
       <div class="section-head" data-reveal>
         <h2 id="improvement-title" class="visually-hidden">Rapid Real-World Improvement Compared to RL</h2>
         <h3 id="improvement-block-title">End-to-End RL Finetuning</h3>
@@ -273,76 +273,29 @@
           <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video>
         </figure>
       </div>
-    </section>
+    </section> -->
 
     <div class="tagline" id="world-models">World Models</div>
     <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
       <div class="section-head" data-reveal>
-        <h2 id="world-models-title" class="visually-hidden">World Models</h2>
-        <h3 id="world-models-block-title">Adapting Dynamics Prediction</h3>
-        <p>
-          We examine the effect finetuning has on dynamics prediction accuracy.
-          Adapting the dynamics model is essential for effective planning, as both the
-          reward and value estimates are computed over predicted trajectories.
-        </p>
-      </div>
-      <div class="improvement-stack">
-        <div class="slip-shell">
-          <figure class="slip-card slip-card--plot" data-reveal>
-            <div class="slip-chart-toolbar">
-              <div class="slip-chart-legend" aria-label="Consistency loss legend">
-                <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
-                  <span class="slip-legend-swatch slip-legend-swatch--pretrained" aria-hidden="true"></span>
-                  Pretrained
-                </button>
-                <button type="button" class="slip-legend-item" data-series="finetuned" aria-pressed="false">
-                  <span class="slip-legend-swatch slip-legend-swatch--finetuned" aria-hidden="true"></span>
-                  Finetuned
-                </button>
-              </div>
-            </div>
-            <svg
-              id="slip-consistency-chart"
-              viewBox="0 0 900 420"
-              role="img"
-              aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
-            ></svg>
-            <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
-          </figure>
-          <figure class="slip-card slip-card--media" data-reveal>
-            <video autoplay muted loop playsinline preload="none" controls>
-              <source data-src="assets/video/foot_slip.mp4" type="video/mp4" />
-            </video>
-            <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
-          </figure>
-          <figure class="slip-card slip-card--media" data-reveal>
-            <img
-              class="slip-card-image"
-              src="assets/figures/foot_preds_rev3.png"
-              alt="Foot prediction comparison visualization during slip event"
-            />
-            <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
-          </figure>
-        </div>
-      </div>
-    </section>
-    <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
-      <div class="section-head" data-reveal>
         <h2 id="world-models-title-rl" class="visually-hidden">World Models</h2>
-        <h3 id="world-models-block-title-rl">Reconstruction</h3>
+        <h3 id="world-models-block-title-rl">Structure</h3>
         <p>
-          Reconstruction commentary: TODO.
+          World models are the right vehicle for transferring experience from simulation to reality,
+          automatically factorizing task structure in a form we can exploit for efficient real-world adaptation.
         </p>
       </div>
       <div class="improvement-stack">
         <figure class="improvement-item">
-          <figcaption class="improvement-video-title">Reconstruction</figcaption>
-          <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video>
+          <!-- <figcaption class="improvement-video-title">Title text</figcaption> -->
+          <!-- <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video> -->
+          <img
+            src="assets/figures/world_model.svg"
+            alt="World model architecture showing encoder, latent dynamics, and value components"
+          />
         </figure>
       </div>
     </section>
-
-    <div class="tagline" id="task-structure">Freezing and Transferring Task Structure</div>
     <section class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
       <div class="section-head" data-reveal>
         <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
@@ -407,21 +360,58 @@
         </div>
       </div>
     </section>
-    <section class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
+    <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
       <div class="section-head" data-reveal>
-        <h2 id="task-structure-title-rl" class="visually-hidden">Freezing and Transferring Task Structure</h2>
-        <h3 id="task-structure-block-title-rl">Reconstruction</h3>
+        <h2 id="world-models-title" class="visually-hidden">World Models</h2>
+        <h3 id="world-models-block-title">Adapting Dynamics Prediction</h3>
         <p>
-          Reconstruction commentary: TODO.
+          We examine the effect finetuning has on dynamics prediction accuracy.
+          Adapting the dynamics model is essential for effective planning, as both the
+          reward and value estimates are computed over predicted trajectories.
         </p>
       </div>
       <div class="improvement-stack">
-        <figure class="improvement-item">
-          <figcaption class="improvement-video-title">Reconstruction</figcaption>
-          <video data-src="assets/video/placeholder.mp4" autoplay muted loop playsinline preload="none"></video>
-        </figure>
+        <div class="slip-shell">
+          <figure class="slip-card slip-card--plot" data-reveal>
+            <div class="slip-chart-toolbar">
+              <div class="slip-chart-legend" aria-label="Consistency loss legend">
+                <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--pretrained" aria-hidden="true"></span>
+                  Pretrained
+                </button>
+                <button type="button" class="slip-legend-item" data-series="finetuned" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--finetuned" aria-hidden="true"></span>
+                  Finetuned
+                </button>
+              </div>
+            </div>
+            <svg
+              id="slip-consistency-chart"
+              viewBox="0 0 900 420"
+              role="img"
+              aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
+            ></svg>
+            <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <video autoplay muted loop playsinline preload="none" controls>
+              <source data-src="assets/video/foot_slip.mp4" type="video/mp4" />
+            </video>
+            <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <img
+              class="slip-card-image"
+              src="assets/figures/foot_preds_rev3.png"
+              alt="Foot prediction comparison visualization during slip event"
+            />
+            <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
+          </figure>
+        </div>
       </div>
     </section>
+
+
 
       <div class="tagline">Real-World Results <span class="interactive-badge">Interactive</span></div>
       <section id="results" class="section section-results card-surface section-card">

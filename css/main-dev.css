@@ -1460,6 +1460,14 @@ video:focus-visible {
   overflow: hidden;
 }
 
+.section-world-models .improvement-stack img[src="assets/figures/world_model.svg"] {
+  display: block;
+  width: min(450px, 100%);
+  height: auto;
+  border: 0;
+  box-shadow: none;
+}
+
 .planning-card {
   margin: 0;
   padding: 0.5rem;
