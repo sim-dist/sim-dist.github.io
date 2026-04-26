@@ -1460,11 +1460,13 @@ video:focus-visible {
   overflow: hidden;
 }
 
-.section-world-models .improvement-stack img[src="assets/figures/world_model.svg"] {
+.section-world-models .improvement-stack img[src="assets/figures/world_with_locks.svg"] {
   display: block;
-  width: min(450px, 100%);
+  width: min(550px, 100%);
   height: auto;
+  object-fit: contain;
   border: 0;
+  border-radius: 0;
   box-shadow: none;
 }
 
