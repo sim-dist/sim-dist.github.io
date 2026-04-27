@@ -333,6 +333,28 @@
         </figure>
       </div>
     </section>
+    <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
+      <div class="section-head" data-reveal>
+        <h2 id="world-models-title-rl" class="visually-hidden">Transferring State Representations</h2>
+        <h3 id="world-models-block-title-rl">Transferring State Representations</h3>
+        <p>
+          In order to reliably transfer from sim-to-real, the encoder must learn a valid state representation
+          for the real world environment. Below, we display images which are reconstructed
+          from the latent states predicted by the world model. This demonstrates how the encoder — trained entirely
+          in simulation — captures a robust and accurate representation for the real world.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <figure class="improvement-item">
+          <!-- <figcaption class="improvement-video-title">Title text</figcaption> -->
+          <video data-src="assets/video/reconstruction_ep1_t250.mp4" autoplay muted loop playsinline preload="none"></video>
+          <p>
+            <i>Note: we do not train the world model with a reconstruction loss. These images are produced by an
+            auxiliary probe that was trained to predict real images from encoded latent states.</i>
+          </p>
+        </figure>
+      </div>
+    </section>
     <section id="task-structure" class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
       <div class="section-head" data-reveal>
         <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
