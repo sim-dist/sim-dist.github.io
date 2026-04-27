@@ -93,7 +93,7 @@
             preload="auto"
             data-priority-video="intro"
           >
-            <source src="assets/video/placeholder.mp4" type="video/mp4" />
+            <source src="assets/video/intro_vid_compr.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -191,14 +191,13 @@
 
       <div class="tagline">3D Planning Demo<span class="interactive-badge">Interactive</span></div>
       <section id="planning" class="section section-planning card-surface section-card" aria-labelledby="planning-title">
-        <!-- <div class="section-head" data-reveal> -->
-          <!-- <h2 id="planning-title" class="visually-hidden">Planning Under Adapted Dynamics</h2> -->
-          <!-- <p> -->
-            <!-- Because we finetune only the dynamics, adaptation is fast: -->
-            <!-- improved predictions immediately reshape planning behavior, driving the performance gains seen in our <a href="#results">results</a>. -->
-            <!-- In the below demo, you can visualize how the finetuned model produces qualitatively different plans compared to the pretrained model, and how the planner iteratively queries the adapted world model to close in on the optimal trajectory. -->
-          <!-- </p> -->
-        <!-- </div> -->
+        <div class="section-head" data-reveal>
+          <h2 id="planning-title" class="visually-hidden">3D Planning Demo</h2>
+          <p>
+            SimDist plans in a latent world model pretrained in simulation.
+            Below we reconstruct and visualize the latent plans — play with them yourself!
+          </p>
+        </div>
         <iframe
           class="planning-demo-frame"
           src="planning_site_both/component.html"
@@ -214,8 +213,13 @@
       <div class="section-head" data-reveal>
         <h2 id="pipeline-title" class="visually-hidden">The Simulation Distillation Pipeline</h2>
         <p>
-          Simulation Distillation (SimDist) is a <b>scalable framework</b> that distills structural priors from a simulator
-          into a latent world model and enables <b>rapid real-world adaptation</b> via online planning and supervised dynamics finetuning.
+          SimDist extracts structural priors from the simulator by training a latent world model on a
+          large-scale, mixed quality dataset. We then plan over the world model in the real world, and
+          fine-tune the dynamics predictions on the real world data. As the dynamics prediction improve,
+          the planner rapidly improves performance.
+        </p>
+        <p>
+          Reliable improvement with simple, supervised system identification!
         </p>
       </div>
       <div class="pipeline-grid">
@@ -227,7 +231,7 @@
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p>Train an expert policy with an <b>established</b> sim-to-real pipeline.</p>
+          <p>Train state-based expert policy.</p>
         </div>
         <div class="pipeline-card">
           <div class="pipeline-step">Step 2 — Data Generation</div>
@@ -237,7 +241,7 @@
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p><b>Perturb</b> expert policy to generate diverse training data.</p>
+          <p>Perturb expert actions to generate large-scale diverse dataset.</p>
         </div>
         <div class="pipeline-card">
           <div class="pipeline-step">Step 3 — World Model Pretraining</div>
@@ -247,7 +251,7 @@
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p>Distill a world model from <b>raw observations</b>.</p>
+          <p>Distill simulation data into a world model from raw perception.</p>
         </div>
         <div class="pipeline-card">
           <div class="pipeline-step">Step 4 — Deployment and Adaptation</div>
@@ -257,7 +261,7 @@
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p><b>Improve rapidly</b> in the real world through supervised learning.</p>
+          <p>Finetune dynamics predictions with real-world data to improve planning performance.</p>
         </div>
       </div>
     </section>
@@ -274,12 +278,12 @@
       </div>
       <div class="improvement-stack">
         <figure class="improvement-item">
-          <figcaption class="improvement-video-title">Quadruped - Slippery Slope</figcaption>
-          <video data-src="assets/video/qped_progress_vid.mp4" autoplay muted loop playsinline preload="none"></video>
-        </figure>
-        <figure class="improvement-item">
           <figcaption class="improvement-video-title">Manipulation - Peg Insertion</figcaption>
           <video data-src="assets/video/manip_progress_vid.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="improvement-item">
+          <figcaption class="improvement-video-title">Quadruped - Slippery Slope</figcaption>
+          <video data-src="assets/video/qped_progress_vid.mp4" autoplay muted loop playsinline preload="none"></video>
         </figure>
       </div>
     </section>
@@ -310,8 +314,12 @@
         <h2 id="world-models-title-rl" class="visually-hidden">World Models</h2>
         <h3 id="world-models-block-title-rl">Structure</h3>
         <p>
-          World models are the right vehicle for transferring experience from simulation to reality,
-          automatically factorizing task structure in a form we can exploit for efficient real-world adaptation.
+          Our Key Insight: world models automatically decompose task structure in a form that we
+          can exploit to target adaptation where it’s needed. We argue that the encoder, rewards,
+          and value function capture the <b>global structure</b> of the problem in a form that is
+          <i>largely invariant sim-to-real</i>. Thus, we freeze these components during the real world finetuning phase,
+          and focus on <b>finetuning only the dynamics model</b>. This sidesteps the need for end-to-end learning with
+          sparse real-world data and avoids long-horizon credit assignment, which is a central challenge for existing RL approaches.
         </p>
       </div>
       <div class="improvement-stack">
@@ -330,14 +338,9 @@
         <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
         <h3 id="task-structure-block-title">Value Prediction</h3>
         <p>
-          The planner used by SimDist can only improve behavior if it can reliably distinguish
-          trajectories with high and low returns. This requires both accurate dynamics prediction and
-          successful transfer of reward and value models. We examine value transfer below,
-          which plots predicted values over time for successful and failed trajectories.
-        </p>
-        <p>
-          For the successful rollout, predicted value increases consistently over time, while for the failed rollout, it decreases abruptly when the peg is dropped.
-          Thus the transfered encoder and value function can reliably discriminate between successful and failed trajectories.
+          Below we see that the frozen value function accurately discriminates between successful and
+          failed real-world trajectories. Bootstrapping the value functionin simulation enables the planner
+          to estimate long-horizon returns without solving challenging real-world credit assignment problems.
         </p>
       </div>
       <div class="improvement-stack">
@@ -394,9 +397,11 @@
         <h2 id="world-models-title" class="visually-hidden">World Models</h2>
         <h3 id="world-models-block-title">Adapting Dynamics Prediction</h3>
         <p>
-          We examine the effect finetuning has on dynamics prediction accuracy.
-          Adapting the dynamics model is essential for effective planning, as both the
-          reward and value estimates are computed over predicted trajectories.
+          Adapting the dynamics model is essential for effective planning, as both
+          the reward and value estimates are computed over predicted trajectories.
+          By freezing the encoder, we reduce adaptation to a simple supervised learning problem
+          in a low-dimensional latent space. This yields an extremely simple learning problem which can
+          be reliably solved in low-data regimes.
         </p>
       </div>
       <div class="improvement-stack">
