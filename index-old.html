@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJD7417ELX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DJD7417ELX');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimDist | Simulation Distillation</title>
+    <meta
+      name="description"
+      content="SimDist: Pretraining world models in simulation for rapid real-world adaptation via planning and dynamics-only finetuning."
+    />
+    <link
+      rel="preload"
+      href="assets/video/simdist_intro_540p.mp4"
+      as="video"
+      type="video/mp4"
+      fetchpriority="high"
+    />
+    <link rel="preload" href="assets/video/peg_win_value.mp4" as="video" type="video/mp4" />
+    <link rel="preload" href="assets/video/peg_fail_value.mp4" as="video" type="video/mp4" />
+    <link rel="stylesheet" href="css/omnireset-theme.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#outcomes">Skip to content</a>
+
+    <nav class="progress-sidebar" aria-label="Page progress">
+      <div class="progress-track">
+        <div class="progress-line"></div>
+        <div class="progress-line-fill"></div>
+        <div class="progress-item" data-section="top">
+          <a href="#top" data-nav="top">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Intro</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="planning">
+          <a href="#planning" data-nav="planning">
+            <span class="progress-dot"></span>
+            <span class="progress-label">3D Planning Demo</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="method">
+          <a href="#method" data-nav="method">
+            <span class="progress-dot"></span>
+            <span class="progress-label">The SimDist Pipeline</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="outcomes">
+          <a href="#outcomes" data-nav="outcomes">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Rapid Adaptation</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="overview">
+          <a href="#overview" data-nav="overview">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Why World Models?</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="values">
+          <a href="#values" data-nav="values">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Return Model Transfer</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="slip">
+          <a href="#slip" data-nav="slip">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Dynamics Adaptation</span>
+          </a>
+        </div>
+        <div class="progress-item" data-section="results">
+          <a href="#results" data-nav="results">
+            <span class="progress-dot"></span>
+            <span class="progress-label">Results</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <section id="top" class="hero-flow" aria-labelledby="hero-title">
+        <div class="hero-orb" aria-hidden="true"></div>
+        <h1 id="hero-title" class="hero-text">Simulation Distillation</h1>
+        <p class="sub-hero-text">
+          Pretraining World Models in Simulation for Rapid Real-World Adaptation
+        </p>
+
+        <div class="hero-video-wrap">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            data-priority-video="intro"
+          >
+            <source src="assets/video/simdist_intro_compressed.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="authors">
+          <a href="https://jake-levy.github.io/">Jacob Levy</a><sup>*1</sup>, <a href="https://tyler-westenbroek.github.io/">Tyler Westenbroek</a><sup>*2</sup>,
+          <a href="https://kevinhuang8.github.io/">Kevin Huang</a><sup>2</sup>, <a href="https://palafox.info/">Fernando Palafox</a><sup>1</sup>,
+          <a href="https://patrickyin.me/">Patrick Yin</a><sup>2</sup>,<br>
+          <a href="https://www.linkedin.com/in/shayegan/">Shayegan Omidshafiei</a><sup>3</sup>,
+          <a href="https://dkkim93.github.io/">Dong-Ki Kim</a><sup>3</sup>, <a href="https://homes.cs.washington.edu/~abhgupta/">Abhishek Gupta</a><sup>2</sup>,
+          <a href="https://dfridovi.github.io/">David Fridovich-Keil</a><sup>1</sup>
+          <span class="affiliation">
+            <sup>1</sup> UT Austin, <sup>2</sup> UW, <sup>3</sup> FieldAI, <sup>*</sup> Equal Contribution
+          </span>
+        </div>
+
+        <div class="hero-actions">
+          <a
+            class="cta primary"
+            href="https://arxiv.org/abs/2603.15759"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Paper"
+          >
+            <svg
+              class="link-icon link-icon--arxiv"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 135.611 163"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M456.756,249.1l-42.324,49.375c-1.885,2.01-3.054,5.535-2,8.066a6.9,6.9,0,0,0,6.443,4.27c1.6,0,2.911-.56,4.631-2.289l52.364-54.278a8.927,8.927,0,0,0,.061-12.584Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M455.876,248.071l39.168-49.545c2.186-2.914,3.219-4.44,2.186-6.921a7.536,7.536,0,0,0-6.566-4.633h0a5.9,5.9,0,0,0-4.408,1.624l-50.072,53.061c-3.816,3.816-3.808,8.753.023,12.584l70.031,73.438a5.738,5.738,0,0,0,4.6,1.748c2.833,0,4.67-1.667,5.9-4.131,1.054-2.531-.112-5.038-2.056-7.664l-58.8-69.561"
+                transform="translate(-391.029 -166.577)"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M475.931,241.657l-68.388-71.966s-2.511-3.048-5.165-3.112a6.75,6.75,0,0,0-6.357,4.084c-1.033,2.481-.291,4.223,1.977,7.47L456.756,249.1Z"
+                transform="translate(-391.029 -166.577)"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span>Paper</span>
+          </a>
+          <a
+            class="cta dark"
+            href="https://github.com/CLeARoboticsLab/simdist"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Code repository"
+          >
+            <svg
+              class="link-icon link-icon--fill"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.57c-2.6.57-3.15-1.1-3.15-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.92.06 1.4.95 1.4.95.83 1.4 2.17 1 2.7.77.08-.6.32-1 .58-1.22-2.08-.24-4.27-1.04-4.27-4.64 0-1.03.37-1.88.97-2.54-.09-.24-.42-1.2.1-2.5 0 0 .8-.26 2.62.97A9.2 9.2 0 0 1 12 7.82a9.2 9.2 0 0 1 2.38.32c1.82-1.23 2.62-.97 2.62-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.5.97 2.54 0 3.61-2.2 4.4-4.3 4.63.34.3.64.86.64 1.73v2.56c0 .24.17.55.65.45A9.5 9.5 0 0 0 12 2.5Z"
+              ></path>
+            </svg>
+            <span>Code</span>
+          </a>
+        </div>
+
+        <div class="hero-waves" aria-hidden="true">
+          <svg
+            class="waves-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28"
+            preserveAspectRatio="none"
+            shape-rendering="auto"
+          >
+            <defs>
+              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            </defs>
+            <g class="wave-parallax">
+              <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(212,148,10,0.25)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(147,51,234,0.2)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(59,130,246,0.18)"></use>
+              <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(37,99,235,0.25)"></use>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <div class="tagline">3D Planning Demo<span class="interactive-badge">Interactive</span></div>
+      <section id="planning" class="section section-planning card-surface section-card" aria-labelledby="planning-title">
+        <!-- <div class="section-head" data-reveal>
+          <h2 id="planning-title" class="visually-hidden">Planning Under Adapted Dynamics</h2>
+          <p>
+            Because we finetune only the dynamics, adaptation is fast:
+            improved predictions immediately reshape planning behavior, driving the performance gains seen in our <a href="#results">results</a>.
+            In the below demo, you can visualize how the finetuned model produces qualitatively different plans compared to the pretrained model, and how the planner iteratively queries the adapted world model to close in on the optimal trajectory.
+          </p>
+        </div> -->
+        <iframe
+          class="planning-demo-frame"
+          src="planning_site_both/component.html?scenario=manipulation_peg_insertion"
+          title="Interactive planning demo"
+          loading="lazy"
+          allowfullscreen
+          data-reveal
+        ></iframe>
+      </section>
+
+
+      <div class="tagline">The Simulation Distillation Pipeline <span class="interactive-badge">Interactive</span></div>
+      <section id="method" class="section section-method card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">The Simulation Distillation Pipeline</h2>
+          <p>
+            Simulation Distillation (SimDist) is a scalable framework that distills structural priors from a simulator
+            into a latent world model and enables rapid real-world adaptation via online planning and supervised dynamics finetuning.
+          </p>
+        </div>
+        <div class="method-shell">
+          <figure class="method-figure" data-reveal>
+            <p class="method-interaction-hint">Hover over a box to view its detail below.</p>
+            <div class="method-scroll-shell">
+              <div class="method-scroll-frame">
+                <div class="method-grid" role="list" aria-label="Simulation Distillation stages">
+                  <div
+                    class="method-row-label method-row-label--pretraining"
+                    aria-hidden="true"
+                    role="presentation"
+                  >
+                    <span>Pretraining</span>
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--1"
+                    data-step="1"
+                    role="listitem"
+                    aria-label="Step 1: Expert Policy Training"
+                  >
+                    <h3><span class="method-node-kicker">1</span>Expert Policy Training</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/rl_qped.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    class="method-node method-node--2"
+                    data-step="2"
+                    role="listitem"
+                    aria-label="Step 2: Data Generation"
+                  >
+                    <h3><span class="method-node-kicker">2</span>Data Generation</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/data_gen.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    class="method-node method-node--3"
+                    data-step="3"
+                    role="listitem"
+                    aria-label="Step 3: World Model Pretraining"
+                  >
+                    <h3><span class="method-node-kicker">3</span>World Model Pretraining</h3>
+                    <div class="method-node-media">
+                      <img src="assets/figures/pretraining.svg" alt="World model pretraining diagram" />
+                    </div>
+                  </button>
+                  <div
+                    class="method-row-label method-row-label--improvement"
+                    aria-hidden="true"
+                    role="presentation"
+                  >
+                    <span>Real-World Improvement</span>
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--4a"
+                    data-step="4a"
+                    role="listitem"
+                    aria-label="Step 4a: Real-World Deployment"
+                  >
+                    <h3><span class="method-node-kicker">4a</span>Real-World Deployment</h3>
+                    <div class="method-node-media">
+                      <video autoplay muted loop playsinline preload="none">
+                        <source data-src="assets/video/ptfe_plan.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </button>
+                  <div class="method-exchange" aria-hidden="true" role="presentation">
+                    <img class="method-exchange-svg" src="assets/figures/iteration_arrows.svg" alt="" />
+                  </div>
+                  <button
+                    type="button"
+                    class="method-node method-node--4b"
+                    data-step="4b"
+                    role="listitem"
+                    aria-label="Step 4b: Dynamics Finetuning"
+                  >
+                    <h3><span class="method-node-kicker">4b</span>Dynamics Finetuning</h3>
+                    <div class="method-node-media">
+                      <img src="assets/figures/finetuning.svg" alt="Dynamics finetuning diagram" />
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="method-scroll-indicator method-scroll-indicator--left" aria-hidden="true">
+                <div class="method-scroll-indicator-group">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="method-scroll-indicator method-scroll-indicator--right" aria-hidden="true">
+                <div class="method-scroll-indicator-group method-scroll-indicator-group--top">
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="method-scroll-indicator-group method-scroll-indicator-group--bottom">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </figure>
+          <aside class="method-panel" data-reveal aria-live="polite">
+            <div class="method-step-controls" aria-label="Method steps">
+              <p class="method-step-hint">Click to learn more:</p>
+              <button type="button" class="method-step-button" data-step="1">1</button>
+              <button type="button" class="method-step-button" data-step="2">2</button>
+              <button type="button" class="method-step-button" data-step="3">3</button>
+              <button type="button" class="method-step-button" data-step="4a">4a</button>
+              <button type="button" class="method-step-button" data-step="4b">4b</button>
+            </div>
+            <h3 id="method-step-title">Select a Step</h3>
+            <p id="method-step-copy">
+              Choose a step above or click a box in the pipeline to view its details.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="tagline">Rapid Real-World Adaptation</div>
+      <section id="outcomes" class="section section-outcomes card-surface section-card" aria-labelledby="outcomes-title">
+        <div class="section-head" data-reveal>
+          <h2 id="outcomes-title" class="visually-hidden">Rapid Real-World Adaptation</h2>
+          <p>
+            Simulation Distillation (SimDist) rapidly overcomes the sim-to-real dynamics gap through adaptation in the real world,
+            resulting in substantial gains in task execution on both precise manipulation and quadrupedal locomotion tasks.
+          </p>
+        </div>
+
+        <div class="outcomes-shell">
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Peg Insertion</h3>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/peg_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Zero-shot: 25% success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/peg_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>After 60 trials: 85% success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Table Leg</h3>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/leg_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Zero-shot: 10% success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/leg_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>After 80 trials: 85% success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Slippery Slope</h3>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/ptfe_0.5_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Zero-shot: 0% success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/ptfe_0.5_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>After 36 minutes: 93% success</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="outcome-card" data-reveal>
+            <div class="outcome-head">
+              <h3>Foam</h3>
+            </div>
+            <div class="outcome-videos">
+              <figure class="outcome-video outcome-video-before">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/foam_0.7_fail.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Zero-shot: 40% success</figcaption>
+              </figure>
+              <div class="outcome-bridge" aria-hidden="true">
+                <svg class="outcome-arrow-svg" viewBox="0 0 52 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H38" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" />
+                  <path d="M31 5L45 12L31 19" fill="none" stroke="#8be8f5" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <figure class="outcome-video outcome-video-after">
+                <video autoplay muted loop playsinline preload="none" controls>
+                  <source data-src="assets/video/foam_0.7_win.mp4" type="video/mp4" />
+                </video>
+                <figcaption>After 32 minutes: 100% success</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="tagline">Why World Models?</div>
+      <section id="overview" class="section section-overview card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">Why World Models?</h2>
+          <p>
+            End-to-end RL finetuning in the real world often forgets useful priors from simulation.
+            SimDist keeps global task structure fixed and updates only what changes most across domains: dynamics.
+          </p>
+        </div>
+        <div class="overview-shell">
+          <div class="narrative-grid">
+            <article class="narrative-card" data-reveal>
+              <h3>End-to-end RL Finetuning is Hard</h3>
+              <video autoplay muted loop playsinline preload="none">
+                <source data-src="assets/video/rl_finetuning.mp4" type="video/mp4" />
+              </video>
+              <p>
+                Sim-to-real RL policies fail under dynamics mismatch.
+                Standard end-to-end policy finetuning algorithms entangle learning representations, dynamics, and returns, forcing relearning of the <strong>entire</strong> task structure in the new domain.
+              </p>
+            </article>
+            <article class="narrative-card" data-reveal>
+              <h3>World Models Factorize Task Structure</h3>
+              <img
+                class="narrative-image-plain"
+                src="assets/figures/world_model.svg"
+                alt="World model architecture showing encoder, latent dynamics, and value components"
+              />
+              <p>
+                We argue that world models are the right vehicle for transferring experience from simulation to reality.
+                World models automatically <strong>factorize task structure</strong> in a form we can exploit for efficient real-world adaptation.
+                <!-- World models can decompose task structure in a modular format we can exploit for efficient real-world adaptation. -->
+              </p>
+            </article>
+            <article class="narrative-card" data-reveal>
+              <h3>Leveraging Simulation for Transferable Priors</h3>
+              <video autoplay muted loop playsinline preload="none">
+                <source data-src="assets/video/domain_rand.mp4" type="video/mp4" />
+              </video>
+              <p>
+                Domain randomization and privileged state supervision yield robust encoders and reward/value models in simulation.
+              </p>
+            </article>
+            <article class="narrative-card" data-reveal>
+              <h3>Preserve Transferable Structure</h3>
+              <img
+                class="narrative-image-plain"
+                src="assets/figures/task_structure.svg"
+                alt="Transferrable world model components."
+              />
+              <p>
+                State encoders, rewards, and values capture global structure, such as which objects matter, their semantic roles, and distances to goal configurations.
+                <strong>Our key insight</strong> is that this global structure is largely invariant across simulation and reality, whereas local dynamics are not.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="tagline">Successful Return Model Transfer <span class="interactive-badge">Interactive</span></div>
+      <section id="values" class="section section-values card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">Successful Return Model Transfer</h2>
+          <p>
+            The planner used by SimDist can only improve behavior if it can reliably distinguish
+            trajectories with high and low returns. This requires both accurate dynamics prediction and
+            successful transfer of reward and value models. We examine value transfer below,
+            which plots predicted values over time for successful and failed trajectories.
+          </p>
+          <p>
+            For the successful rollout, predicted value increases consistently over time, while for the failed rollout, it decreases abruptly when the peg is dropped.
+            Thus the transfered encoder and value function can reliably discriminate between successful and failed trajectories.
+          </p>
+        </div>
+
+        <div class="values-shell">
+          <div class="values-chart-card" data-reveal>
+            <div class="values-toolbar">
+              <p id="values-status">Hover over the plot to view the associated video frame.</p>
+              <button type="button" id="values-lock" aria-pressed="false">
+                <svg class="values-lock-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M7.5 10V7.5a4.5 4.5 0 1 1 9 0V10M6.5 10h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span id="values-lock-label">Lock Frame</span>
+              </button>
+            </div>
+            <svg id="values-chart" viewBox="0 0 900 460" role="img" aria-label="Success and failure value trajectories"></svg>
+          </div>
+
+          <div class="values-videos" data-reveal>
+            <figure class="values-video-success">
+              <figcaption>Success</figcaption>
+              <video
+                id="values-video-success"
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="assets/video/peg_win_value.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            <figure class="values-video-failure">
+              <figcaption>Failure</figcaption>
+              <video
+                id="values-video-fail"
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="assets/video/peg_fail_value.mp4" type="video/mp4" />
+              </video>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="tagline">Adapting Dynamics Prediction</div>
+      <section id="slip" class="section section-slip card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">Adapting Dynamics Prediction</h2>
+          <p>
+            We examine the effect finetuning has on dynamics prediction accuracy.
+            Adapting the dynamics model is essential for effective planning, as both the
+            reward and value estimates are computed over predicted trajectories.
+          </p>
+        </div>
+        <div class="slip-shell">
+          <figure class="slip-card slip-card--plot" data-reveal>
+            <div class="slip-chart-toolbar">
+              <div class="slip-chart-legend" aria-label="Consistency loss legend">
+                <button type="button" class="slip-legend-item" data-series="pretrained" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--pretrained" aria-hidden="true"></span>
+                  Pretrained
+                </button>
+                <button type="button" class="slip-legend-item" data-series="finetuned" aria-pressed="false">
+                  <span class="slip-legend-swatch slip-legend-swatch--finetuned" aria-hidden="true"></span>
+                  Finetuned
+                </button>
+              </div>
+            </div>
+            <svg
+              id="slip-consistency-chart"
+              viewBox="0 0 900 420"
+              role="img"
+              aria-label="Latent dynamics loss versus timestep for pretrained and finetuned models"
+            ></svg>
+            <p class="slip-card-note">Finetuning drastically lowers dynamics prediction loss for a held out quadruped slippery slope trajectory.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <video autoplay muted loop playsinline preload="none" controls>
+              <source data-src="assets/video/foot_slip.mp4" type="video/mp4" />
+            </video>
+            <p class="slip-card-note">During this trajectory, the front-left foot slips.</p>
+          </figure>
+          <figure class="slip-card slip-card--media" data-reveal>
+            <img
+              class="slip-card-image"
+              src="assets/figures/foot_preds_rev3.png"
+              alt="Foot prediction comparison visualization during slip event"
+            />
+            <p class="slip-card-note">At this same instant, the finetuned model correctly anticipates the future slippage, while the pretrained model fails to do so.</p>
+          </figure>
+        </div>
+      </section>
+
+      <div class="tagline">Real-World Results <span class="interactive-badge">Interactive</span></div>
+      <section id="results" class="section section-results card-surface section-card">
+        <div class="section-head" data-reveal>
+          <h2 class="visually-hidden">Real-World Results</h2>
+          <p>
+            Success rate for two manipulation tasks, computed over 20 trials, and average forward progress for two quadruped locomotion tasks,
+            averaged across all 15 trials (3 speeds, 5 trials each), as a function of real-world finetuning data. For manipulation, we consider
+            two difficulties: initial conditions drawn from a <em>Narrow</em> or <em>Wide</em> grid.
+          </p>
+          <p>
+            SimDist exhibits rapid and consistent improvement with limited data by finetuning only the latent dynamics model
+            while planning with frozen reward and value models. In contrast, direct policy finetuning with the baselines shows limited or no
+            improvement under the same data budgets.
+          </p>
+        </div>
+
+        <div class="results-shell">
+          <div class="results-legend-bar" data-reveal>
+            <p class="results-legend-hint">
+              Hover a legend item to highlight a curve.<br />
+              Click to toggle it on/off.
+            </p>
+            <div id="results-legend" class="results-legend" aria-label="Results legend"></div>
+          </div>
+
+          <div class="results-panel" data-reveal>
+            <p class="results-interaction-hint">
+              Hover a plot to preview its video. Click to expand.
+            </p>
+            <div id="results-grid" class="results-grid">
+              <div class="results-fallback">
+                <img
+                  src="assets/figures/fig4_results-with-robots.png"
+                  alt="Static fallback plot for real-world results"
+                />
+                <p>Interactive charts load here from <code>assets/data/results.json</code>.</p>
+              </div>
+            </div>
+            <div id="results-hover-preview" class="results-hover-preview" aria-hidden="true">
+              <p id="results-hover-preview-title" class="results-hover-preview-title"></p>
+              <video
+                id="results-hover-preview-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="results-video-modal" class="results-video-modal" hidden>
+        <div class="results-video-modal-card" role="dialog" aria-modal="true" aria-labelledby="results-modal-title">
+          <div class="results-video-modal-head">
+            <h3 id="results-modal-title"></h3>
+            <button type="button" id="results-modal-close" aria-label="Close expanded video">Close</button>
+          </div>
+          <video
+            id="results-modal-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+        </div>
+      </div>
+
+      <div id="paper" class="tagline">BibTeX</div>
+      <footer class="site-footer">
+        <div class="bibtex-code">
+          <pre class="citation-block"><code>@article{2026simdist,
+  title={Simulation Distillation: Pretraining World Models in Simulation for Rapid Real-World Adaptation},
+  author={Levy, Jacob and Westenbroek, Tyler and Huang, Kevin and Palafox, Fernando and Yin, Patrick and Omidshafiei, Shayegan and Kim, Dong-Ki and Gupta, Abhishek and Fridovich-Keil, David},
+  journal={arXiv preprint arXiv:2603.15759},
+  year={2026},
+  url={https://arxiv.org/abs/2603.15759}
+}</code></pre>
+        </div>
+      </footer>
+    </main>
+
+    <div class="footer">Website template adapted from <a href="https://omnireset.github.io/" target="_blank" rel="noreferrer">OmniReset</a>.</div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

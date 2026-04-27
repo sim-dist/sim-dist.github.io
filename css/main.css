@@ -1287,6 +1287,38 @@ video:focus-visible {
     radial-gradient(650px 280px at 94% 4%, rgba(15, 127, 102, 0.1), transparent 70%);
 }
 
+.section-pipeline {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.section-improvement {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.section-world-models {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.section-task-structure {
+  background:
+    linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
+    radial-gradient(620px 260px at 8% 12%, rgba(201, 90, 42, 0.1), transparent 72%),
+    radial-gradient(640px 280px at 92% 8%, rgba(11, 154, 182, 0.1), transparent 74%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
 .section-planning {
   background:
     linear-gradient(180deg, rgba(247, 243, 236, 0.84), rgba(255, 255, 255, 0.9)),
@@ -1302,6 +1334,140 @@ video:focus-visible {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 1rem;
   align-items: start;
+}
+.pipeline-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.world-models-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.task-structure-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 0;
+  min-width: 0;
+}
+.pipeline-card {
+  background: var(--bg-elevated);
+  border-radius: 24px;
+  border: 1px solid var(--border-subtle);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  min-width: 0;
+  overflow: hidden;
+}
+.pipeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.pipeline-card video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+  margin: 18px 0;
+  box-shadow: var(--shadow-sm);
+  clip-path: none;
+}
+.pipeline-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+.pipeline-step {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  color: var(--honey-bronze);
+}
+
+.improvement-section-box {
+  margin: 32px 0 24px 0;
+}
+
+.section-improvement .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-world-models .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-task-structure .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.improvement-stack {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  min-width: 0;
+  justify-items: center;
+}
+
+.improvement-item {
+  width: 100%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.section-improvement #improvement-block-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  line-height: 1.15;
+}
+
+.improvement-video-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  /* color: var(--ink-0); */
+  /* font-family: var(--font-sans); */
+  /* font-size: 15px; */
+  /* font-weight: 700; */
+  margin: 0;
+  width: min(620px, 100%);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.improvement-stack video {
+  aspect-ratio: 16 / 9;
+  width: min(620px, 100%);
+  object-fit: contain;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.section-world-models .improvement-stack img[src="assets/figures/world_with_locks.svg"] {
+  display: block;
+  width: min(550px, 100%);
+  height: auto;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .planning-card {
@@ -1328,7 +1494,7 @@ video:focus-visible {
 
 .planning-demo-frame {
   width: 100%;
-  margin-top: -1rem;
+  /* margin-top: 1rem; */
   min-height: 720px;
   border: 0;
   display: block;
@@ -2117,7 +2283,6 @@ a:focus-visible {
   }
 
   .planning-demo-frame {
-    margin-top: 0.2rem;
     min-height: 540px;
   }
 
@@ -2390,7 +2555,7 @@ body {
 
 .main-content .section-card {
   padding: 32px;
-  margin: 0 0 12px;
+  margin: 0 0 24px;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border-top: 0;
@@ -2404,8 +2569,12 @@ body {
 .main-content .section-overview,
 .main-content .section-method,
 .main-content .section-results,
+.main-content .section-improvement,
+.main-content .section-world-models,
+.main-content .section-task-structure,
 .main-content .section-values,
 .main-content .section-slip,
+.main-content .section-pipeline,
 .main-content .section-planning {
   background: var(--bg-surface);
   border-top: 0;
@@ -2545,5 +2714,21 @@ body {
   .main-content .section-card,
   .main-content .section {
     padding: 16px;
+  }
+
+  .pipeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-card {
+    padding: 18px;
+  }
+
+  .pipeline-card video {
+    height: auto;
+  }
+
+  .improvement-stack {
+    gap: 16px;
   }
 }

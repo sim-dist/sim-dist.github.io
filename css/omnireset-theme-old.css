@@ -527,30 +527,6 @@ h6,
   transition: all 0.3s ease;
 }
 
-.section-world-models {
-  position: relative;
-}
-
-.world-models-section-box {
-  position: relative;
-}
-
-.section-world-models .section-head h3 {
-  margin: 0;
-}
-
-.section-task-structure {
-  position: relative;
-}
-
-.task-structure-section-box {
-  position: relative;
-}
-
-.section-task-structure .section-head h3 {
-  margin: 0;
-}
-
 .card-surface:hover {
   box-shadow: var(--shadow-lg);
 }
@@ -627,16 +603,6 @@ video[data-src]:not([src]) {
 .learning-over-time-video-wrap video {
   width: 100%;
   display: block;
-}
-.real-world-common-caption {
-  color: var(--text-secondary);
-  font-size: 16px;
-  line-height: 1.7;
-  margin: 0;
-  text-align: center;
-}
-.real-world-caption-top {
-  margin-bottom: 24px;
 }
 
 .code-details {
