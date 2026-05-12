@@ -2906,7 +2906,7 @@
       return [0];
     }
 
-    if (values.length <= 4) {
+    if (values.length <= 7) {
       return values;
     }
 
