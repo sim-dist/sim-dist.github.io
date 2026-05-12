@@ -59,14 +59,6 @@
       desktop: "Hover a legend item to highlight a curve.<br />Click to toggle it on/off.",
       touch: "Tap a legend item to toggle it on/off.",
     },
-    resultsPlot: {
-      desktop: "Hover a plot to preview its video. Click to expand.",
-      touch: "Tap a plot to view its video.",
-    },
-    resultsChartHint: {
-      desktop: "▶ Hover for video",
-      touch: "▶ Tap for video",
-    },
     valuesStatus: {
       desktop: "Hover over the plot to view the associated video frame.",
       touch: "Tap the plot to view the associated video frame.",
@@ -85,33 +77,6 @@
     "TABLE_NARROW",
     "FOAM",
   ];
-
-  const TASK_VIDEO_MAP = {
-    PEG_NARROW: {
-      src: "assets/video/peg_win.mp4",
-      caption: "Peg insertion real-world rollouts.",
-    },
-    PEG_WIDE: {
-      src: "assets/video/peg_win.mp4",
-      caption: "Peg insertion real-world rollouts.",
-    },
-    TABLE_NARROW: {
-      src: "assets/video/leg_win.mp4",
-      caption: "Table-leg assembly real-world rollouts.",
-    },
-    TABLE_WIDE: {
-      src: "assets/video/leg_win.mp4",
-      caption: "Table-leg assembly real-world rollouts.",
-    },
-    PTFE: {
-      src: "assets/video/ptfe_wins.mp4",
-      caption: "Quadruped PTFE slope experiments.",
-    },
-    FOAM: {
-      src: "assets/video/foam_wins.mp4",
-      caption: "Quadruped foam terrain experiments.",
-    },
-  };
 
   const METHOD_COLOR_MAP = {
     "Simulation Distillation": "#4C72B0",
@@ -513,7 +478,6 @@
   function initResponsiveInteractionCopy() {
     const methodStepHint = document.querySelector(".method-step-hint");
     const resultsLegendHint = document.querySelector(".results-legend-hint");
-    const resultsInteractionHint = document.querySelector(".results-interaction-hint");
     const valuesStatus = document.getElementById("values-status");
 
     const syncCopy = () => {
@@ -531,23 +495,10 @@
           : INTERACTION_COPY.resultsLegend.desktop;
       }
 
-      if (resultsInteractionHint) {
-        resultsInteractionHint.textContent = useTouchCopy
-          ? INTERACTION_COPY.resultsPlot.touch
-          : INTERACTION_COPY.resultsPlot.desktop;
-      }
-
       if (valuesStatus && !valuesState.locked) {
         valuesStatus.textContent = useTouchCopy
           ? INTERACTION_COPY.valuesStatus.touch
           : INTERACTION_COPY.valuesStatus.desktop;
-      }
-
-      const chartHints = document.querySelectorAll(".chart-video-hint");
-      for (const hint of chartHints) {
-        hint.textContent = useTouchCopy
-          ? INTERACTION_COPY.resultsChartHint.touch
-          : INTERACTION_COPY.resultsChartHint.desktop;
       }
     };
 
@@ -1267,15 +1218,9 @@
     resultsState.methods = collectMethodNames(payload);
 
     buildLegend(legendRoot, resultsState.methods);
-    initResultsVideoModal();
 
     renderResultsCharts();
     refreshLegendUI();
-    hideResultsHoverPreview();
-
-    panel.addEventListener("mouseleave", () => {
-      hideResultsHoverPreview();
-    });
   }
 
   function collectMethodNames(data) {
@@ -1426,7 +1371,6 @@
       return;
     }
 
-    hideResultsHoverPreview();
     grid.innerHTML = "";
 
     for (const key of TASK_ORDER) {
@@ -1443,17 +1387,10 @@
       const title = document.createElement("h3");
       title.textContent = task.title;
 
-      const hoverHint = document.createElement("span");
-      hoverHint.className = "chart-video-hint";
-      hoverHint.textContent = useTouchInteractionCopy()
-        ? INTERACTION_COPY.resultsChartHint.touch
-        : INTERACTION_COPY.resultsChartHint.desktop;
-
       const wrap = document.createElement("div");
       wrap.className = "chart-wrap";
       wrap.appendChild(buildTaskChartSvg(task));
 
-      card.appendChild(hoverHint);
       card.appendChild(title);
       card.appendChild(wrap);
 
@@ -1462,27 +1399,13 @@
         markSelectedTaskCard();
       };
 
-      const previewOnPointer = (event) => {
-        selectTask();
-        showResultsHoverPreview(key, event, card);
-      };
-
-      card.addEventListener("mouseenter", previewOnPointer);
-      card.addEventListener("mousemove", previewOnPointer);
+      card.addEventListener("mouseenter", selectTask);
       card.addEventListener("focus", () => {
         selectTask();
-        showResultsHoverPreview(key, null, card);
-      });
-      card.addEventListener("blur", () => {
-        hideResultsHoverPreview();
-      });
-      card.addEventListener("mouseleave", () => {
-        hideResultsHoverPreview();
       });
       card.addEventListener("click", (event) => {
+        event.preventDefault();
         selectTask();
-        showResultsHoverPreview(key, event, card);
-        openResultsVideoModal(key);
       });
 
       grid.appendChild(card);
@@ -1497,147 +1420,6 @@
       const isSelected = card.dataset.task === resultsState.selectedTask;
       card.classList.toggle("is-selected", isSelected);
     }
-  }
-
-  function showResultsHoverPreview(taskKey, event, anchorCard) {
-    const panel = document.querySelector(".results-panel");
-    const preview = document.getElementById("results-hover-preview");
-    const title = document.getElementById("results-hover-preview-title");
-    const video = document.getElementById("results-hover-preview-video");
-
-    if (!panel || !preview || !title || !video || !resultsState.data) {
-      return;
-    }
-
-    const task = resultsState.data[taskKey];
-    if (!task) {
-      return;
-    }
-
-    const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
-    title.textContent = task.title;
-
-    if (video.getAttribute("src") !== mapping.src) {
-      video.setAttribute("src", mapping.src);
-      video.load();
-    }
-
-    preview.classList.add("is-visible");
-    preview.setAttribute("aria-hidden", "false");
-    positionResultsHoverPreview(preview, panel, event, anchorCard);
-    if (video.paused) {
-      safePlay(video);
-    }
-  }
-
-  function hideResultsHoverPreview() {
-    const preview = document.getElementById("results-hover-preview");
-    const video = document.getElementById("results-hover-preview-video");
-    if (preview) {
-      preview.classList.remove("is-visible");
-      preview.setAttribute("aria-hidden", "true");
-    }
-    if (video) {
-      video.pause();
-    }
-  }
-
-  function initResultsVideoModal() {
-    const modal = document.getElementById("results-video-modal");
-    const closeButton = document.getElementById("results-modal-close");
-    if (!modal || !closeButton || modal.dataset.bound === "true") {
-      return;
-    }
-
-    modal.dataset.bound = "true";
-
-    closeButton.addEventListener("click", () => {
-      closeResultsVideoModal();
-    });
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeResultsVideoModal();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("is-open")) {
-        closeResultsVideoModal();
-      }
-    });
-  }
-
-  function openResultsVideoModal(taskKey) {
-    const modal = document.getElementById("results-video-modal");
-    const title = document.getElementById("results-modal-title");
-    const video = document.getElementById("results-modal-video");
-    if (!modal || !title || !video || !resultsState.data) {
-      return;
-    }
-
-    const task = resultsState.data[taskKey];
-    if (!task) {
-      return;
-    }
-
-    const mapping = TASK_VIDEO_MAP[taskKey] || TASK_VIDEO_MAP.PEG_NARROW;
-    title.textContent = task.title;
-    if (video.getAttribute("src") !== mapping.src) {
-      video.setAttribute("src", mapping.src);
-      video.load();
-    }
-
-    hideResultsHoverPreview();
-    modal.hidden = false;
-    modal.classList.add("is-open");
-    document.body.classList.add("results-modal-open");
-    safePlay(video);
-  }
-
-  function closeResultsVideoModal() {
-    const modal = document.getElementById("results-video-modal");
-    const video = document.getElementById("results-modal-video");
-    if (!modal || !video) {
-      return;
-    }
-
-    modal.classList.remove("is-open");
-    modal.hidden = true;
-    document.body.classList.remove("results-modal-open");
-    video.pause();
-  }
-
-  function positionResultsHoverPreview(preview, panel, event, anchorCard) {
-    const panelRect = panel.getBoundingClientRect();
-    const padding = 10;
-    let x = padding;
-    let y = padding;
-
-    if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
-      x = event.clientX - panelRect.left + 16;
-      y = event.clientY - panelRect.top + 16;
-    } else if (anchorCard) {
-      const cardRect = anchorCard.getBoundingClientRect();
-      x = cardRect.right - panelRect.left + 14;
-      y = cardRect.top - panelRect.top + 10;
-    }
-
-    const previewWidth = preview.offsetWidth || 320;
-    const previewHeight = preview.offsetHeight || 250;
-
-    if (x + previewWidth > panelRect.width - padding) {
-      x -= previewWidth + 32;
-    }
-    if (y + previewHeight > panelRect.height - padding) {
-      y = panelRect.height - previewHeight - padding;
-    }
-
-    x = Math.max(padding, x);
-    y = Math.max(padding, y);
-
-    preview.style.left = x.toFixed(1) + "px";
-    preview.style.top = y.toFixed(1) + "px";
   }
 
   function buildTaskChartSvg(task) {
