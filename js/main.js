@@ -737,16 +737,14 @@
 
   function initHeroMotion() {
     const hero = document.querySelector(".hero");
-    const heroVideo = document.querySelector(".hero-video");
-    if (!hero && !heroVideo) {
+    if (!hero) {
       return;
     }
+    const heroVideo = hero.querySelector(".hero-video");
 
     const onScroll = () => {
       const y = window.scrollY || 0;
-      if (hero) {
-        hero.classList.toggle("hero-scrolled", y > 56);
-      }
+      hero.classList.toggle("hero-scrolled", y > 56);
 
       if (heroVideo && !REDUCED_MOTION) {
         const vh = Math.max(window.innerHeight, 1);
