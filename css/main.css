@@ -878,7 +878,7 @@ main {
   display: grid;
   grid-template-rows: auto 1fr;
   gap: clamp(0.3rem, 0.5vw, 0.42rem);
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   font-family: inherit;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
@@ -1397,7 +1397,16 @@ video:focus-visible {
   margin: 32px 0 24px 0;
 }
 
+.delearn-section-box {
+  margin: 32px 0 24px 0;
+}
+
 .section-improvement .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-delearn .section-head {
   gap: 0.2rem;
   margin-bottom: 0.8rem;
 }
@@ -1437,6 +1446,15 @@ video:focus-visible {
   line-height: 1.15;
 }
 
+.section-delearn #delearn-block-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  line-height: 1.15;
+}
+
 .improvement-video-title {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
   font-size: 16px;
@@ -1454,7 +1472,35 @@ video:focus-visible {
 
 .improvement-stack video {
   aspect-ratio: 16 / 9;
-  width: min(620px, 100%);
+  width: min(725px, 100%);
+  object-fit: contain;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.delearn-stack {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+  justify-items: center;
+}
+
+.delearn-tab-bar {
+  margin-bottom: 0;
+}
+
+.delearn-item {
+  width: 100%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.delearn-stack video {
+  aspect-ratio: 16 / 9;
+  width: min(725px, 100%);
   object-fit: contain;
   border-radius: 18px;
   overflow: hidden;
@@ -1567,7 +1613,7 @@ video:focus-visible {
   color: var(--ink-1);
   font-size: 0.82rem;
   line-height: 1.35;
-  text-align: left;
+  text-align: center;
 }
 
 .results-shell {
@@ -1600,7 +1646,7 @@ video:focus-visible {
   font-size: 0.79rem;
   white-space: nowrap;
   line-height: 1.2;
-  text-align: left;
+  text-align: center;
 }
 
 .results-panel {
@@ -2559,6 +2605,7 @@ body {
   color: var(--text-secondary);
   background: var(--bg-surface);
   border-top: 0;
+  text-align: center;
 }
 
 .main-content .section {
@@ -2570,6 +2617,7 @@ body {
 .main-content .section-method,
 .main-content .section-results,
 .main-content .section-improvement,
+.main-content .section-delearn,
 .main-content .section-world-models,
 .main-content .section-task-structure,
 .main-content .section-values,
@@ -2583,9 +2631,9 @@ body {
 .section-head {
   max-width: none;
   margin: 0 0 1.5rem;
-  justify-items: start;
+  justify-items: center;
   gap: 0.75rem;
-  text-align: left;
+  text-align: center;
 }
 
 .section-head p {
@@ -2593,7 +2641,7 @@ body {
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.7;
-  text-align: left;
+  text-align: center;
   text-wrap: pretty;
 }
 
@@ -2680,6 +2728,11 @@ body {
   padding: 0;
   margin-top: 0;
   border-top: 0;
+  text-align: center;
+}
+
+.site-footer .bibtex-code,
+.site-footer .citation-block {
   text-align: left;
 }
 
@@ -2753,5 +2806,19 @@ body {
 
   .improvement-stack {
     gap: 16px;
+  }
+
+  .delearn-stack {
+    gap: 10px;
+  }
+
+  .delearn-tab-bar {
+    width: 100%;
+  }
+
+  .delearn-tab-bar .eval-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 10px;
   }
 }

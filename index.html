@@ -60,10 +60,16 @@
             <span class="progress-label">Real-World Improvement</span>
           </a>
         </div>
+        <div class="progress-item" data-section="delearn">
+          <a href="#delearn" data-nav="delearn">
+            <span class="progress-dot"></span>
+            <span class="progress-label">RL Finetuning is Hard</span>
+          </a>
+        </div>
         <div class="progress-item" data-section="world-models">
           <a href="#world-models" data-nav="world-models">
             <span class="progress-dot"></span>
-            <span class="progress-label">World Models</span>
+            <span class="progress-label">Preserving Simulator Priors</span>
           </a>
         </div>
         <div class="progress-item" data-section="results">
@@ -102,10 +108,10 @@
           <a href="https://kevinhuang8.github.io/">Kevin Huang</a><sup>2</sup>, <a href="https://palafox.info/">Fernando Palafox</a><sup>1</sup>,
           <a href="https://patrickyin.me/">Patrick Yin</a><sup>2</sup>,<br>
           <a href="https://www.linkedin.com/in/shayegan/">Shayegan Omidshafiei</a><sup>3</sup>,
-          <a href="https://dkkim93.github.io/">Dong-Ki Kim</a><sup>3</sup>, <a href="https://homes.cs.washington.edu/~abhgupta/">Abhishek Gupta</a><sup>2</sup>,
-          <a href="https://dfridovi.github.io/">David Fridovich-Keil</a><sup>1</sup>
+          <a href="https://dkkim93.github.io/">Dong-Ki Kim</a><sup>3</sup>, <a href="https://homes.cs.washington.edu/~abhgupta/">Abhishek Gupta</a><sup>†2</sup>,
+          <a href="https://dfridovi.github.io/">David Fridovich-Keil</a><sup>†1</sup>
           <span class="affiliation">
-            <sup>1</sup> UT Austin, <sup>2</sup> UW, <sup>3</sup> FieldAI, <sup>*</sup> Equal Contribution
+            <sup>1</sup>UT Austin, <sup>2</sup>UW, <sup>3</sup>FieldAI, <sup>*</sup>Equal Contribution, <sup>†</sup>Equal Advising
           </span>
         </div>
 
@@ -270,11 +276,10 @@
       </div>
     </section>
 
-    <div class="tagline" id="improvement">Rapid Real-World Improvement</div>
+    <div class="tagline" id="improvement">Robust Rapid Real-World Improvement</div>
     <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
       <div class="section-head" data-reveal>
-        <h2 id="improvement-title" class="visually-hidden">Rapid Real-World Improvement</h2>
-        <h3 id="improvement-block-title">Simulation Distillation</h3>
+        <h3 id="improvement-block-title">Rapid Performance Improvement</h3>
         <p>
           Simulation Distillation (SimDist) rapidly overcomes the sim-to-real dynamics gap through adaptation in the real world,
           resulting in substantial gains in task execution on both precise manipulation and quadrupedal locomotion tasks.
@@ -283,14 +288,76 @@
       <div class="improvement-stack">
         <figure class="improvement-item">
           <figcaption class="improvement-video-title">Manipulation - Peg Insertion</figcaption>
-          <video data-src="assets/video/manip_progress_vid.mp4" autoplay muted loop playsinline preload="none"></video>
+          <video data-src="assets/video/peg_improvement.mp4" autoplay muted loop playsinline preload="none" controls></video>
+        </figure>
+        <figure class="improvement-item">
+          <figcaption class="improvement-video-title">Manipulation - Table Leg Threading</figcaption>
+          <video data-src="assets/video/leg_improvement.mp4" autoplay muted loop playsinline preload="none" controls></video>
         </figure>
         <figure class="improvement-item">
           <figcaption class="improvement-video-title">Quadruped - Slippery Slope</figcaption>
-          <video data-src="assets/video/qped_progress_vid.mp4" autoplay muted loop playsinline preload="none"></video>
+          <video data-src="assets/video/ptfe_improvement.mp4" autoplay muted loop playsinline preload="none" controls></video>
+        </figure>
+        <figure class="improvement-item">
+          <figcaption class="improvement-video-title">Quadruped - Memory Foam</figcaption>
+          <video data-src="assets/video/foam_improvement.mp4" autoplay muted loop playsinline preload="none" controls></video>
         </figure>
       </div>
     </section>
+    <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
+      <div class="section-head" data-reveal>
+        <h3 id="improvement-block-title">Higher Task Throughput</h3>
+        <p>
+          SimDist increases task throughput by improving both reliability and execution speed after real-world adaptation,
+          enabling more successful task completions in less time.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <figure class="improvement-item">
+          <!-- <figcaption class="improvement-video-title">Manipulation - Table Leg</figcaption> -->
+          <video data-src="assets/video/cycle_time.mp4" autoplay muted loop playsinline preload="none" controls></video>
+        </figure>
+      </div>
+    </section>
+    <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
+      <div class="section-head" data-reveal>
+        <h3 id="improvement-block-title">Added Robustness</h3>
+        <p>
+          SimDist improves robustness to external disturbances, allowing the adapted planner to recover from unexpected
+          physical perturbations while continuing toward the task goal.
+        </p>
+      </div>
+      <div class="improvement-stack">
+        <figure class="improvement-item">
+          <!-- <figcaption class="improvement-video-title">Manipulation - Table Leg</figcaption> -->
+          <video data-src="assets/video/robustness.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
+    <div class="tagline" id="delearn">Why End-to-end RL Finetuning is Hard</div>
+    <section class="section section-delearn card-surface section-card delearn-section-box" aria-labelledby="delearn-block-title">
+      <div class="section-head" data-reveal>
+        <h3 id="delearn-block-title">Catastrophic Forgetting</h3>
+        <p>
+          Existing end-to-end reinforcement learning methods often collapse when finetuning policies in new domains, indicating catastrophic forgetting of pretraining priors.
+          These algorithms entangle learning representations, dynamics, and returns, forcing relearning
+          of the <strong>entire</strong> task structure in the new domain.
+        </p>
+      </div>
+      <div class="delearn-stack">
+        <div id="delearn-tab-bar" class="eval-tab-bar delearn-tab-bar" role="tablist" aria-label="Delearn video selector">
+          <button type="button" class="eval-tab active" role="tab" aria-selected="true" data-delearn-video="peg" data-video-src="assets/video/peg_delearn.mp4">Peg Insertion</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="leg" data-video-src="assets/video/leg_delearn.mp4">Table Leg</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="ptfe" data-video-src="assets/video/ptfe_delearn.mp4">Slippery Slope</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="foam" data-video-src="assets/video/foam_delearn.mp4">Memory Foam</button>
+        </div>
+        <figure class="delearn-item">
+          <video id="delearn-video" data-src="assets/video/peg_delearn.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
     <!-- <section class="section section-improvement card-surface section-card improvement-section-box" aria-labelledby="improvement-title">
       <div class="section-head" data-reveal>
         <h2 id="improvement-title" class="visually-hidden">Rapid Real-World Improvement Compared to RL</h2>
@@ -312,13 +379,13 @@
       </div>
     </section> -->
 
-    <div class="tagline" id="world-models">World Models</div>
+    <div class="tagline" id="world-models">Preserving Simulator Priors During Finetuning</div>
     <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
       <div class="section-head" data-reveal>
         <h2 id="world-models-title-rl" class="visually-hidden">World Models</h2>
-        <h3 id="world-models-block-title-rl">Structure</h3>
+        <h3 id="world-models-block-title-rl">Task Structure</h3>
         <p>
-          Our Key Insight: world models automatically decompose task structure in a form that we
+          <b>Our Key Insight</b>: world models automatically decompose task structure in a form that we
           can exploit to target adaptation where it’s needed. We argue that the encoder, rewards,
           and value function capture the <b>global structure</b> of the problem in a form that is
           <i>largely invariant sim-to-real</i>. Thus, we freeze these components during the real world finetuning phase,
@@ -362,11 +429,12 @@
     <section id="task-structure" class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
       <div class="section-head" data-reveal>
         <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
-        <h3 id="task-structure-block-title">Value Prediction</h3>
+        <h3 id="task-structure-block-title">Transferring Value Functions</h3>
         <p>
-          Below we see that the frozen value function accurately discriminates between successful and
-          failed real-world trajectories. Bootstrapping the value functionin simulation enables the planner
-          to estimate long-horizon returns without solving challenging real-world credit assignment problems.
+          In order to be useful for planning, the value function we transfer from simulation does not need to exactly model real-world returns.
+          Instead, the planner only needs the value function to accurately <i>discriminate</i> between high quality and low-quality states in the real world.
+          This enables the planner to <i>reason counterfactually</i> at test time to improve performance. Below, we see that the value function is able to
+          accurately discriminate successful and failed trajectories in the real world.
         </p>
       </div>
       <div class="improvement-stack">
@@ -481,11 +549,6 @@
             Success rate for two manipulation tasks, computed over 20 trials, and average forward progress for two quadruped locomotion tasks,
             averaged across all 15 trials (3 speeds, 5 trials each), as a function of real-world finetuning data. For manipulation, we consider
             two difficulties: initial conditions drawn from a <em>Narrow</em> or <em>Wide</em> grid.
-          </p>
-          <p>
-            SimDist exhibits rapid and consistent improvement with limited data by finetuning only the latent dynamics model
-            while planning with frozen reward and value models. In contrast, direct policy finetuning with the baselines shows limited or no
-            improvement under the same data budgets.
           </p>
         </div>
 
