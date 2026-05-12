@@ -69,7 +69,7 @@
         <div class="progress-item" data-section="world-models">
           <a href="#world-models" data-nav="world-models">
             <span class="progress-dot"></span>
-            <span class="progress-label">World Models</span>
+            <span class="progress-label">Preserving Simulator Priors</span>
           </a>
         </div>
         <div class="progress-item" data-section="results">
@@ -379,13 +379,13 @@
       </div>
     </section> -->
 
-    <div class="tagline" id="world-models">World Models</div>
+    <div class="tagline" id="world-models">Preserving Simulator Priors During Finetuning</div>
     <section class="section section-world-models card-surface section-card world-models-section-box" aria-labelledby="world-models-title">
       <div class="section-head" data-reveal>
         <h2 id="world-models-title-rl" class="visually-hidden">World Models</h2>
-        <h3 id="world-models-block-title-rl">Structure</h3>
+        <h3 id="world-models-block-title-rl">Task Structure</h3>
         <p>
-          Our Key Insight: world models automatically decompose task structure in a form that we
+          <b>Our Key Insight</b>: world models automatically decompose task structure in a form that we
           can exploit to target adaptation where it’s needed. We argue that the encoder, rewards,
           and value function capture the <b>global structure</b> of the problem in a form that is
           <i>largely invariant sim-to-real</i>. Thus, we freeze these components during the real world finetuning phase,
@@ -429,11 +429,12 @@
     <section id="task-structure" class="section section-task-structure card-surface section-card task-structure-section-box" aria-labelledby="task-structure-title">
       <div class="section-head" data-reveal>
         <h2 id="task-structure-title" class="visually-hidden">Freezing and Transferring Task Structure</h2>
-        <h3 id="task-structure-block-title">Value Prediction</h3>
+        <h3 id="task-structure-block-title">Transferring Value Functions</h3>
         <p>
-          Below we see that the frozen value function accurately discriminates between successful and
-          failed real-world trajectories. Bootstrapping the value functionin simulation enables the planner
-          to estimate long-horizon returns without solving challenging real-world credit assignment problems.
+          In order to be useful for planning, the value function we transfer from simulation does not need to exactly model real-world returns.
+          Instead, the planner only needs the value function to accurately <i>discriminate</i> between high quality and low-quality states in the real world.
+          This enables the planner to <i>reason counterfactually</i> at test time to improve performance. Below, we see that the value function is able to
+          accurately discriminate successful and failed trajectories in the real world.
         </p>
       </div>
       <div class="improvement-stack">
