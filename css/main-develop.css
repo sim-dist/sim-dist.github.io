@@ -1397,7 +1397,16 @@ video:focus-visible {
   margin: 32px 0 24px 0;
 }
 
+.delearn-section-box {
+  margin: 32px 0 24px 0;
+}
+
 .section-improvement .section-head {
+  gap: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-delearn .section-head {
   gap: 0.2rem;
   margin-bottom: 0.8rem;
 }
@@ -1437,6 +1446,15 @@ video:focus-visible {
   line-height: 1.15;
 }
 
+.section-delearn #delearn-block-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  line-height: 1.15;
+}
+
 .improvement-video-title {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
   font-size: 16px;
@@ -1453,6 +1471,34 @@ video:focus-visible {
 }
 
 .improvement-stack video {
+  aspect-ratio: 16 / 9;
+  width: min(725px, 100%);
+  object-fit: contain;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.delearn-stack {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+  justify-items: center;
+}
+
+.delearn-tab-bar {
+  margin-bottom: 0;
+}
+
+.delearn-item {
+  width: 100%;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.delearn-stack video {
   aspect-ratio: 16 / 9;
   width: min(725px, 100%);
   object-fit: contain;
@@ -2570,6 +2616,7 @@ body {
 .main-content .section-method,
 .main-content .section-results,
 .main-content .section-improvement,
+.main-content .section-delearn,
 .main-content .section-world-models,
 .main-content .section-task-structure,
 .main-content .section-values,
@@ -2753,5 +2800,19 @@ body {
 
   .improvement-stack {
     gap: 16px;
+  }
+
+  .delearn-stack {
+    gap: 10px;
+  }
+
+  .delearn-tab-bar {
+    width: 100%;
+  }
+
+  .delearn-tab-bar .eval-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 10px;
   }
 }

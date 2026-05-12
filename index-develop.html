@@ -60,6 +60,12 @@
             <span class="progress-label">Real-World Improvement</span>
           </a>
         </div>
+        <div class="progress-item" data-section="delearn">
+          <a href="#delearn" data-nav="delearn">
+            <span class="progress-dot"></span>
+            <span class="progress-label">RL Finetuning is Hard</span>
+          </a>
+        </div>
         <div class="progress-item" data-section="world-models">
           <a href="#world-models" data-nav="world-models">
             <span class="progress-dot"></span>
@@ -325,6 +331,29 @@
         <figure class="improvement-item">
           <!-- <figcaption class="improvement-video-title">Manipulation - Table Leg</figcaption> -->
           <video data-src="assets/video/robustness.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
+    <div class="tagline" id="delearn">Why End-to-end RL Finetuning is Hard</div>
+    <section class="section section-delearn card-surface section-card delearn-section-box" aria-labelledby="delearn-block-title">
+      <div class="section-head" data-reveal>
+        <h3 id="delearn-block-title">Catastrophic Forgetting</h3>
+        <p>
+          Existing end-to-end reinforcement learning methods often collapse when finetuning policies in new domains, indicating catastrophic forgetting of pretraining priors.
+          These algorithms entangle learning representations, dynamics, and returns, forcing relearning
+          of the <strong>entire</strong> task structure in the new domain.
+        </p>
+      </div>
+      <div class="delearn-stack">
+        <div id="delearn-tab-bar" class="eval-tab-bar delearn-tab-bar" role="tablist" aria-label="Delearn video selector">
+          <button type="button" class="eval-tab active" role="tab" aria-selected="true" data-delearn-video="peg" data-video-src="assets/video/peg_delearn.mp4">Peg Insertion</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="leg" data-video-src="assets/video/leg_delearn.mp4">Table Leg</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="ptfe" data-video-src="assets/video/ptfe_delearn.mp4">Slippery Slope</button>
+          <button type="button" class="eval-tab" role="tab" aria-selected="false" data-delearn-video="foam" data-video-src="assets/video/foam_delearn.mp4">Memory Foam</button>
+        </div>
+        <figure class="delearn-item">
+          <video id="delearn-video" data-src="assets/video/peg_delearn.mp4" autoplay muted loop playsinline preload="none"></video>
         </figure>
       </div>
     </section>

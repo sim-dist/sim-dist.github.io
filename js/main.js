@@ -208,6 +208,7 @@
     initValuesTimeline();
     initConsistencyLossChart();
     initPlanningTabs();
+    initDelearnSwitcher();
   });
 
   function resolveIntroVideoPriority() {
@@ -425,6 +426,55 @@
           }
         }
       });
+    }
+  }
+
+  function initDelearnSwitcher() {
+    const tabBar = document.getElementById("delearn-tab-bar");
+    const video = document.getElementById("delearn-video");
+    if (!tabBar || !video) {
+      return;
+    }
+
+    const tabs = tabBar.querySelectorAll(".eval-tab[data-delearn-video]");
+    if (!tabs.length) {
+      return;
+    }
+
+    const selectVideo = (tab) => {
+      const nextSrc = tab.dataset.videoSrc;
+      if (!nextSrc) {
+        return;
+      }
+
+      for (const button of tabs) {
+        const isActive = button === tab;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", isActive ? "true" : "false");
+      }
+
+      if (video.dataset.src === nextSrc && (video.currentSrc || video.getAttribute("src"))) {
+        safePlay(video);
+        return;
+      }
+
+      video.pause();
+      video.dataset.src = nextSrc;
+      video.dataset.deferredLoaded = "false";
+      video.dataset.deferredHydrated = "false";
+      video.removeAttribute("src");
+
+      try {
+        video.load();
+      } catch (error) {
+        return;
+      }
+
+      safePlay(video);
+    };
+
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => selectVideo(tab));
     }
   }
 
