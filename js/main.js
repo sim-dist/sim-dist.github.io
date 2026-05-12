@@ -1272,9 +1272,7 @@
       button.appendChild(label);
 
       button.addEventListener("mouseenter", () => {
-        resultsState.hovered = method;
-        refreshLegendUI();
-        renderResultsCharts();
+        setResultsHoveredMethod(method);
       });
 
       button.addEventListener("mouseleave", () => {
@@ -1286,9 +1284,7 @@
       });
 
       button.addEventListener("focus", () => {
-        resultsState.hovered = method;
-        refreshLegendUI();
-        renderResultsCharts();
+        setResultsHoveredMethod(method);
       });
 
       button.addEventListener("blur", () => {
@@ -1304,6 +1300,9 @@
           resultsState.hidden.delete(method);
         } else {
           resultsState.hidden.add(method);
+        }
+        if (TOUCH_PRIMARY_POINTER.matches) {
+          resultsState.hovered = null;
         }
         refreshLegendUI();
         renderResultsCharts();
@@ -1342,6 +1341,16 @@
     if (suffix) {
       node.appendChild(document.createTextNode(suffix));
     }
+  }
+
+  function setResultsHoveredMethod(method) {
+    const nextMethod = resultsState.hidden.has(method) ? null : method;
+    if (resultsState.hovered === nextMethod) {
+      return;
+    }
+    resultsState.hovered = nextMethod;
+    refreshLegendUI();
+    renderResultsCharts();
   }
 
   function refreshLegendUI() {
