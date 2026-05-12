@@ -1454,7 +1454,7 @@ video:focus-visible {
 
 .improvement-stack video {
   aspect-ratio: 16 / 9;
-  width: min(620px, 100%);
+  width: min(725px, 100%);
   object-fit: contain;
   border-radius: 18px;
   overflow: hidden;
