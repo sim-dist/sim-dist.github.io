@@ -2517,8 +2517,16 @@ body {
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.7;
-  text-align: center;
+  text-align: justify;
   text-wrap: pretty;
+}
+
+.main-content .section p {
+  text-align: justify;
+}
+
+.main-content .section-planning p {
+  text-align: center;
 }
 
 .hero-flow {
